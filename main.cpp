@@ -17,11 +17,14 @@ int main(int argc, char* argv[]) {
     // cout << a->saveToDatabase().str() << endl;
     string d = "J.K. Rowling,\"The first Harry Potter book\",1,Harry Potter and the Philosopher's Stone,10.99,Fiction";
     stringstream str(d);
-    // a->readFromStr(str);
-    // printMap<string, string>(a->getAll());
-    ShopDatabase* db=new ShopDatabase((string)"../data/books_database.csv");
+    // // a->readFromStr(str);
+    // // printMap<string, string>(a->getAll());
+    ShopDatabase* db=new ShopDatabase((string)"../data/books_database.csv", BOOKS);
     db->printDB();
     delete a;
     delete db;
-
+    // map<int, ifstream*> m;
+    // cout << m.empty() << endl;
+    // m[1] = new ifstream;
+    // cout << m.empty() << endl;
 }

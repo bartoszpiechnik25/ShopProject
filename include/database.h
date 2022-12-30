@@ -2,17 +2,26 @@
 
 #include "book.h"
 
+//Define on which item perform database ItemType
+enum ItemType {
+    ALL,
+    BOOKS,
+};
+const ItemType initDatabaseItems[] = {BOOKS};
+
 class ShopDatabase {
 private:
     std::map<std::string, std::vector<Item*>> data;
     bool modified = false;
-    std::vector<std::ifstream> files;
-    void open(const std::string&);
-    void open(const std::vector<std::string>&);
+    std::map<ItemType, std::ifstream*> files;
+    void open(const std::string&, const ItemType&);
+    // void open(const std::vector<std::string>&);
+    void initMap();
+    std::string itemTypeToString(const ItemType&) const;
 public:
     ShopDatabase();
-    ShopDatabase(const std::vector<std::string>&);
-    ShopDatabase(const std::string&);
+    ShopDatabase(const std::map<std::string, ItemType>&);
+    ShopDatabase(const std::string&, const ItemType);
     ~ShopDatabase();
     void printDB() const;
     // void loadData(const int&);

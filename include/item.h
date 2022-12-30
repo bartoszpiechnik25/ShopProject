@@ -10,13 +10,6 @@
 #include <limits>
 #include <thread>
 
-
-//Define on which item perform database operations
-enum Operations {
-    ALL,
-    BOOKS
-};
-
 class Item {
 protected:
     long id;

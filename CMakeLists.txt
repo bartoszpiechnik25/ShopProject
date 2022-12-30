@@ -10,6 +10,8 @@ add_executable(shop main.cpp)
 # Set the directories for the source and header files
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
+
 
 add_custom_target(data_target DEPENDS "${DATA_DIR}/data.csv")
 
@@ -19,7 +21,3 @@ target_sources(shop PRIVATE "${SRC_DIR}/book.cpp" "${SRC_DIR}/item.cpp" "${SRC_D
 
 # Add the books.h and item.h files as include directories for the executable
 target_include_directories(shop PRIVATE ${INC_DIR})
-
-# # Add all .csv files in the data directory as resources for the executable
-# file(GLOB_RECURSE CSV_FILES "${CMAKE_CURRENT_SOURCE_DIR}/data/*.csv")
-# add_custom_target(csv_files ALL SOURCES ${CSV_FILES})
