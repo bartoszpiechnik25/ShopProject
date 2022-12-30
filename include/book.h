@@ -22,7 +22,7 @@ public:
     std::map<std::string, std::string> getAll() const override;
     void setAll() override;
     void readFromStr(std::stringstream&) override;
-    std::stringstream saveToDatabase() override;
+    std::string saveToDatabase() override;
 };
 
 template <typename T>

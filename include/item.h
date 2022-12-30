@@ -39,5 +39,5 @@ public:
     virtual std::map<std::string, std::string> getAll() const = 0;
     virtual void setAll() = 0;
     virtual void readFromStr(std::stringstream&) = 0;
-    virtual std::stringstream saveToDatabase() = 0;
+    virtual std::string saveToDatabase() = 0;
 };

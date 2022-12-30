@@ -32,6 +32,7 @@ ShopDatabase::~ShopDatabase() {
         for(Item* it: value)
             delete it;
     }
+    delete [] modified;
 }
 
 void ShopDatabase::open(const std::string& path, const ItemType& type) {
@@ -62,10 +63,6 @@ void ShopDatabase::open(const std::string& path, const ItemType& type) {
     files[type]->close();
 }
 
-// void ShopDatabase::open(const std::vector<std::string>& path) {
-
-// }
-
 template <typename K, typename V>
 void printMap(const std::map<K, V> &m) {
     for (const auto &[key, value] : m) {
@@ -84,4 +81,71 @@ void ShopDatabase::printDB() const {
 void ShopDatabase::initMap() {
     for (const auto& item_num: initDatabaseItems)
         files[item_num] = new std::ifstream;
+    modified = new bool[data.size() + 1];
+}
+
+void ShopDatabase::deleteRecord(const ItemType& item_type, int index) {
+    std::string type = itemTypeToString(item_type);
+    if (data[type].empty())
+        throw empty_vector("You want to delete from empty DB!");
+    index--;
+    if (index < data[type].size() && index >= 0) {
+        data[type].erase(data[type].begin() + index);
+        modified[item_type] = true;
+    }
+    else {
+        throw std::out_of_range("Index out of range!");
+    }
+}
+
+ShopDatabase& ShopDatabase::operator-=(std::pair<ItemType, int>& pair_) {
+    deleteRecord(pair_.first, pair_.second);
+    return *this;
+}
+
+void ShopDatabase::addRecord(const ItemType& item_type) {
+    std::string type = itemTypeToString(item_type);
+    if (data[type].empty())
+        throw empty_vector("You want to add to DB that is not loaded!");
+    Item* item = new Book;
+    item->setAll();
+    if (item) {
+        data[type].push_back(item);
+        modified[item_type] = true;
+    }
+}
+
+void ShopDatabase::saveData() {
+    std::vector<std::thread> threads;
+    for(const auto& type: initDatabaseItems)
+        threads.push_back(std::thread(&ShopDatabase::save, this, type));
+    for(auto& th: threads)
+        th.join();
+}
+
+std::string ShopDatabase::itemTypeToPath(const ItemType& item_type) const {
+    switch (item_type) {
+        case BOOKS:
+            return "../data/books_database.csv";
+        case PHONES:
+            return "../data/phones_database.csv";
+        default:
+            return "";
+    }
+}
+
+void ShopDatabase::save(const ItemType& item_type) {
+    if (modified[item_type]) {
+        std::ofstream save(itemTypeToPath(item_type));
+        if (save.good()) {
+            std::string a = "Author,Description,ID,Name,Price,Type\n";
+            save << a;
+            for(const auto& item_str: data[itemTypeToString(item_type)])
+                save << (item_str->saveToDatabase() + "\n");
+        } else {
+            char* s;
+            sprintf(s, "Cannot open file: %s!", itemTypeToPath(item_type).c_str());
+            throw std::runtime_error(s);
+        }
+    }
 }

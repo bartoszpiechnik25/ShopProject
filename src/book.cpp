@@ -66,7 +66,7 @@ void Book::readFromStr(std::stringstream& data) {
     type = add[5];
 }
 
-std::stringstream Book::saveToDatabase() {
+std::string Book::saveToDatabase() {
     if (isEmpty())
         throw empty_item("Cannot save empty book!");
     
@@ -74,7 +74,7 @@ std::stringstream Book::saveToDatabase() {
     for(const auto&[key, value]: getAll())
         save += (value + ",");
     save.pop_back();
-    return std::stringstream(save);
+    return save;
 }
 
 
