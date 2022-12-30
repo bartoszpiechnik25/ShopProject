@@ -1,0 +1,23 @@
+Author,Description,ID,Name,Price,Type
+J.K. Rowling,"The first Harry Potter book",1,Harry Potter and the Philosopher's Stone,10.99,Fiction
+J.K. Rowling,"The second Harry Potter book",2,Harry Potter and the Chamber of Secrets,10.99,Fiction
+J.K. Rowling,"The third Harry Potter book",3,Harry Potter and the Prisoner of Azkaban,10.99,Fiction
+J.K. Rowling,"The fourth Harry Potter book",4,Harry Potter and the Goblet of Fire,14.99,Fiction
+J.K. Rowling,"The fifth Harry Potter book",5,Harry Potter and the Order of the Phoenix,18.99,Fiction
+J.K. Rowling,"The sixth Harry Potter book",6,Harry Potter and the Half-Blood Prince,18.99,Fiction
+J.K. Rowling,"The final Harry Potter book",7,Harry Potter and the Deathly Hallows,24.99,Fiction
+Stephen King,"A horror novel about a man",8,The Shining,9.99,Fiction
+Stephen King,"A post-apocalyptic novel",9,The Stand,17.99,Fiction
+Stephen King,"A novel about a telekinetic girl",10,Carrie,7.99,Fiction
+Stephen King,"The first book in the Dark Tower series",11,The Dark Tower I: The Gunslinger,9.99,Fiction
+Stephen King,"The second book in the Dark Tower series",12,The Dark Tower II: The Drawing of the Three,11.99,Fiction
+Stephen King,"The third book in the Dark Tower series",13,The Dark Tower III: The Waste Lands,13.99,Fiction
+Stephen King,"The fourth book in the Dark Tower series",14,The Dark Tower IV: Wizard and Glass,15.99,Fiction
+Stephen King,"The fifth book in the Dark Tower series",15,The Dark Tower V: Wolves of the Calla,17.99,Fiction
+Stephen King,"The sixth book in the Dark Tower series",16,The Dark Tower VI: Song of Susannah,17.99,Fiction
+Stephen King,"The final book in the Dark Tower series",17,The Dark Tower VII: The Dark Tower,19.99,Fiction
+Jane Austen,"A novel about the societal expectations",18,Pride and Prejudice,9.99,Fiction
+Jane Austen,"A novel about a wealthy young woman",19,Emma,9.99,Fiction
+Jane Austen,"A novel about a young woman's marriage",20,Mansfield Park,9.99,Fiction
+Jane Austen,"A novel about a young woman's expectations",21,Northanger Abbey,7.99,Fiction
+Jane Austen,"A novel about a young woman's second chance",22,Persuasion,9.99
