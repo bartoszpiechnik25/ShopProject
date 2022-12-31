@@ -4,6 +4,8 @@ std::string ShopDatabase::itemTypeToString(const ItemType& type) const {
     switch (type) {
         case BOOKS:
             return "Books";
+        case PHONES:
+            return "Phones";
         default:
             return "";
     }
@@ -55,9 +57,9 @@ void ShopDatabase::open(const std::string& path, const ItemType& type) {
     string line;
      
     while (getline(*files[type], line)) {
-        stringstream stream(line);
-        Item* item = new Book;
-        item->readFromStr(stream);
+        // stringstream stream(line);
+        Item* item = selectCorrectChild(type);
+        item->readFromStr(line);
         data[item_type].push_back(item);
     }
     files[type]->close();
@@ -107,7 +109,7 @@ void ShopDatabase::addRecord(const ItemType& item_type) {
     std::string type = itemTypeToString(item_type);
     if (data[type].empty())
         throw empty_vector("You want to add to DB that is not loaded!");
-    Item* item = new Book;
+    Item* item = selectCorrectChild(item_type);
     item->setAll();
     if (item) {
         data[type].push_back(item);
@@ -147,5 +149,16 @@ void ShopDatabase::save(const ItemType& item_type) {
             sprintf(s, "Cannot open file: %s!", itemTypeToPath(item_type).c_str());
             throw std::runtime_error(s);
         }
+    }
+}
+
+Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) const {
+    switch (item_type) {
+        case BOOKS:
+            return new Book;
+        case PHONES:
+            return new Phone;
+        default:
+            return nullptr;
     }
 }

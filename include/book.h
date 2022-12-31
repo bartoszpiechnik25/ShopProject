@@ -1,6 +1,5 @@
 #pragma once
 #include "item.h"
-#include "exception.h"
 
 class Book: public Item {
 private:
@@ -21,10 +20,6 @@ public:
     std::string getType() const;
     std::map<std::string, std::string> getAll() const override;
     void setAll() override;
-    void readFromStr(std::stringstream&) override;
+    void readFromStr(std::string&) override;
     std::string saveToDatabase() override;
 };
-
-template <typename T>
-T readNumericValue(const char*);
-std::string readString(const char*);

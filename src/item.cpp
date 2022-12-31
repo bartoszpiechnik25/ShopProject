@@ -28,29 +28,51 @@ std::string Item::getName() const { return name; }
 std::string Item::getDescription() const { return description; }
 double Item::getPrice() const { return price; }
 
-template <typename T>
-T getInput(const char* message) {
-    T input;
-    bool expression = true;
-    while (expression) {
-        std::cout << message;
-        std::cin >> input;
-        if (std::cin.fail()) {
-            std::cin.clear();
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            std::cout << "Invalid input. Please try again." << std::endl;
+long Item::readLongValue(const char* message) {
+    std::cout << message;
+    long value;
+    do {
+        std::string str;
+        std::getline(std::cin, str);
+        while (str == "") {
+            std::cout << "Invalid input. Please enter a valid number: ";
+            std::getline(std::cin, str);
         }
-        else {
-            std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-            if constexpr (std::is_same_v<T, int>)
-                expression = (input <= 0);
-            else if constexpr (std::is_same_v<T, double>)
-                expression = (input <= 0);
-            else
-                expression = false;
-            if (expression)
-                std::cout << "Invalid input. Please try again." << std::endl;
+        std::stringstream ss(str);  // create stringstream from input string
+        ss >> value;  // extract value from stringstream
+        if (value <= 0) {
+            std::cout << "Invalid input. Please enter a positive number: ";
         }
+    } while (value <= 0);
+    return value;
+}
+
+double Item::readDoubleValue(const char* message) {
+    std::cout << message;
+    double value;
+    do {
+        std::string str;
+        std::getline(std::cin, str);
+        while (str == "") {
+            std::cout << "Invalid input. Please enter a valid number: ";
+            std::getline(std::cin, str);
+        }
+        std::stringstream ss(str);  // create stringstream from input string
+        ss >> value;  // extract value from stringstream
+        if (value <= 0) {
+            std::cout << "Invalid input. Please enter a positive number: ";
+        }
+    } while (value <= 0);
+    return value;
+}
+
+std::string Item::readString(const char* message) {
+    std::string input;
+    std::cout << message;
+    std::getline(std::cin, input);
+    while (input == "" || input == "\n") {
+        std::cout << "Invalid input. Please enter a string: ";
+        std::getline(std::cin, input);
     }
     return input;
 }

@@ -1,23 +1,25 @@
-Author,Description,ID,Name,Price,Type
-J.K. Rowling,"The first Harry Potter book",1,Harry Potter and the Philosopher's Stone,10.99,Fiction
-J.K. Rowling,"The second Harry Potter book",2,Harry Potter and the Chamber of Secrets,10.99,Fiction
-J.K. Rowling,"The third Harry Potter book",3,Harry Potter and the Prisoner of Azkaban,10.99,Fiction
-J.K. Rowling,"The fourth Harry Potter book",4,Harry Potter and the Goblet of Fire,14.99,Fiction
-J.K. Rowling,"The fifth Harry Potter book",5,Harry Potter and the Order of the Phoenix,18.99,Fiction
-J.K. Rowling,"The sixth Harry Potter book",6,Harry Potter and the Half-Blood Prince,18.99,Fiction
-J.K. Rowling,"The final Harry Potter book",7,Harry Potter and the Deathly Hallows,24.99,Fiction
-Stephen King,"A horror novel about a man",8,The Shining,9.99,Fiction
-Stephen King,"A post-apocalyptic novel",9,The Stand,17.99,Fiction
-Stephen King,"A novel about a telekinetic girl",10,Carrie,7.99,Fiction
-Stephen King,"The first book in the Dark Tower series",11,The Dark Tower I: The Gunslinger,9.99,Fiction
-Stephen King,"The second book in the Dark Tower series",12,The Dark Tower II: The Drawing of the Three,11.99,Fiction
-Stephen King,"The third book in the Dark Tower series",13,The Dark Tower III: The Waste Lands,13.99,Fiction
-Stephen King,"The fourth book in the Dark Tower series",14,The Dark Tower IV: Wizard and Glass,15.99,Fiction
-Stephen King,"The fifth book in the Dark Tower series",15,The Dark Tower V: Wolves of the Calla,17.99,Fiction
-Stephen King,"The sixth book in the Dark Tower series",16,The Dark Tower VI: Song of Susannah,17.99,Fiction
-Stephen King,"The final book in the Dark Tower series",17,The Dark Tower VII: The Dark Tower,19.99,Fiction
-Jane Austen,"A novel about the societal expectations",18,Pride and Prejudice,9.99,Fiction
-Jane Austen,"A novel about a wealthy young woman",19,Emma,9.99,Fiction
-Jane Austen,"A novel about a young woman's marriage",20,Mansfield Park,9.99,Fiction
-Jane Austen,"A novel about a young woman's expectations",21,Northanger Abbey,7.99,Fiction
-Jane Austen,"A novel about a young woman's second chance",22,Persuasion,9.99
+ID,Name,Author,Description,Price,Type
+1,To Kill a Mockingbird,Harper Lee,A story of prejudice in the South,9.99,Fiction
+2,Pride and Prejudice,Jane Austen,A romance set in early 19th century England,8.99,Fiction
+3,The Catcher in the Rye,J.D. Salinger,A coming-of-age story set in New York,10.99,Fiction
+4,The Great Gatsby,F. Scott Fitzgerald,A tale of love and excess set in the Roaring Twenties,11.99,Fiction
+5,The Grapes of Wrath,John Steinbeck,A story of the Great Depression and the Dust Bowl,12.99,Fiction
+6,The Alchemist,Paulo Coelho,A journey to find one's purpose in life,14.99,Fiction
+7,Moby-Dick,Herman Melville,A sailor's hunt for the white whale,13.99,Fiction
+8,Wuthering Heights,Emily Brontë,A tale of love and revenge set on the moors,15.99,Fiction
+9,The Picture of Dorian Gray,Oscar Wilde,A story of youth beauty and corruption,16.99,Fiction
+10,The Old Man and the Sea,Ernest Hemingway,A tale of determination and perseverance,17.99,Fiction
+11,The Divine Comedy,Dante Alighieri,A journey through Hell Purgatory and Heaven,18.99,Fiction
+12,The Inferno,Dante Alighieri,A journey through the nine circles of Hell,19.99,Fiction
+13,The Republic,Plato,A philosophical treatise on justice and governance,20.99,Non-fiction
+14,The Prince,Niccolò Machiavelli,A political treatise on power and leadership,22.99,Non-fiction
+15,The Art of War,Sun Tzu,A military treatise on strategy and tactics,24.99,Non-fiction
+16,The Meditations,Marcus Aurelius,A series of philosophical reflections on Stoicism,26.99,Non-fiction
+17,The Wealth of Nations,Adam Smith,A treatise on economics and capitalism,28.99,Non-fiction
+18,The Communist Manifesto,Karl Marx and Friedrich Engels,A political treatise on communism,30.99,Non-fiction
+19,The Social Contract,Jean-Jacques Rousseau,A treatise on the nature of society and government,32.99,Non-fiction
+20,The Elements of Style,William Strunk Jr. and E.B. White,A guide to writing and style,34.99,Non-fiction
+21,How to Win Friends and Influence People,Dale Carnegie,A self-help book on personal relations,36.99,Non-fiction
+22,The 7 Habits of Highly Effective People,Stephen R. Covey,A self-help book on personal and professional effectiveness,38.99,Non-fiction
+23,Awaken the Giant Within,Tony Robbins,A self-help book on personal growth and development,40.99,Non-fiction
+24,The Power of Now,Eckhart Tolle,A spiritual guide to finding inner peace,42.99,Non-fiction

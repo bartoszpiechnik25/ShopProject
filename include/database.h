@@ -1,6 +1,7 @@
 #pragma once
 
 #include "book.h"
+#include "phone.h"
 
 //Define on which item perform database operations
 enum ItemType {
@@ -25,13 +26,13 @@ public:
     void deleteRecord(const ItemType&, int);
     ShopDatabase& operator-=(std::pair<ItemType, int>&);
     void addRecord(const ItemType&);
-    void save(const ItemType&);
-
 private:
     void open(const std::string&, const ItemType&);
+    void save(const ItemType&);
     void initMap();
     std::string itemTypeToString(const ItemType&) const;
     std::string itemTypeToPath(const ItemType&) const;
+    Item* selectCorrectChild(const ItemType&) const;
 };
 
 template <typename K, typename V>

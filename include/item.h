@@ -9,6 +9,8 @@
 #include <sstream>
 #include <limits>
 #include <thread>
+#include <map>
+#include "exception.h"
 
 class Item {
 protected:
@@ -38,6 +40,9 @@ public:
     //Pure virtual functions
     virtual std::map<std::string, std::string> getAll() const = 0;
     virtual void setAll() = 0;
-    virtual void readFromStr(std::stringstream&) = 0;
+    virtual void readFromStr(std::string&) = 0;
     virtual std::string saveToDatabase() = 0;
+    static long readLongValue(const char*);
+    static double readDoubleValue(const char*);
+    static std::string readString(const char*);
 };
