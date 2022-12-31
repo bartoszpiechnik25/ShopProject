@@ -10,6 +10,7 @@
 #include <limits>
 #include <thread>
 #include <map>
+#include <algorithm>
 #include "exception.h"
 
 class Item {

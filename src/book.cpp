@@ -59,11 +59,31 @@ void Book::readFromStr(std::string& data) {
     std::stringstream source(data);
     while (getline(source, str, ','))
         add.push_back(str);
-    id = std::stol(add[0]);
+    try {
+        id = std::stol(add[0]);
+    } catch (std::invalid_argument& e) {
+        std::cerr << e.what() << std::endl;
+        std::cerr << "There is an error with columns in database" << std::endl;
+        std::cerr << "Perhaps description contains commas?" << std::endl;
+        std::cerr << "Error in line:\n";
+        for_each(add.begin(), add.end(), [](std::string& x){ std::cerr<< x << " ";});
+        std::cerr << std::endl;
+        exit(EXIT_FAILURE);
+    }
     name = add[1];
     author = add[2];
     description = add[3];
-    price = std::stod(add[4]);
+    try {
+        price = std::stod(add[4]);
+    } catch (std::invalid_argument& e) {
+        std::cerr << e.what() << std::endl;
+        std::cerr << "There is an error with columns in database" << std::endl;
+        std::cerr << "Perhaps description contains commas?" << std::endl;
+        std::cerr << "Error in line:\n";
+        for_each(add.begin(), add.end(), [](std::string& x){ std::cerr<< x << " ";});
+        std::cerr << std::endl;
+        exit(EXIT_FAILURE);
+    }
     type = add[5];
 }
 
