@@ -1,23 +1,17 @@
 #include "database.h"
 
-std::string ShopDatabase::itemTypeToString(const ItemType& type) const {
-    switch (type) {
-        case BOOKS:
-            return "Books";
-        case PHONES:
-            return "Phones";
-        default:
-            return "";
-    }
-}
-
 ShopDatabase::ShopDatabase() {}
 
 ShopDatabase::ShopDatabase(const std::map<std::string, ItemType>& paths_) {
     initMap();
     std::vector<std::thread> threads;
-    for(const auto& [key, value]: paths_)
-        threads.push_back(std::thread(&ShopDatabase::open, this, key, value));
+    for(const auto& [key, value]: paths_) {
+        try {
+            threads.emplace_back(std::thread(&ShopDatabase::open, this, key, value));
+        } catch (const std::system_error& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
+    }
     for(auto& th: threads)
         th.join();
 }
@@ -112,6 +106,20 @@ void ShopDatabase::addRecord(const ItemType& item_type) {
         modified[item_type] = true;
     }
 }
+void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string& str_data) {
+    using namespace std;
+    if (data[item_type].empty())
+        throw empty_vector("You want to add to DB that is not loaded!");
+    string line;
+    stringstream str_to_be_added(str_data);
+
+    while (getline(str_to_be_added, line)) {
+        // stringstream stream(line);
+        Item* item = selectCorrectChild(item_type);
+        item->readFromStr(line);
+        data[item_type].push_back(item);
+    }
+}
 
 ShopDatabase& ShopDatabase::operator+=(const std::pair<ItemType, std::string>& pair_) {
     addRecordFromStr(pair_.first, pair_.second);
@@ -134,15 +142,26 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
     else {
         throw std::invalid_argument("Invalid item type!");
     }
-    std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-        return a->getAll().at(column_name) < b->getAll().at(column_name);
-    });
+    if (column_name == "ID")
+        std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+            return std::stol(a->getAll().at(column_name)) < std::stol(b->getAll().at(column_name));});
+    else if (column_name == "Price")
+        std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+            return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
+    else
+        std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+            return a->getAll().at(column_name) < b->getAll().at(column_name);});
 }
 
 void ShopDatabase::saveData() {
     std::vector<std::thread> threads;
-    for(const auto& type: initDatabaseItems)
-        threads.push_back(std::thread(&ShopDatabase::save, this, type));
+    for(const auto& type: initDatabaseItems) {
+        try {
+            threads.emplace_back(std::thread(&ShopDatabase::save, this, type));
+        } catch (const std::system_error& e) {
+            std::cerr << "Error: " << e.what() << std::endl;
+        }
+    }   
     for(auto& th: threads)
         th.join();
 }

@@ -29,13 +29,10 @@ public:
     void addRecordFromStr(const ItemType&, const std::string&);
     ShopDatabase& operator+=(const std::pair<ItemType, std::string>&);
     void sortBy(const ItemType&, const std::string&);
-    // std::vector<std::unique_ptr<Item>> sortBy(const ItemType&, const std::string&);
-    // std::vector<std::unique_ptr<Item>> sortBy(const ItemType&, const int&) const;
 private:
     void open(const std::string&, const ItemType&);
     void save(const ItemType&);
     void initMap();
-    std::string itemTypeToString(const ItemType&) const;
     std::string itemTypeToPath(const ItemType&) const;
     Item* selectCorrectChild(const ItemType&) const;
 };

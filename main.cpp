@@ -2,12 +2,12 @@
 
 using namespace std;
 
-template <typename K, typename V>
-void printMap(const map<K, V> &m) {
-    for (const auto &[key, value] : m) {
-        cout << key << ": " << value << endl;
-    }
-}
+// template <typename K, typename V>
+// void printMap(const map<K, V> &m) {
+//     for (const auto &[key, value] : m) {
+//         cout << key << ": " << value << endl;
+//     }
+// }
 
 int main(int argc, char* argv[]) {
     // Item* a = new Book;
@@ -34,7 +34,9 @@ int main(int argc, char* argv[]) {
     // // a->readFromStr(str);
     // // printMap<string, string>(a->getAll());
     map<string, ItemType> m ={{(string)"../data/books_database.csv", BOOKS},{(string)"../data/phones_database.csv", PHONES}};
-    ShopDatabase* db=new ShopDatabase(m);
+    ShopDatabase* db=new ShopDatabase((string)"../data/phones_database.csv", PHONES);
+    // db->printDB();
+    db->sortBy(PHONES, "Manufacturer");
     db->printDB();
     // unique_ptr<Item> it(a);
     // it->setAll();
