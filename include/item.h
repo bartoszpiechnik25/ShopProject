@@ -25,7 +25,7 @@ public:
     Item(const long&, const std::string&, const std::string&, const double&);
     Item(const long&, const char*, const char*, const double&);
     Item(const Item&);
-    virtual ~Item();
+    virtual ~Item() = 0;
     //Setters
     void setID(const long&);
     void setName(const std::string&);

@@ -37,32 +37,30 @@ ShopDatabase::~ShopDatabase() {
     delete [] modified;
 }
 
-void ShopDatabase::open(const std::string& path, const ItemType& type) {
+void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
     using namespace std;
-    string item_type = itemTypeToString(type);
 
     if (files.empty())
         initMap();
     
-    files[type]->open(path);
-    if (files[type]->fail()) {
-        char* s;
-        sprintf(s, "Cannot open file: %s!", path.c_str());
-        throw runtime_error(s);
+    files[item_type]->open(path);
+    if (files[item_type]->fail()) {
+        std::string s = "Cannot open file: %s!" + path;
+        throw runtime_error(s.c_str());
     }
     data[item_type] = vector<Item*>();
 
     string header;
-    getline(*files[type], header);
+    getline(*files[item_type], header);
     string line;
      
-    while (getline(*files[type], line)) {
+    while (getline(*files[item_type], line)) {
         // stringstream stream(line);
-        Item* item = selectCorrectChild(type);
+        Item* item = selectCorrectChild(item_type);
         item->readFromStr(line);
         data[item_type].push_back(item);
     }
-    files[type]->close();
+    files[item_type]->close();
 }
 
 template <typename K, typename V>
@@ -87,12 +85,11 @@ void ShopDatabase::initMap() {
 }
 
 void ShopDatabase::deleteRecord(const ItemType& item_type, int index) {
-    std::string type = itemTypeToString(item_type);
-    if (data[type].empty())
+    if (data[item_type].empty())
         throw empty_vector("You want to delete from empty DB!");
     index--;
-    if (index < data[type].size() && index >= 0) {
-        data[type].erase(data[type].begin() + index);
+    if (index < data[item_type].size() && index >= 0) {
+        data[item_type].erase(data[item_type].begin() + index);
         modified[item_type] = true;
     }
     else {
@@ -106,15 +103,40 @@ ShopDatabase& ShopDatabase::operator-=(std::pair<ItemType, int>& pair_) {
 }
 
 void ShopDatabase::addRecord(const ItemType& item_type) {
-    std::string type = itemTypeToString(item_type);
-    if (data[type].empty())
+    if (data[item_type].empty())
         throw empty_vector("You want to add to DB that is not loaded!");
     Item* item = selectCorrectChild(item_type);
     item->setAll();
     if (item) {
-        data[type].push_back(item);
+        data[item_type].push_back(item);
         modified[item_type] = true;
     }
+}
+
+ShopDatabase& ShopDatabase::operator+=(const std::pair<ItemType, std::string>& pair_) {
+    addRecordFromStr(pair_.first, pair_.second);
+    return *this;
+}
+
+void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_name) {
+    std::vector<std::string> book_columns = {"ID", "Name", "Author", "Price"};
+    std::vector<std::string> phone_columns = {"ID","Name","Manufacturer","Price","Specs"};
+
+    //check if column_name is valid
+    if (item_type == BOOKS) {
+        if (std::find(book_columns.begin(), book_columns.end(), column_name) == book_columns.end())
+            throw std::invalid_argument("Invalid column name!");
+    }
+    else if (item_type == PHONES) {
+        if (std::find(phone_columns.begin(), phone_columns.end(), column_name) == phone_columns.end())
+            throw std::invalid_argument("Invalid column name!");
+    }
+    else {
+        throw std::invalid_argument("Invalid item type!");
+    }
+    std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+        return a->getAll().at(column_name) < b->getAll().at(column_name);
+    });
 }
 
 void ShopDatabase::saveData() {
@@ -142,12 +164,11 @@ void ShopDatabase::save(const ItemType& item_type) {
         if (save.good()) {
             std::string a = "Author,Description,ID,Name,Price,Type\n";
             save << a;
-            for(const auto& item_str: data[itemTypeToString(item_type)])
+            for(const auto& item_str: data[item_type])
                 save << (item_str->saveToDatabase() + "\n");
         } else {
-            char* s;
-            sprintf(s, "Cannot open file: %s!", itemTypeToPath(item_type).c_str());
-            throw std::runtime_error(s);
+            std::string s = "Cannot open file: %s!" + itemTypeToPath(item_type);
+            throw std::runtime_error(s.c_str());
         }
     }
 }
@@ -162,3 +183,14 @@ Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) const {
             return nullptr;
     }
 }
+
+// void ShopDatabase::emplaceItemBack(const ItemType& item_type, std::string data_) {
+//     switch (item_type) {
+//         case BOOKS:
+//             return new Book;
+//         case PHONES:
+//             return new Phone;
+//         default:
+//             return nullptr;
+//     }
+// }
