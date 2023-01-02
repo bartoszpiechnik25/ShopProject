@@ -1,7 +1,16 @@
 #include "database.h"
 
+/**
+ * @brief Construct a new Shop Database object
+ * 
+ */
 ShopDatabase::ShopDatabase() {}
 
+/**
+ * @brief Construct a new Shop Database object
+ * 
+ * @param paths_ Map of paths to files with corresponding item type
+ */
 ShopDatabase::ShopDatabase(const std::map<std::string, ItemType>& paths_) {
     initMap();
     std::vector<std::thread> threads;
@@ -16,11 +25,21 @@ ShopDatabase::ShopDatabase(const std::map<std::string, ItemType>& paths_) {
         th.join();
 }
 
-ShopDatabase::ShopDatabase(const std::string& path_, const ItemType item_type) {
+/**
+ * @brief Construct a new Shop Database object 
+ * 
+ * @param path_ Path to file
+ * @param item_type Type of item
+ */
+ShopDatabase::ShopDatabase(const std::string& path_, const ItemType& item_type) {
     initMap();
     open(path_, item_type);
 }
 
+/**
+ * @brief Destroy the Shop Database object
+ * 
+ */
 ShopDatabase::~ShopDatabase() {
     for(const auto& [key, value]: files)
         delete value;
@@ -31,6 +50,12 @@ ShopDatabase::~ShopDatabase() {
     delete [] modified;
 }
 
+/**
+ * @brief Opens file and reads data from it
+ * 
+ * @param path Path to file
+ * @param item_type Type of item
+ */
 void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
     using namespace std;
 
@@ -57,6 +82,10 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
     files[item_type]->close();
 }
 
+/**
+ * @brief Prints map
+ * 
+ */
 template <typename K, typename V>
 void printMap(const std::map<K, V> &m) {
     for (const auto &[key, value] : m) {
@@ -66,18 +95,32 @@ void printMap(const std::map<K, V> &m) {
 
 }
 
+/**
+ * @brief Prints database
+ * 
+ */
 void ShopDatabase::printDB() const {
     for(const auto& [key, value]: data)
         for(Item* it: value)
             printMap<std::string, std::string>(it->getAll());
 }
 
+/**
+ * @brief Initializes map with ifstream objects and allocates memory for modified array
+ * 
+ */
 void ShopDatabase::initMap() {
     for (const auto& item_num: initDatabaseItems)
         files[item_num] = new std::ifstream;
     modified = new bool[data.size() + 1];
 }
 
+/**
+ * @brief Delete record from database with specified index
+ * 
+ * @param item_type Type of item to delete
+ * @param index Index of item to delete
+ */
 void ShopDatabase::deleteRecord(const ItemType& item_type, int index) {
     if (data[item_type].empty())
         throw empty_vector("You want to delete from empty DB!");
@@ -91,11 +134,22 @@ void ShopDatabase::deleteRecord(const ItemType& item_type, int index) {
     }
 }
 
+/**
+ * @brief Deletes record from database with specified index
+ * 
+ * @param pair_ Pair with type of item and index of item to delete
+ * @return ShopDatabase& Reference to database
+ */
 ShopDatabase& ShopDatabase::operator-=(std::pair<ItemType, int>& pair_) {
     deleteRecord(pair_.first, pair_.second);
     return *this;
 }
 
+/**
+ * @brief Adds record to database
+ * 
+ * @param item_type Type of item to add
+ */
 void ShopDatabase::addRecord(const ItemType& item_type) {
     if (data[item_type].empty())
         throw empty_vector("You want to add to DB that is not loaded!");
@@ -106,6 +160,13 @@ void ShopDatabase::addRecord(const ItemType& item_type) {
         modified[item_type] = true;
     }
 }
+
+/**
+ * @brief Adds record to database from string
+ * 
+ * @param item_type Type of item to add
+ * @param str_data String with data to add
+ */
 void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string& str_data) {
     using namespace std;
     if (data[item_type].empty())
@@ -121,11 +182,24 @@ void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string
     }
 }
 
+/**
+ * @brief Adds record to database
+ * 
+ * @param item_type Type of item to add
+ * @param str_data String with data to add
+ * @return ShopDatabase& Reference to this object
+ */
 ShopDatabase& ShopDatabase::operator+=(const std::pair<ItemType, std::string>& pair_) {
     addRecordFromStr(pair_.first, pair_.second);
     return *this;
 }
 
+/**
+ * @brief Sorts the database by given column name
+ * 
+ * @param item_type Type of item to sort
+ * @param column_name Column name to sort by
+ */
 void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_name) {
     std::vector<std::string> book_columns = {"ID", "Name", "Author", "Price"};
     std::vector<std::string> phone_columns = {"ID","Name","Manufacturer","Price","Specs"};
@@ -153,6 +227,10 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
             return a->getAll().at(column_name) < b->getAll().at(column_name);});
 }
 
+/**
+ * @brief Saves the database to the file
+ * 
+ */
 void ShopDatabase::saveData() {
     std::vector<std::thread> threads;
     for(const auto& type: initDatabaseItems) {
@@ -166,6 +244,13 @@ void ShopDatabase::saveData() {
         th.join();
 }
 
+/**
+ * @brief Saves the database to the file
+ * 
+ * @param item_type Type of item to save
+ *
+ * @return std::string 
+ */
 std::string ShopDatabase::itemTypeToPath(const ItemType& item_type) const {
     switch (item_type) {
         case BOOKS:
@@ -177,6 +262,11 @@ std::string ShopDatabase::itemTypeToPath(const ItemType& item_type) const {
     }
 }
 
+/**
+ * @brief Saves the database to the file
+ * 
+ * @param item_type Type of item to save
+ */
 void ShopDatabase::save(const ItemType& item_type) {
     if (modified[item_type]) {
         std::ofstream save(itemTypeToPath(item_type));
@@ -192,6 +282,12 @@ void ShopDatabase::save(const ItemType& item_type) {
     }
 }
 
+/**
+ * @brief Selects the correct child class of Item
+ * 
+ * @param item_type Type of item to load
+ * @return Item* 
+ */
 Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) const {
     switch (item_type) {
         case BOOKS:
@@ -202,14 +298,3 @@ Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) const {
             return nullptr;
     }
 }
-
-// void ShopDatabase::emplaceItemBack(const ItemType& item_type, std::string data_) {
-//     switch (item_type) {
-//         case BOOKS:
-//             return new Book;
-//         case PHONES:
-//             return new Phone;
-//         default:
-//             return nullptr;
-//     }
-// }

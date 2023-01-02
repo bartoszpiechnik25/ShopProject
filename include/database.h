@@ -19,7 +19,7 @@ private:
 public:
     ShopDatabase();
     ShopDatabase(const std::map<std::string, ItemType>&);
-    ShopDatabase(const std::string&, const ItemType);
+    ShopDatabase(const std::string&, const ItemType&);
     ~ShopDatabase();
     void printDB() const;
     void saveData();
