@@ -28,12 +28,13 @@ public:
     void addRecord(const ItemType&);
     void addRecordFromStr(const ItemType&, const std::string&);
     ShopDatabase& operator+=(const std::pair<ItemType, std::string>&);
-    void sortBy(const ItemType&, const std::string&);
+    void sortBy(const ItemType&, const std::string&, bool=true);
 private:
     void open(const std::string&, const ItemType&);
     void save(const ItemType&);
     void initMap();
     std::string itemTypeToPath(const ItemType&) const;
+    std::string selectCorrctColumnNames(const ItemType&) const;
     Item* selectCorrectChild(const ItemType&) const;
 };
 

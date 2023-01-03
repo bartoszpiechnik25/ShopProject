@@ -36,8 +36,10 @@ int main(int argc, char* argv[]) {
     map<string, ItemType> m ={{(string)"../data/books_database.csv", BOOKS},{(string)"../data/phones_database.csv", PHONES}};
     ShopDatabase* db=new ShopDatabase((string)"../data/phones_database.csv", PHONES);
     // db->printDB();
-    db->sortBy(PHONES, "Manufacturer");
+    db->sortBy(PHONES, "Price");
+    db->sortBy(BOOKS, "ID", false);
     db->printDB();
+    db->saveData();
     // unique_ptr<Item> it(a);
     // it->setAll();
     // // Item* ph = new Phone;

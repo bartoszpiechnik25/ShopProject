@@ -199,8 +199,9 @@ ShopDatabase& ShopDatabase::operator+=(const std::pair<ItemType, std::string>& p
  * 
  * @param item_type Type of item to sort
  * @param column_name Column name to sort by
+ * @param ascending Ascending or descending order
  */
-void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_name) {
+void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_name, bool ascending) {
     std::vector<std::string> book_columns = {"ID", "Name", "Author", "Price"};
     std::vector<std::string> phone_columns = {"ID","Name","Manufacturer","Price","Specs"};
 
@@ -216,15 +217,30 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
     else {
         throw std::invalid_argument("Invalid item type!");
     }
-    if (column_name == "ID")
-        std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-            return std::stol(a->getAll().at(column_name)) < std::stol(b->getAll().at(column_name));});
-    else if (column_name == "Price")
+    if (column_name == "ID") {
+        if (ascending)
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+                return std::stol(a->getAll().at(column_name)) < std::stol(b->getAll().at(column_name));});
+        else
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+                return std::stol(a->getAll().at(column_name)) > std::stol(b->getAll().at(column_name));});
+    }
+    else if (column_name == "Price") {
+        if (ascending)
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+                return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
+        else
         std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
             return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
-    else
-        std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-            return a->getAll().at(column_name) < b->getAll().at(column_name);});
+    }
+    else {
+        if (ascending)
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+                return a->getAll().at(column_name) < b->getAll().at(column_name);});
+        else
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
+                return a->getAll().at(column_name) < b->getAll().at(column_name);});
+    }
 }
 
 /**
@@ -271,7 +287,7 @@ void ShopDatabase::save(const ItemType& item_type) {
     if (modified[item_type]) {
         std::ofstream save(itemTypeToPath(item_type));
         if (save.good()) {
-            std::string a = "Author,Description,ID,Name,Price,Type\n";
+            std::string a = selectCorrctColumnNames(item_type);
             save << a;
             for(const auto& item_str: data[item_type])
                 save << (item_str->saveToDatabase() + "\n");
@@ -296,5 +312,16 @@ Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) const {
             return new Phone;
         default:
             return nullptr;
+    }
+}
+
+std::string ShopDatabase::selectCorrctColumnNames(const ItemType& item_type) const {
+    switch (item_type) {
+        case BOOKS:
+            return "ID,Name,Author,Description,Price,Type\n";
+        case PHONES:
+            return "ID,Name,Manufacturer,Description,Price,Specs\n";
+        default:
+            return "";
     }
 }
