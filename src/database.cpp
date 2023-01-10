@@ -205,6 +205,8 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
     std::vector<std::string> book_columns = {"ID", "Name", "Author", "Price"};
     std::vector<std::string> phone_columns = {"ID","Name","Manufacturer","Price","Specs"};
 
+    if (data[item_type].empty())
+        throw empty_vector("You want to sort empty DB!");
     //check if column_name is valid
     if (item_type == BOOKS) {
         if (std::find(book_columns.begin(), book_columns.end(), column_name) == book_columns.end())

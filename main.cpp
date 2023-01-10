@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 #include "database.h"
 
 using namespace std;
@@ -62,3 +63,17 @@ int main(int argc, char* argv[]) {
     // db->saveData();
 
 }
+=======
+#include <QApplication>
+#include <QPushButton>
+#include "login.h"
+
+int main(int argc, char *argv[]) {
+    QApplication a(argc, argv);
+//    QPushButton button("Hello world!", nullptr);
+//    button.resize( 200, 100 );
+//    button.show();
+    Login l = Login();
+    return QApplication::exec();
+}
+>>>>>>> Stashed changes
