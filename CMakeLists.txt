@@ -1,15 +1,3 @@
-<<<<<<< Updated upstream
-cmake_minimum_required(VERSION 3.16)
-project(shop)
-
-# Set the C++ standard to C++20
-set(CMAKE_CXX_STANDARD 20)
-
-# Add the main.cpp file as an executable
-add_executable(shop main.cpp)
-
-# Set the directories for the source and header files
-=======
 cmake_minimum_required(VERSION 3.23)
 project(ShopProjectQt)
 
@@ -17,23 +5,14 @@ set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
->>>>>>> Stashed changes
 set(SRC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/src")
 set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
+set(LOGIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/login")
+set(SHOP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/shop")
+set(SELL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sell")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
-<<<<<<< Updated upstream
-
-# add_custom_target(data_target DEPENDS "${DATA_DIR}/data.csv")
-
-
-# Add the books.cpp and item.cpp files as sources for the executable
-target_sources(shop PRIVATE "${SRC_DIR}/book.cpp" "${SRC_DIR}/item.cpp" "${SRC_DIR}/database.cpp" "${SRC_DIR}/phone.cpp")
-
-# Add the books.h and item.h files as include directories for the executable
-target_include_directories(shop PRIVATE ${INC_DIR})
-=======
-set(CMAKE_PREFIX_PATH "C:/Qt/6.4.0/mingw_64")
+set(CMAKE_PREFIX_PATH "C:/Qt/6.4.2/mingw_64")
 
 find_package(Qt6 COMPONENTS
   Core
@@ -41,7 +20,7 @@ find_package(Qt6 COMPONENTS
   Widgets
   REQUIRED)
 
-add_executable(ShopProjectQt main.cpp login.cpp login.h login.ui login.cpp login.h login.ui)
+add_executable(ShopProjectQt main.cpp)
 target_link_libraries(ShopProjectQt
   Qt::Core
   Qt::Gui
@@ -49,9 +28,12 @@ target_link_libraries(ShopProjectQt
 )
 target_sources(ShopProjectQt PRIVATE "${SRC_DIR}/book.cpp"
         "${SRC_DIR}/item.cpp" "${SRC_DIR}/database.cpp"
-        "${SRC_DIR}/phone.cpp")
+        "${SRC_DIR}/phone.cpp"
+        "${LOGIN_DIR}/login.cpp" "${LOGIN_DIR}/login.ui"
+        "${SHOP_DIR}/shop.cpp" "${SHOP_DIR}/shop.ui"
+        "${SELL_DIR}/selldialog.cpp" "${SELL_DIR}/selldialog.ui")
 
-target_include_directories(ShopProjectQt PRIVATE ${INC_DIR})
+target_include_directories(ShopProjectQt PRIVATE ${INC_DIR} ${SHOP_DIR} ${LOGIN_DIR} ${SELL_DIR})
 
 
 if(WIN32)
@@ -82,4 +64,3 @@ if(WIN32)
                 "$<TARGET_FILE_DIR:${PROJECT_NAME}>")
     endforeach(QT_LIB)
 endif()
->>>>>>> Stashed changes

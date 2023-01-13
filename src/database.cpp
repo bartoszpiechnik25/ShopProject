@@ -71,8 +71,11 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
 
     string header;
     getline(*files[item_type], header);
+    stringstream header_stream(header);
+    while (getline(header_stream, header, ','))
+        headers[item_type].push_back(header);
+
     string line;
-     
     while (getline(*files[item_type], line)) {
         // stringstream stream(line);
         Item* item = selectCorrectChild(item_type);
@@ -150,13 +153,13 @@ ShopDatabase& ShopDatabase::operator-=(std::pair<ItemType, int>& pair_) {
  * 
  * @param item_type Type of item to add
  */
-void ShopDatabase::addRecord(const ItemType& item_type) {
+void ShopDatabase::addRecord(const ItemType& item_type, Item* new_data) {
     if (data[item_type].empty())
         throw empty_vector("You want to add to DB that is not loaded!");
-    Item* item = selectCorrectChild(item_type);
-    item->setAll();
-    if (item) {
-        data[item_type].push_back(item);
+//    Item* item = selectCorrectChild(item_type);
+//    data[item_type].push_back(new_data);
+    if (new_data) {
+        data[item_type].push_back(new_data);
         modified[item_type] = true;
     }
 }
@@ -180,6 +183,7 @@ void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string
         item->readFromStr(line);
         data[item_type].push_back(item);
     }
+    modified[item_type] = true;
 }
 
 /**
@@ -245,6 +249,18 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
     }
 }
 
+std::map<ItemType, std::vector<Item*>>& ShopDatabase::getItems() {
+    if (data.empty())
+        throw empty_vector("You want to get data from empty DB!");
+    return data;
+}
+
+std::vector<std::string> ShopDatabase::getHeaders(const ItemType& item_type) const {
+    if (headers.empty())
+        throw empty_vector("You want to get columns from empty DB!");
+    return headers.at(item_type);
+}
+
 /**
  * @brief Saves the database to the file
  * 
@@ -306,7 +322,7 @@ void ShopDatabase::save(const ItemType& item_type) {
  * @param item_type Type of item to load
  * @return Item* 
  */
-Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) const {
+Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) {
     switch (item_type) {
         case BOOKS:
             return new Book;

@@ -125,13 +125,13 @@ bool Book::isEmpty() const {
  * @brief Read all data from user
  * 
  */
-void Book::setAll() {
-    id = readLongValue("Enter book ID: ");
-    name = readString("Enter book name: ");
-    description = readString("Enter book description: ");
-    price = readDoubleValue("Enter book price: ");
-    author = readString("Enter book author: ");
-    type = readString("Enter book type: ");
+void Book::setAll(std::map<std::string, std::string>& data) {
+    id = std::stol(data["ID"]);
+    name = data["Name"];
+    author = data["Author"];
+    description = data["Description"];
+    price = std::stod(data["Price"]);
+    type = data["Type"];
 }
 
 /**
