@@ -10,6 +10,8 @@ set(INC_DIR "${CMAKE_CURRENT_SOURCE_DIR}/include")
 set(LOGIN_DIR "${CMAKE_CURRENT_SOURCE_DIR}/login")
 set(SHOP_DIR "${CMAKE_CURRENT_SOURCE_DIR}/shop")
 set(SELL_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sell")
+set(SELL_PHONE_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sell/sell_phone_dialog")
+set(SELL_BOOK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sell/sell_book_dialog")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
 set(CMAKE_PREFIX_PATH "C:/Qt/6.4.2/mingw_64")
@@ -31,9 +33,10 @@ target_sources(ShopProjectQt PRIVATE "${SRC_DIR}/book.cpp"
         "${SRC_DIR}/phone.cpp"
         "${LOGIN_DIR}/login.cpp" "${LOGIN_DIR}/login.ui"
         "${SHOP_DIR}/shop.cpp" "${SHOP_DIR}/shop.ui"
-        "${SELL_DIR}/selldialog.cpp" "${SELL_DIR}/selldialog.ui")
+        "${SELL_PHONE_DIR}/selldialog.cpp" "${SELL_PHONE_DIR}/selldialog.ui"
+        "${SELL_BOOK_DIR}/sellbookdialog.cpp" "${SELL_BOOK_DIR}/sellbookdialog.ui")
 
-target_include_directories(ShopProjectQt PRIVATE ${INC_DIR} ${SHOP_DIR} ${LOGIN_DIR} ${SELL_DIR})
+target_include_directories(ShopProjectQt PRIVATE ${INC_DIR} ${SHOP_DIR} ${LOGIN_DIR} ${SELL_DIR} ${SELL_PHONE_DIR} ${SELL_BOOK_DIR})
 
 
 if(WIN32)

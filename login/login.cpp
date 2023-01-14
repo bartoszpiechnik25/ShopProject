@@ -7,16 +7,20 @@
 #include "login.h"
 #include "ui_Login.h"
 
-
+/**
+ * @brief Constructor of Login class
+ * @param parent - parent widget
+ */
 Login::Login(QWidget *parent) :
         QDialog(parent), ui(new Ui::Login) {
     std::thread load_database_thread(&Login::loadUsersDatabase, this);
     load_database_thread.join();
     ui->setupUi(this);
     ui->passwordLineEdit->setEchoMode(QLineEdit::Password);
+    ui->okButton->setDefault(false);
+    ui->cancelButton->setDefault(false);
+    ui->usernameLineEdit->setFocus();
     this->setFixedSize(this->size());
-//    loadUsersDatabase();
-    connect(ui->usernameLineEdit, SIGNAL(returnPressed()), this, SLOT(enteredUsername()));
     connect(ui->passwordLineEdit, SIGNAL(returnPressed()), this, SLOT(enteredPasswd()));
     connect(ui->addUserButton, SIGNAL(clicked()), this, SLOT(addUser()));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
@@ -24,22 +28,25 @@ Login::Login(QWidget *parent) :
     show();
 }
 
+/**
+ * @brief Get username from line edit
+ * @return std::string - username
+ */
 std::string Login::getUsername() const {
     return ui->usernameLineEdit->text().toStdString();
 }
 
+/**
+ * @brief Get password from line edit
+ * @return std::string - password
+ */
 std::string Login::getPasswd() const {
     return ui->passwordLineEdit->text().toStdString();
 }
 
-void Login::enteredUsername() {
-    if (!usersDatabase.contains(getUsername())) {
-        createMessageBox("Warning", "User not found", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
-        ui->usernameLineEdit->clear();
-        ui->passwordLineEdit->clear();
-    }
-}
-
+/**
+ * @brief Slot handling login to the shop
+ */
 void Login::enteredPasswd() {
     if (!usersDatabase.contains(getUsername())) {
         createMessageBox("Warning", "User not found", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
@@ -52,7 +59,6 @@ void Login::enteredPasswd() {
     }
     else {
         std::string username = getUsername();
-//        createMessageBox("Information", "Login successful", QMessageBox::Information, QMessageBox::Ok | QMessageBox::NoButton);
         ui->usernameLineEdit->clear();
         ui->passwordLineEdit->clear();
         emit loginSuccessful(username);
@@ -63,6 +69,13 @@ Login::~Login() {
     delete ui;
 }
 
+/**
+ * @brief Create custom message box with given parameters.
+ * @param title - title of the message box
+ * @param text - text of the message box
+ * @param icon - icon of the message box
+ * @param buttons - buttons of the message box
+ */
 void Login::createMessageBox(const char *title, const char *text, QMessageBox::Icon icon,
                              QMessageBox::StandardButtons buttons) {
     QMessageBox messageBox;
@@ -74,6 +87,9 @@ void Login::createMessageBox(const char *title, const char *text, QMessageBox::I
     messageBox.exec();
 }
 
+/**
+ * @brief Load users database from file
+ */
 void Login::loadUsersDatabase() {
     std::ifstream database{"../data/users_database.txt", std::ios::binary};
     size_t username_size, passwd_size;
@@ -92,6 +108,9 @@ void Login::loadUsersDatabase() {
     database.close();
 }
 
+/**
+ * @brief Write users database to file
+ */
 void Login::writeUsersDatabase() {
     std::ofstream database{"../data/users_database.txt", std::ios::binary};
     size_t username_size, passwd_size;
@@ -108,6 +127,9 @@ void Login::writeUsersDatabase() {
     } else throw std::runtime_error("Cannot access database file for saving data");
 }
 
+/**
+ * @brief Slot handling adding new user to the database
+ */
 void Login::addUser() {
     if (getUsername().empty() || getPasswd().empty()) {
         createMessageBox("Warning", "Cannot add empty!", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
@@ -124,16 +146,21 @@ void Login::addUser() {
     }
 }
 
+/**
+ * @brief Slot handling cancel button
+ */
 void Login::cancelClicked() {
     this->close();
 }
 
-//void Login::closeEvent(QCloseEvent *event) {
-//    int result = QMessageBox::information(this, "Confirm Exit", "Are you sure you want to exit?", QMessageBox::Yes | QMessageBox::No);
-//    if (result == QMessageBox::Yes)
-//        event->accept();
-//    else
-//        event->ignore();
-//}
+/**
+ * @brief Handling closing the window
+ * @param event - close event
+ */
+void Login::keyPressEvent(QKeyEvent *event) {
+    if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter && ui->passwordLineEdit->hasFocus()) {
+        ui->passwordLineEdit->setFocus();
+    } else QDialog::keyPressEvent(event);
+}
 
 

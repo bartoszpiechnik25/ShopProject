@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>SellDialog</class>
- <widget class="QDialog" name="SellDialog">
+ <class>SellBookDialog</class>
+ <widget class="QDialog" name="SellBookDialog">
   <property name="geometry">
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>659</width>
-    <height>445</height>
+    <width>584</width>
+    <height>351</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -15,18 +15,18 @@
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: grey;
-QPushButton{	background-color: rgb(67,70,75);
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 12px;
-	color: white;
-    padding: 5px;
-}
-QPushButton:pressed {
-    border-style: inset;
-	border: 2px solid #add8e6;
-}</string>
+                QPushButton{	background-color: rgb(67,70,75);
+                border-width: 2px;
+                border-radius: 10px;
+                border-color: beige;
+                font: bold 12px;
+                color: white;
+                padding: 5px;
+                }
+                QPushButton:pressed {
+                border-style: inset;
+                border: 2px solid #add8e6;
+                }</string>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="10" column="1" colspan="3">
@@ -56,7 +56,7 @@ QPushButton:pressed {
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>
@@ -67,7 +67,7 @@ QPushButton:pressed {
       <widget class="QLabel" name="price">
        <property name="styleSheet">
         <string notr="true">font: bold 13px;
-color: white;</string>
+                                    color: white;</string>
        </property>
        <property name="text">
         <string>Price:</string>
@@ -78,8 +78,8 @@ color: white;</string>
       <widget class="QLineEdit" name="priceLineEdit">
        <property name="styleSheet">
         <string notr="true">background-color: white;
-border-radius: 5px;
-border: 2px solid light grey;</string>
+                                    border-radius: 5px;
+                                    border: 2px solid light grey;</string>
        </property>
       </widget>
      </item>
@@ -96,7 +96,7 @@ border: 2px solid light grey;</string>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>
@@ -104,22 +104,22 @@ border: 2px solid light grey;</string>
    <item row="4" column="1">
     <layout class="QHBoxLayout" name="horizontalLayout_2">
      <item>
-      <widget class="QLabel" name="manufacturer">
+      <widget class="QLabel" name="author">
        <property name="styleSheet">
         <string notr="true">font: bold 13px;
-color: white;</string>
+                                    color: white;</string>
        </property>
        <property name="text">
-        <string>Manufacturer:</string>
+        <string>Author</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="manufacturerLineEdit">
+      <widget class="QLineEdit" name="authorLineEdit">
        <property name="styleSheet">
         <string notr="true">background-color: white;
-border-radius: 5px;
-border: 2px solid light grey;</string>
+                                    border-radius: 5px;
+                                    border: 2px solid light grey;</string>
        </property>
       </widget>
      </item>
@@ -147,10 +147,10 @@ border: 2px solid light grey;</string>
       <widget class="QLabel" name="label_7">
        <property name="styleSheet">
         <string notr="true">font: bold 18px;
-color: white;</string>
+                                    color: white;</string>
        </property>
        <property name="text">
-        <string>Specify new phone data</string>
+        <string>Specify new book data</string>
        </property>
       </widget>
      </item>
@@ -162,7 +162,7 @@ color: white;</string>
       <widget class="QLabel" name="name">
        <property name="styleSheet">
         <string notr="true">font: bold 13px;
-color: white;</string>
+                                    color: white;</string>
        </property>
        <property name="text">
         <string>Name:</string>
@@ -173,8 +173,8 @@ color: white;</string>
       <widget class="QLineEdit" name="nameLineEdit">
        <property name="styleSheet">
         <string notr="true">background-color: white;
-border-radius: 5px;
-border: 2px solid light grey;</string>
+                                    border-radius: 5px;
+                                    border: 2px solid light grey;</string>
        </property>
       </widget>
      </item>
@@ -186,7 +186,7 @@ border: 2px solid light grey;</string>
       <widget class="QLabel" name="description">
        <property name="styleSheet">
         <string notr="true">font: bold 13px;
-color: white;</string>
+                                    color: white;</string>
        </property>
        <property name="text">
         <string>Description:</string>
@@ -197,8 +197,8 @@ color: white;</string>
       <widget class="QLineEdit" name="descriptionLineEdit">
        <property name="styleSheet">
         <string notr="true">background-color: white;
-border-radius: 5px;
-border: 2px solid light grey;</string>
+                                    border-radius: 5px;
+                                    border: 2px solid light grey;</string>
        </property>
        <property name="text">
         <string/>
@@ -213,17 +213,17 @@ border: 2px solid light grey;</string>
       <widget class="QPushButton" name="clearButton">
        <property name="styleSheet">
         <string notr="true">QPushButton{	background-color: rgb(67,70,75);
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 12px;
-	color: white;
-    padding: 5px;
-}
-QPushButton:pressed {
-    border-style: inset;
-	border: 2px solid #add8e6;
-}</string>
+                                    border-width: 2px;
+                                    border-radius: 10px;
+                                    border-color: beige;
+                                    font: bold 12px;
+                                    color: white;
+                                    padding: 5px;
+                                    }
+                                    QPushButton:pressed {
+                                    border-style: inset;
+                                    border: 2px solid #add8e6;
+                                    }</string>
        </property>
        <property name="text">
         <string>Clear</string>
@@ -250,17 +250,17 @@ QPushButton:pressed {
       <widget class="QPushButton" name="cancelButton">
        <property name="styleSheet">
         <string notr="true">QPushButton{	background-color: rgb(67,70,75);
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 12px;
-	color: white;
-    padding: 5px;
-}
-QPushButton:pressed {
-    border-style: inset;
-	border: 2px solid #add8e6;
-}</string>
+                                    border-width: 2px;
+                                    border-radius: 10px;
+                                    border-color: beige;
+                                    font: bold 12px;
+                                    color: white;
+                                    padding: 5px;
+                                    }
+                                    QPushButton:pressed {
+                                    border-style: inset;
+                                    border: 2px solid #add8e6;
+                                    }</string>
        </property>
        <property name="text">
         <string>Cancel</string>
@@ -287,17 +287,17 @@ QPushButton:pressed {
       <widget class="QPushButton" name="okButton">
        <property name="styleSheet">
         <string notr="true">QPushButton{	background-color: rgb(67,70,75);
-    border-width: 2px;
-    border-radius: 10px;
-    border-color: beige;
-    font: bold 12px;
-	color: white;
-    padding: 5px;
-}
-QPushButton:pressed {
-    border-style: inset;
-	border: 2px solid #add8e6;
-}</string>
+                                    border-width: 2px;
+                                    border-radius: 10px;
+                                    border-color: beige;
+                                    font: bold 12px;
+                                    color: white;
+                                    padding: 5px;
+                                    }
+                                    QPushButton:pressed {
+                                    border-style: inset;
+                                    border: 2px solid #add8e6;
+                                    }</string>
        </property>
        <property name="text">
         <string>OK</string>
@@ -309,22 +309,22 @@ QPushButton:pressed {
    <item row="6" column="3">
     <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
-      <widget class="QLabel" name="specs">
+      <widget class="QLabel" name="type">
        <property name="styleSheet">
         <string notr="true">font: bold 13px;
-color: white;</string>
+                                    color: white;</string>
        </property>
        <property name="text">
-        <string>Specs:</string>
+        <string>Type</string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="specsLineEdit">
+      <widget class="QLineEdit" name="typeLineEdit">
        <property name="styleSheet">
         <string notr="true">background-color: white;
-border-radius: 5px;
-border: 2px solid light grey;</string>
+                                    border-radius: 5px;
+                                    border: 2px solid light grey;</string>
        </property>
       </widget>
      </item>
@@ -341,7 +341,7 @@ border: 2px solid light grey;</string>
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>20</height>
       </size>
      </property>
     </spacer>
@@ -352,7 +352,7 @@ border: 2px solid light grey;</string>
       <widget class="QLabel" name="id">
        <property name="styleSheet">
         <string notr="true">font: bold 13px;
-color: white;</string>
+                                    color: white;</string>
        </property>
        <property name="text">
         <string>ID:</string>
@@ -363,9 +363,9 @@ color: white;</string>
       <widget class="QLineEdit" name="idLineEdit">
        <property name="styleSheet">
         <string notr="true">background-color: white;
-border-radius: 5px;
-border: 2px solid light grey;
-</string>
+                                    border-radius: 5px;
+                                    border: 2px solid light grey;
+                                </string>
        </property>
       </widget>
      </item>
@@ -398,7 +398,7 @@ border: 2px solid light grey;
      <property name="sizeHint" stdset="0">
       <size>
        <width>20</width>
-       <height>40</height>
+       <height>10</height>
       </size>
      </property>
     </spacer>

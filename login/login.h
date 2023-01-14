@@ -32,7 +32,6 @@ public:
     static void createMessageBox(const char* title, const char* text, QMessageBox::Icon icon, QMessageBox::StandardButtons buttons);
 public slots:
     void enteredPasswd();
-    void enteredUsername();
     void addUser();
     void cancelClicked();
 signals:
@@ -40,6 +39,8 @@ signals:
 private:
     void loadUsersDatabase();
     void writeUsersDatabase();
+protected:
+    virtual void keyPressEvent(QKeyEvent *event) override;
 };
 
 

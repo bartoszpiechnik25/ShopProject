@@ -17,6 +17,7 @@ Shop::Shop(QWidget *parent) :
     books = new QTableWidget(this);
     phones = new QTableWidget(this);
     sellDialog = new SellDialog();
+    sellBookDialog = new SellBookDialog();
     initializeTab();
     connect(m_login, &Login::loginSuccessful, this, &Shop::loginSuccessful);
     connect(phones, &QTableWidget::cellClicked, this, &Shop::cellActivated);
@@ -29,6 +30,7 @@ Shop::~Shop() {
     database->saveData();
     delete ui;
     delete m_login;
+    delete sellDialog;
     delete database;
     delete phones;
     delete books;
@@ -49,14 +51,13 @@ void Shop::cellActivated(int row, int column) {
 }
 
 void Shop::sellButtonClicked() {
-//    if (ui->tabWidget->currentWidget() == phones)
+    if (ui->tabWidget->currentWidget() == phones)
         sellDialog->show();
-//    else:
-//        sellDialog->show();
+    else
+        sellBookDialog->show();
 }
 
 void Shop::addNewItem(std::map<std::string, std::string>& data) {
-    printMap<std::string, std::string>(data);
     if (data.empty())
         return;
     ItemType item_type;
@@ -104,20 +105,10 @@ void Shop::initializeTable(const ItemType &item_type, QTableWidget* tableWidget)
     tableWidget->horizontalHeader()->setStyleSheet("QHeaderView { background-color: #171717; color: #FFFDE4; font: 12px; }");
     tableWidget->verticalHeader()->setStyleSheet("QHeaderView { background-color: #171717; color: #FFFDE4; font: 12px; }");
     tableWidget->verticalHeader()->setVisible(false);
-    QStringList list;
-    std::vector<std::string> headers;
-    switch (item_type) {
-        case PHONES: {
-            list = QStringList() << "ID" << "Name" << "Manufacturer" << "Description" << "Price" << "Specs";
-            headers = {"ID", "Name", "Manufacturer", "Description", "Price", "Specs"};
-            break;
-        }
-        case BOOKS: {
-            list = QStringList() << "ID" << "Name" << "Author" << "Description" << "Price" << "Type";
-            headers = {"ID", "Name", "Author", "Description", "Price", "Type"};
-            break;
-        }
-    }
+    QStringList list = QStringList();
+    std::vector<std::string> headers = database->getHeaders(item_type);
+    std::for_each(headers.begin(), headers.end(), [&list](const auto& header) { list << header.c_str(); });
+
     tableWidget->setColumnCount(6);
     tableWidget->setHorizontalHeaderLabels(list);
     tableWidget->setRowCount(items[item_type].size());
@@ -127,7 +118,7 @@ void Shop::initializeTable(const ItemType &item_type, QTableWidget* tableWidget)
         int i = 0;
         for(const auto& header: headers)
             tableWidget->setItem(counter, i++, new QTableWidgetItem(itemData[header].c_str()));
-        ++counter;
+        counter++;
     }
     tableWidget->resizeColumnsToContents();
 }
@@ -138,5 +129,4 @@ void Shop::closeEvent(QCloseEvent *event) {
         event->accept();
     else
         event->ignore();
-//    Login::createMessageBox("Confirm exit", "Are you sure you want to quit?", QMessageBox::Information,QMessageBox::Ok | QMessageBox::Cancel);
 }

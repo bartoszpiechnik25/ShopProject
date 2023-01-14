@@ -9,11 +9,10 @@
 #include <QStyleFactory>
 #include <QTableWidget>
 #include <QHeaderView>
-#include <string>
 #include "database.h"
 #include "login.h"
 #include "selldialog.h"
-
+#include "sellbookdialog.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Shop; }
@@ -36,6 +35,7 @@ private:
     QTableWidget* phones, *books;
     Login* m_login;
     SellDialog* sellDialog;
+    SellBookDialog* sellBookDialog;
 public slots:
     void loginSuccessful(const std::string& username);
     void cellActivated(int row, int column);
