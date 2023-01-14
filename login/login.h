@@ -9,8 +9,10 @@
 #include <QMessageBox>
 #include <map>
 #include <string>
+#include <thread>
 #include <fstream>
 #include <iostream>
+#include <QCloseEvent>
 
 
 QT_BEGIN_NAMESPACE
@@ -30,11 +32,15 @@ public:
     static void createMessageBox(const char* title, const char* text, QMessageBox::Icon icon, QMessageBox::StandardButtons buttons);
 public slots:
     void enteredPasswd();
-    void enteredUsername();
     void addUser();
+    void cancelClicked();
+signals:
+    void loginSuccessful(const std::string& username);
 private:
     void loadUsersDatabase();
     void writeUsersDatabase();
+protected:
+    virtual void keyPressEvent(QKeyEvent *event) override;
 };
 
 

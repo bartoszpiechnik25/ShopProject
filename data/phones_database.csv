@@ -26,3 +26,6 @@ ID,Name,Manufacturer,Description,Price,Specs
 1,iPhone 12,Apple,The latest iPhone model,799.990000,5G
 345,iPhone 13 Pro,Apple,koks,1099.000000,5G FaceID
 234,Samsung Galaxy S22 FE,Samsung,Latest Samsung phone,1199.990000,5G 3 cameras
+101,Galaxy S21 Ultra,Samsung,5G capable flagship smartphone with a 108MP camera and 12GB of RAM,1200.000000,5G 4500mAh
+345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island
+123,Mi 20,Xiaomi,Cheap phone,299.000000,5G 120W charging

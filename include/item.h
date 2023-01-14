@@ -40,7 +40,7 @@ public:
     double getPrice() const;
     //Pure virtual functions
     virtual std::map<std::string, std::string> getAll() const = 0;
-    virtual void setAll() = 0;
+    virtual void setAll(std::map<std::string, std::string>&) = 0;
     virtual void readFromStr(std::string&) = 0;
     virtual std::string saveToDatabase() = 0;
     static long readLongValue(const char*);

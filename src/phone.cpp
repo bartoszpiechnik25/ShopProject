@@ -117,13 +117,13 @@ std::map<std::string, std::string> Phone::getAll() const {
  * @brief Set all data from user input
  * 
  */
-void Phone::setAll() {
-    id = readLongValue("Enter phone ID: ");
-    manufacturer = readString("Enter phone manufacturer: ");
-    name = readString("Enter phone model: ");
-    description = readString("Enter phone description: ");
-    price = readDoubleValue("Enter phone price: ");
-    specs = readString("Enter phone specification: ");
+void Phone::setAll(std::map<std::string, std::string>& data) {
+    id = stol(data["ID"]);
+    manufacturer = data["Manufacturer"];
+    name = data["Name"];
+    description = data["Description"];
+    price = stod(data["Price"]);
+    specs = data["Specs"];
 }
 
 /**
