@@ -13,6 +13,7 @@
 #include "login.h"
 #include "selldialog.h"
 #include "sellbookdialog.h"
+#include "sortwindow.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class Shop; }
@@ -36,13 +37,14 @@ private:
     Login* m_login;
     SellDialog* sellDialog;
     SellBookDialog* sellBookDialog;
+    SortWindow* sortWindow;
 public slots:
     void loginSuccessful(const std::string& username);
     void cellActivated(int row, int column);
     void sellButtonClicked();
     void addNewItem(std::map<std::string, std::string>& data);
-//    void sortData();
+    void sortData(const std::string& column, bool ascending);
+    void createSortWindow();
 };
-
 
 #endif //SHOPPROJECTQT_SHOP_H

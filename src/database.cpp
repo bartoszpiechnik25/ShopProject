@@ -237,7 +237,7 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
                 return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
         else
         std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-            return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
+            return std::stod(a->getAll().at(column_name)) > std::stod(b->getAll().at(column_name));});
     }
     else {
         if (ascending)
@@ -245,7 +245,7 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
                 return a->getAll().at(column_name) < b->getAll().at(column_name);});
         else
             std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-                return a->getAll().at(column_name) < b->getAll().at(column_name);});
+                return a->getAll().at(column_name) > b->getAll().at(column_name);});
     }
 }
 

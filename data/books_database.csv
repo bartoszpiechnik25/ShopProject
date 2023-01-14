@@ -1,11 +1,11 @@
 ID,Name,Author,Description,Price,Type
-1,To Kill a Mockingbird,Harper Lee,A story of prejudice in the South,9.990000,Fiction
 2,Pride and Prejudice,Jane Austen,A romance set in early 19th century England,8.990000,Fiction
+1,To Kill a Mockingbird,Harper Lee,A story of prejudice in the South,9.990000,Fiction
 3,The Catcher in the Rye,J.D. Salinger,A coming-of-age story set in New York,10.990000,Fiction
 4,The Great Gatsby,F. Scott Fitzgerald,A tale of love and excess set in the Roaring Twenties,11.990000,Fiction
 5,The Grapes of Wrath,John Steinbeck,A story of the Great Depression and the Dust Bowl,12.990000,Fiction
-6,The Alchemist,Paulo Coelho,A journey to find one's purpose in life,14.990000,Fiction
 7,Moby-Dick,Herman Melville,A sailor's hunt for the white whale,13.990000,Fiction
+6,The Alchemist,Paulo Coelho,A journey to find one's purpose in life,14.990000,Fiction
 8,Wuthering Heights,Emily Brontë,A tale of love and revenge set on the moors,15.990000,Fiction
 9,The Picture of Dorian Gray,Oscar Wilde,A story of youth beauty and corruption,16.990000,Fiction
 10,The Old Man and the Sea,Ernest Hemingway,A tale of determination and perseverance,17.990000,Fiction

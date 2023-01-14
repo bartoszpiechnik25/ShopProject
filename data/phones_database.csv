@@ -1,31 +1,31 @@
 ID,Name,Manufacturer,Description,Price,Specs
-20,Moto G8,Motorola,An affordable smartphone with good specs,169.990000,4G
-22,Redmi Note 9 Pro,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
-7,Redmi Note 10,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
-25,Vivo Y70s,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
-23,Realme 6,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
-11,LG Stylo 6,LG,A budget smartphone with a stylus,199.990000,4G
-10,Vivo Y51,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
-9,Oppo A53,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
-8,Realme 7,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
-6,Nokia 5.4,Nokia,A budget smartphone with good performance,199.990000,4G
+1,iPhone 12,Apple,The latest iPhone model,799.990000,5G
+2,Galaxy S21,Samsung,The latest Samsung flagship,799.990000,5G
+3,Pixel 5,Google,The latest Pixel smartphone,699.990000,5G
+4,OnePlus 9,OnePlus,A high-end Android smartphone,799.990000,5G
 5,Moto G9,Motorola,An affordable smartphone with good specs,199.990000,4G
-24,Oppo A92,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
+6,Nokia 5.4,Nokia,A budget smartphone with good performance,199.990000,4G
+7,Redmi Note 10,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
+8,Realme 7,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
+9,Oppo A53,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
+10,Vivo Y51,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
+11,LG Stylo 6,LG,A budget smartphone with a stylus,199.990000,4G
 12,Huawei P40 Lite,Huawei,A mid-range smartphone with a good camera,299.990000,4G
-18,Pixel 4a,Google,An affordable Pixel smartphone with a good camera,349.990000,4G
-21,Nokia 7.2,Nokia,A mid-range smartphone with a good camera,349.990000,4G
-17,iPhone SE,Apple,An affordable iPhone with good performance,399.990000,4G
+13,ASUS ROG Phone 3,ASUS,A gaming smartphone with top-of-the-line specs,799.990000,5G
+14,Razer Phone 2,Razer,A gaming smartphone with top-of-the-line specs,799.990000,5G
 15,Nokia 8.3 5G,Nokia,A mid-range smartphone with 5G connectivity,449.990000,5G
 16,Galaxy A52,Samsung,A mid-range smartphone with a good camera,449.990000,5G
+17,iPhone SE,Apple,An affordable iPhone with good performance,399.990000,4G
+18,Pixel 4a,Google,An affordable Pixel smartphone with a good camera,349.990000,4G
 19,OnePlus Nord,OnePlus,A mid-range smartphone with top-of-the-line specs,499.990000,5G
-3,Pixel 5,Google,The latest Pixel smartphone,699.990000,5G
-2,Galaxy S21,Samsung,The latest Samsung flagship,799.990000,5G
-14,Razer Phone 2,Razer,A gaming smartphone with top-of-the-line specs,799.990000,5G
-13,ASUS ROG Phone 3,ASUS,A gaming smartphone with top-of-the-line specs,799.990000,5G
-4,OnePlus 9,OnePlus,A high-end Android smartphone,799.990000,5G
-1,iPhone 12,Apple,The latest iPhone model,799.990000,5G
-345,iPhone 13 Pro,Apple,koks,1099.000000,5G FaceID
-234,Samsung Galaxy S22 FE,Samsung,Latest Samsung phone,1199.990000,5G 3 cameras
+20,Moto G8,Motorola,An affordable smartphone with good specs,169.990000,4G
+21,Nokia 7.2,Nokia,A mid-range smartphone with a good camera,349.990000,4G
+22,Redmi Note 9 Pro,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
+23,Realme 6,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
+24,Oppo A92,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
+25,Vivo Y70s,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
 101,Galaxy S21 Ultra,Samsung,5G capable flagship smartphone with a 108MP camera and 12GB of RAM,1200.000000,5G 4500mAh
-345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island
 123,Mi 20,Xiaomi,Cheap phone,299.000000,5G 120W charging
+234,Samsung Galaxy S22 FE,Samsung,Latest Samsung phone,1199.990000,5G 3 cameras
+345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island
+345,iPhone 13 Pro,Apple,koks,1099.000000,5G FaceID

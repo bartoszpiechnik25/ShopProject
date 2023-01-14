@@ -18,12 +18,14 @@ Shop::Shop(QWidget *parent) :
     phones = new QTableWidget(this);
     sellDialog = new SellDialog();
     sellBookDialog = new SellBookDialog();
+    sortWindow = new SortWindow();
     initializeTab();
     connect(m_login, &Login::loginSuccessful, this, &Shop::loginSuccessful);
     connect(phones, &QTableWidget::cellClicked, this, &Shop::cellActivated);
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sellButtonClicked()));
     connect(sellDialog, &SellDialog::sendData, this, &Shop::addNewItem);
-//    connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(sortData()));
+    connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(createSortWindow()));
+    connect(sortWindow, &SortWindow::sortDataBy, this, &Shop::sortData);
 }
 
 Shop::~Shop() {
@@ -31,6 +33,7 @@ Shop::~Shop() {
     delete ui;
     delete m_login;
     delete sellDialog;
+    delete sellBookDialog;
     delete database;
     delete phones;
     delete books;
@@ -89,6 +92,7 @@ void Shop::initializeUi() {
     ui->sellButton->setStatusTip("Create new item to be sold");
     ui->buyButton->setStatusTip("Buy selected item from table");
     ui->sortingBox->setStyle(QStyleFactory::create("Fusion"));
+//    this->setStyleSheet("QMainWindow::titlebar { background-color: rgb(96, 130, 182); }");
 }
 
 void Shop::initializeTab() {
@@ -129,4 +133,24 @@ void Shop::closeEvent(QCloseEvent *event) {
         event->accept();
     else
         event->ignore();
+}
+
+void Shop::sortData(const std::string& column, bool ascending) {
+    if (ui->tabWidget->currentWidget() == phones) {
+        phones->clearContents();
+        database->sortBy(PHONES, column, ascending);
+        initializeTable(PHONES, phones);
+    } else {
+        books->clearContents();
+        database->sortBy(BOOKS, column, ascending);
+        initializeTable(BOOKS, books);
+    }
+}
+
+void Shop::createSortWindow() {
+    if (ui->tabWidget->currentWidget() == phones)
+        sortWindow->setComboBoxData({"ID", "Price", "Name", "Manufacturer"});
+    else
+        sortWindow->setComboBoxData({"ID", "Price", "Name", "Type"});
+    sortWindow->show();
 }
