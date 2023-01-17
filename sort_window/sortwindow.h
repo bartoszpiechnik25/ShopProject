@@ -25,6 +25,7 @@ public:
     void setComboBoxData(const std::vector<std::string>& data);
 public slots:
     void okClicked();
+    void cancelClicked();
 signals:
     void sortDataBy(const std::string&, bool);
 private:

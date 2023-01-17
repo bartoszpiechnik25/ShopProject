@@ -29,7 +29,6 @@ Shop::Shop(QWidget *parent) :
 }
 
 Shop::~Shop() {
-    database->saveData();
     delete ui;
     delete m_login;
     delete sellDialog;
@@ -91,8 +90,7 @@ void Shop::initializeUi() {
     ui->sortByButton->setStatusTip("Create new window with sorting properties");
     ui->sellButton->setStatusTip("Create new item to be sold");
     ui->buyButton->setStatusTip("Buy selected item from table");
-    ui->sortingBox->setStyle(QStyleFactory::create("Fusion"));
-//    this->setStyleSheet("QMainWindow::titlebar { background-color: rgb(96, 130, 182); }");
+    ui->searchLineEdit->setPlaceholderText("Search...");
 }
 
 void Shop::initializeTab() {
@@ -129,9 +127,10 @@ void Shop::initializeTable(const ItemType &item_type, QTableWidget* tableWidget)
 
 void Shop::closeEvent(QCloseEvent *event) {
     int result = QMessageBox::warning(this, "Confirm exit", "Are you sure you want to quit?", QMessageBox::Ok | QMessageBox::Cancel);
-    if (result == QMessageBox::Ok)
+    if (result == QMessageBox::Ok) {
+        database->saveData();
         event->accept();
-    else
+    } else
         event->ignore();
 }
 

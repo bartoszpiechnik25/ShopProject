@@ -15,7 +15,7 @@ set(SELL_BOOK_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sell/sell_book_dialog")
 set(SORT_DIALOG_DIR "${CMAKE_CURRENT_SOURCE_DIR}/sort_window")
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pthread")
 
-set(CMAKE_PREFIX_PATH "C:/Qt/6.4.2/mingw_64")
+set(CMAKE_PREFIX_PATH "C:/Qt/6.4.0/mingw_64")
 
 find_package(Qt6 COMPONENTS
   Core

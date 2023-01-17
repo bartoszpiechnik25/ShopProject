@@ -15,6 +15,7 @@ SortWindow::SortWindow(QWidget *parent) :
     ui->descendingCheck->setStyle(QStyleFactory::create("Fusion"));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
     connect(ui->okButton, SIGNAL(clicked()), this, SLOT(okClicked()));
+    connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
 }
 
 SortWindow::~SortWindow() {
@@ -44,6 +45,13 @@ void SortWindow::okClicked() {
     }
     column = ui->comboBox->currentText().toStdString();
     emit sortDataBy(column, ascending);
+    ui->comboBox->clear();
+    ui->descendingCheck->setChecked(false);
+    ui->ascendingCheck->setChecked(false);
+    close();
+}
+
+void SortWindow::cancelClicked() {
     ui->comboBox->clear();
     ui->descendingCheck->setChecked(false);
     ui->ascendingCheck->setChecked(false);

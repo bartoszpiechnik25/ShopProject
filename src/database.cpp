@@ -80,6 +80,9 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
         // stringstream stream(line);
         Item* item = selectCorrectChild(item_type);
         item->readFromStr(line);
+        if (uniqueID[item_type].contains(item->getID()))
+            throw runtime_error("ID is not unique!");
+        uniqueID[item_type][item->getID()] = true;
         data[item_type].push_back(item);
     }
     files[item_type]->close();
@@ -342,4 +345,10 @@ std::string ShopDatabase::selectCorrctColumnNames(const ItemType& item_type) con
         default:
             return "";
     }
+}
+
+std::map<long, bool> ShopDatabase::getUniqueID(const ItemType& item_type) const {
+    if (uniqueID.empty())
+        throw empty_vector("You want to get unique ID from empty DB!");
+    return uniqueID.at(item_type);
 }

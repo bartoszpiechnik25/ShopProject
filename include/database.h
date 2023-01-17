@@ -14,6 +14,7 @@ const ItemType initDatabaseItems[] = {BOOKS, PHONES};
 class ShopDatabase {
 private:
     std::map<ItemType, std::vector<Item*>> data;
+    std::map<ItemType, std::map<long, bool>> uniqueID;
     std::map<ItemType, std::vector<std::string>> headers;
     bool* modified;
     std::map<ItemType, std::ifstream*> files;
@@ -33,6 +34,7 @@ public:
     std::map<ItemType, std::vector<Item*>>& getItems();
     std::vector<std::string> getHeaders(const ItemType&) const;
     static Item* selectCorrectChild(const ItemType&);
+    std::map<long, bool> getUniqueID(const ItemType&) const;
 private:
     void open(const std::string&, const ItemType&);
     void save(const ItemType&);

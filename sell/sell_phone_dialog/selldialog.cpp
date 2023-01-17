@@ -35,10 +35,10 @@ void SellDialog::okClicked() {
         }
     }
     try {
-        std::stol(ui->priceLineEdit->text().toStdString());
+        std::stol(ui->idLineEdit->text().toStdString());
     } catch (std::invalid_argument& e) {
-        Login::createMessageBox("Warining", "Price shall be a number!", QMessageBox::Critical, QMessageBox::Ok | QMessageBox::NoButton);
-        ui->priceLineEdit->clear();
+        Login::createMessageBox("Warining", "ID must be a number!", QMessageBox::Critical, QMessageBox::Ok | QMessageBox::NoButton);
+        ui->idLineEdit->clear();
         return;
     }
 
