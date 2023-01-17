@@ -131,10 +131,15 @@ void Login::writeUsersDatabase() {
  * @brief Slot handling adding new user to the database
  */
 void Login::addUser() {
-    if (getUsername().empty() || getPasswd().empty()) {
+    std::string username = getUsername(), passwd = getPasswd();
+    if (username.empty() || passwd.empty()) {
         createMessageBox("Warning", "Cannot add empty!", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
-    } else {
-        std::string username = getUsername();
+    }else if (username.ends_with(' ') || username.starts_with(' ') || passwd.starts_with(' ') || passwd.ends_with(' ')) {
+        createMessageBox("Warning", "Username cannot start/end with a space!", QMessageBox::Critical, QMessageBox::Ok| QMessageBox::NoButton);
+        ui->passwordLineEdit->clear();
+        ui->usernameLineEdit->clear();
+    }
+    else {
         if (usersDatabase.contains(username)) {
             createMessageBox("Warning", "User already exists", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
         } else {

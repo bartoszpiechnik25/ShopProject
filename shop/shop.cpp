@@ -18,19 +18,21 @@ Shop::Shop(QWidget *parent) :
     phones = new QTableWidget(this);
     sellDialog = new SellDialog();
     sellBookDialog = new SellBookDialog();
+    sortWindow = new SortWindow();
     initializeTab();
     connect(m_login, &Login::loginSuccessful, this, &Shop::loginSuccessful);
     connect(phones, &QTableWidget::cellClicked, this, &Shop::cellActivated);
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sellButtonClicked()));
     connect(sellDialog, &SellDialog::sendData, this, &Shop::addNewItem);
-//    connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(sortData()));
+    connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(createSortWindow()));
+    connect(sortWindow, &SortWindow::sortDataBy, this, &Shop::sortData);
 }
 
 Shop::~Shop() {
-    database->saveData();
     delete ui;
     delete m_login;
     delete sellDialog;
+    delete sellBookDialog;
     delete database;
     delete phones;
     delete books;
@@ -88,7 +90,7 @@ void Shop::initializeUi() {
     ui->sortByButton->setStatusTip("Create new window with sorting properties");
     ui->sellButton->setStatusTip("Create new item to be sold");
     ui->buyButton->setStatusTip("Buy selected item from table");
-    ui->sortingBox->setStyle(QStyleFactory::create("Fusion"));
+    ui->searchLineEdit->setPlaceholderText("Search...");
 }
 
 void Shop::initializeTab() {
@@ -125,8 +127,29 @@ void Shop::initializeTable(const ItemType &item_type, QTableWidget* tableWidget)
 
 void Shop::closeEvent(QCloseEvent *event) {
     int result = QMessageBox::warning(this, "Confirm exit", "Are you sure you want to quit?", QMessageBox::Ok | QMessageBox::Cancel);
-    if (result == QMessageBox::Ok)
+    if (result == QMessageBox::Ok) {
+        database->saveData();
         event->accept();
-    else
+    } else
         event->ignore();
+}
+
+void Shop::sortData(const std::string& column, bool ascending) {
+    if (ui->tabWidget->currentWidget() == phones) {
+        phones->clearContents();
+        database->sortBy(PHONES, column, ascending);
+        initializeTable(PHONES, phones);
+    } else {
+        books->clearContents();
+        database->sortBy(BOOKS, column, ascending);
+        initializeTable(BOOKS, books);
+    }
+}
+
+void Shop::createSortWindow() {
+    if (ui->tabWidget->currentWidget() == phones)
+        sortWindow->setComboBoxData({"ID", "Price", "Name", "Manufacturer"});
+    else
+        sortWindow->setComboBoxData({"ID", "Price", "Name", "Type"});
+    sortWindow->show();
 }

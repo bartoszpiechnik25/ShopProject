@@ -188,3 +188,35 @@ std::string Book::saveToDatabase() {
      data["Price"] + "," + data["Type"];
     return save;
 }
+
+void Book::saveToBinary(std::ofstream & out) {
+    out.write(reinterpret_cast<char*>(&id), sizeof(id));
+    out.write(reinterpret_cast<char*>(&price), sizeof(price));
+    int name_size = name.size(), author_size = author.size(), description_size = description.size(), type_size = type.size();
+    out.write(reinterpret_cast<char*>(&type_size), sizeof(type_size));
+    out.write(&type[0], type_size);
+    out.write(reinterpret_cast<char*>(&author_size), sizeof(author_size));
+    out.write(&author[0], author_size);
+    out.write(reinterpret_cast<char*>(&name_size), sizeof(name_size));
+    out.write(&name[0], name_size);
+    out.write(reinterpret_cast<char*>(&description_size), sizeof(description_size));
+    out.write(&description[0], description_size);
+}
+
+void Book::readBinary(std::ifstream & in) {
+    int name_size, author_size, description_size, type_size;
+    in.read(reinterpret_cast<char*>(&id), sizeof(id));
+    in.read(reinterpret_cast<char*>(&price), sizeof(price));
+    in.read(reinterpret_cast<char*>(&type_size), sizeof(type_size));
+    type.resize(type_size);
+    in.read(&type[0], type_size);
+    in.read(reinterpret_cast<char*>(&author_size), sizeof(author_size));
+    author.resize(author_size);
+    in.read(&author[0], author_size);
+    in.read(reinterpret_cast<char*>(&name_size), sizeof(name_size));
+    name.resize(name_size);
+    in.read(&name[0], name_size);
+    in.read(reinterpret_cast<char*>(&description_size), sizeof(description_size));
+    description.resize(description_size);
+    in.read(&description[0], description_size);
+}

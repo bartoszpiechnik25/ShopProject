@@ -80,6 +80,9 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
         // stringstream stream(line);
         Item* item = selectCorrectChild(item_type);
         item->readFromStr(line);
+        if (uniqueID[item_type].contains(item->getID()))
+            throw runtime_error("ID is not unique!");
+        uniqueID[item_type][item->getID()] = true;
         data[item_type].push_back(item);
     }
     files[item_type]->close();
@@ -237,7 +240,7 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
                 return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
         else
         std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-            return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
+            return std::stod(a->getAll().at(column_name)) > std::stod(b->getAll().at(column_name));});
     }
     else {
         if (ascending)
@@ -245,7 +248,7 @@ void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_n
                 return a->getAll().at(column_name) < b->getAll().at(column_name);});
         else
             std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-                return a->getAll().at(column_name) < b->getAll().at(column_name);});
+                return a->getAll().at(column_name) > b->getAll().at(column_name);});
     }
 }
 
@@ -342,4 +345,10 @@ std::string ShopDatabase::selectCorrctColumnNames(const ItemType& item_type) con
         default:
             return "";
     }
+}
+
+std::map<long, bool> ShopDatabase::getUniqueID(const ItemType& item_type) const {
+    if (uniqueID.empty())
+        throw empty_vector("You want to get unique ID from empty DB!");
+    return uniqueID.at(item_type);
 }

@@ -22,4 +22,6 @@ public:
     void setAll(std::map<std::string, std::string>&) override;
     void readFromStr(std::string&) override;
     std::string saveToDatabase() override;
+    void saveToBinary(std::ofstream&);
+    void readBinary(std::ifstream&);
 };
