@@ -5,7 +5,6 @@
 
 //Define on which item perform database operations
 enum ItemType {
-    ALL,
     BOOKS,
     PHONES
 };
@@ -20,27 +19,28 @@ private:
     std::map<ItemType, std::ifstream*> files;
 public:
     ShopDatabase();
-    ShopDatabase(const std::map<std::string, ItemType>&);
-    ShopDatabase(const std::string&, const ItemType&);
+    explicit ShopDatabase(const std::map<std::string, ItemType>& paths_);
+    explicit ShopDatabase(const std::string& path_, const ItemType& item_type);
     ~ShopDatabase();
     void printDB() const;
-    void saveData();
-    void deleteRecord(const ItemType&, int);
-    ShopDatabase& operator-=(std::pair<ItemType, int>&);
-    void addRecord(const ItemType&, Item*);
-    void addRecordFromStr(const ItemType&, const std::string&);
-    ShopDatabase& operator+=(const std::pair<ItemType, std::string>&);
-    void sortBy(const ItemType&, const std::string&, bool=true);
+    void saveData() noexcept;
+    void deleteRecord(const ItemType& item_type, int index);
+    void deleteByID(const ItemType& item_type, const long ID_);
+    ShopDatabase& operator-=(std::pair<ItemType, long>& pair_);
+    void addRecord(const ItemType& item_type, Item* new_data);
+    void addRecordFromStr(const ItemType& item_type, const std::string& str_data);
+    ShopDatabase& operator+=(const std::pair<ItemType, std::string>& pair_);
+    void sortBy(const ItemType& item_type, const std::string& column_name, bool ascending =true);
     std::map<ItemType, std::vector<Item*>>& getItems();
-    std::vector<std::string> getHeaders(const ItemType&) const;
-    static Item* selectCorrectChild(const ItemType&);
-    std::map<long, bool> getUniqueID(const ItemType&) const;
+    [[nodiscard]]std::vector<std::string> getHeaders(const ItemType& item_type) const;
+    static Item* selectCorrectChild(const ItemType&) noexcept;
+    [[nodiscard]]std::vector<long> getUniqueID(const ItemType& item_type) const;
 private:
-    void open(const std::string&, const ItemType&);
-    void save(const ItemType&);
-    void initMap();
-    std::string itemTypeToPath(const ItemType&) const;
-    std::string selectCorrctColumnNames(const ItemType&) const;
+    void open(const std::string& path, const ItemType& item_type);
+    void save(const ItemType& item_type);
+    void initMap() noexcept;
+    static std::string itemTypeToPath(const ItemType& item_type) noexcept;
+    static std::string selectCorrectColumnNames(const ItemType& item_type) noexcept;
 };
 
 template <typename K, typename V>

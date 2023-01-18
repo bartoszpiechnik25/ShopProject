@@ -15,17 +15,19 @@ Shop::Shop(QWidget *parent) :
     std::map<std::string, ItemType> paths = {{"../data/phones_database.csv", PHONES}, {"../data/books_database.csv", BOOKS}};
     database = new ShopDatabase(paths);
     books = new QTableWidget(this);
+    books->setEditTriggers(QAbstractItemView::NoEditTriggers);
     phones = new QTableWidget(this);
+    phones->setEditTriggers(QAbstractItemView::NoEditTriggers);
     sellDialog = new SellDialog();
     sellBookDialog = new SellBookDialog();
     sortWindow = new SortWindow();
     initializeTab();
     connect(m_login, &Login::loginSuccessful, this, &Shop::loginSuccessful);
-    connect(phones, &QTableWidget::cellClicked, this, &Shop::cellActivated);
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sellButtonClicked()));
     connect(sellDialog, &SellDialog::sendData, this, &Shop::addNewItem);
     connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(createSortWindow()));
     connect(sortWindow, &SortWindow::sortDataBy, this, &Shop::sortData);
+    connect(ui->buyButton, SIGNAL(clicked()), this, SLOT(buyButtonClicked()));
 }
 
 Shop::~Shop() {
@@ -53,10 +55,17 @@ void Shop::cellActivated(int row, int column) {
 }
 
 void Shop::sellButtonClicked() {
-    if (ui->tabWidget->currentWidget() == phones)
+    std::vector<long> uniqueIDs;
+    if (ui->tabWidget->currentWidget() == phones) {
+         uniqueIDs = database->getUniqueID(PHONES);
+        sellDialog->setID(uniqueIDs);
         sellDialog->show();
-    else
+    }
+    else {
+        uniqueIDs = database->getUniqueID(BOOKS);
+        sellBookDialog->setID(uniqueIDs);
         sellBookDialog->show();
+    }
 }
 
 void Shop::addNewItem(std::map<std::string, std::string>& data) {
@@ -152,4 +161,36 @@ void Shop::createSortWindow() {
     else
         sortWindow->setComboBoxData({"ID", "Price", "Name", "Type"});
     sortWindow->show();
+}
+
+void Shop::buyButtonClicked() {
+    ItemType item_type;
+    QTableWidget *tableWidget;
+
+    if (ui->tabWidget->currentWidget() == phones) {
+        item_type = PHONES;
+        tableWidget = phones;
+    } else {
+        item_type = BOOKS;
+        tableWidget = books;
+    }
+
+    int row = tableWidget->currentRow();
+    if (row == -1) {
+        Login::createMessageBox("Error", "To buy an item select valid row!", QMessageBox::Critical,
+                                QMessageBox::Ok | QMessageBox::NoButton);
+        return;
+    }
+    std::pair<ItemType, long> pair(item_type, tableWidget->item(row, 0)->text().toLong());
+    *database -= pair;
+    std::string soldItem = "Thank you for buying:\n";
+    int counter = 0;
+    for (const auto &header: database->getHeaders(item_type)) {
+        soldItem += header + ": \t" + tableWidget->item(row, counter++)->text().toStdString() + "\n";
+    }
+    tableWidget->removeRow(row);
+    tableWidget->update();
+    tableWidget->setCurrentCell(-1, -1);
+    Login::createMessageBox("Information", soldItem.c_str(), QMessageBox::Information,
+                            QMessageBox::Ok | QMessageBox::NoButton);
 }

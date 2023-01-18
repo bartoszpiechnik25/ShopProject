@@ -45,6 +45,9 @@ public slots:
     void addNewItem(std::map<std::string, std::string>& data);
     void sortData(const std::string& column, bool ascending);
     void createSortWindow();
+    void buyButtonClicked();
+    signals:
+    void uniqueIDs(std::vector<long>& ID_);
 };
 
 #endif //SHOPPROJECTQT_SHOP_H
