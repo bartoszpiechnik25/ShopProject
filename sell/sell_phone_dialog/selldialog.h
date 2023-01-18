@@ -6,6 +6,7 @@
 #define SHOPPROJECTQT_SELLDIALOG_H
 
 #include <QDialog>
+#include <algorithm>
 #include "login.h"
 
 
@@ -20,6 +21,7 @@ public:
     explicit SellDialog(QWidget *parent = nullptr);
 
     ~SellDialog() override;
+    void setID(std::vector<long>& id_) noexcept;
 signals:
     void sendData(std::map<std::string, std::string>& data);
 public slots:
@@ -29,6 +31,7 @@ public slots:
 
 private:
     Ui::SellDialog *ui;
+    std::vector<long> uniqueIDs;
 };
 
 

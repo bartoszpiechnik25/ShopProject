@@ -7,6 +7,7 @@
 
 #include <QDialog>
 #include "login.h"
+#include <algorithm>
 
 
 QT_BEGIN_NAMESPACE
@@ -20,6 +21,7 @@ public:
     explicit SellBookDialog(QWidget *parent = nullptr);
 
     ~SellBookDialog() override;
+    void setID(std::vector<long>& id_) noexcept;
 signals:
     void sendData(std::map<std::string, std::string>& data);
 public slots:
@@ -28,6 +30,7 @@ public slots:
     void closeClicked();
 private:
     Ui::SellBookDialog *ui;
+    std::vector<long> uniqueIDs;
 };
 
 

@@ -35,7 +35,13 @@ void SellDialog::okClicked() {
         }
     }
     try {
-        std::stol(ui->idLineEdit->text().toStdString());
+        long id = std::stol(ui->idLineEdit->text().toStdString());
+        if (std::find(uniqueIDs.begin(), uniqueIDs.end(), id) != uniqueIDs.end()) {
+            Login::createMessageBox("Warning", "ID already exists!", QMessageBox::Critical,
+                                    QMessageBox::Ok | QMessageBox::NoButton);
+            ui->idLineEdit->clear();
+            return;
+        }
     } catch (std::invalid_argument& e) {
         Login::createMessageBox("Warining", "ID must be a number!", QMessageBox::Critical, QMessageBox::Ok | QMessageBox::NoButton);
         ui->idLineEdit->clear();
@@ -49,6 +55,7 @@ void SellDialog::okClicked() {
         ui->priceLineEdit->clear();
         return;
     }
+
     data["Name"] = ui->nameLineEdit->text().toStdString();
     data["Price"] = ui->priceLineEdit->text().toStdString();
     data["Manufacturer"] = ui->manufacturerLineEdit->text().toStdString();
@@ -63,4 +70,8 @@ void SellDialog::okClicked() {
 void SellDialog::closeClicked() {
     clearText();
     close();
+}
+
+void SellDialog::setID(std::vector<long> &id_) noexcept{
+    uniqueIDs = id_;
 }

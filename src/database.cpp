@@ -19,6 +19,7 @@ ShopDatabase::ShopDatabase(const std::map<std::string, ItemType>& paths_) {
             threads.emplace_back(std::thread(&ShopDatabase::open, this, key, value));
         } catch (const std::system_error& e) {
             std::cerr << "Error: " << e.what() << std::endl;
+            std::terminate();
         }
     }
     for(auto& th: threads)
@@ -77,11 +78,12 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
 
     string line;
     while (getline(*files[item_type], line)) {
-        // stringstream stream(line);
         Item* item = selectCorrectChild(item_type);
+        if (!item)
+            throw runtime_error("Error allocating memory for Item*!");
         item->readFromStr(line);
         if (uniqueID[item_type].contains(item->getID()))
-            throw runtime_error("ID is not unique!");
+            throw invalid_argument("ID is not unique!");
         uniqueID[item_type][item->getID()] = true;
         data[item_type].push_back(item);
     }
@@ -115,7 +117,7 @@ void ShopDatabase::printDB() const {
  * @brief Initializes map with ifstream objects and allocates memory for modified array
  * 
  */
-void ShopDatabase::initMap() {
+void ShopDatabase::initMap() noexcept{
     for (const auto& item_num: initDatabaseItems)
         files[item_num] = new std::ifstream;
     modified = new bool[data.size() + 1];
@@ -146,8 +148,8 @@ void ShopDatabase::deleteRecord(const ItemType& item_type, int index) {
  * @param pair_ Pair with type of item and index of item to delete
  * @return ShopDatabase& Reference to database
  */
-ShopDatabase& ShopDatabase::operator-=(std::pair<ItemType, int>& pair_) {
-    deleteRecord(pair_.first, pair_.second);
+ShopDatabase& ShopDatabase::operator-=(std::pair<ItemType, long>& pair_) {
+    deleteByID(pair_.first, pair_.second);
     return *this;
 }
 
@@ -268,7 +270,7 @@ std::vector<std::string> ShopDatabase::getHeaders(const ItemType& item_type) con
  * @brief Saves the database to the file
  * 
  */
-void ShopDatabase::saveData() {
+void ShopDatabase::saveData() noexcept {
     std::vector<std::thread> threads;
     for(const auto& type: initDatabaseItems) {
         try {
@@ -288,7 +290,7 @@ void ShopDatabase::saveData() {
  *
  * @return std::string 
  */
-std::string ShopDatabase::itemTypeToPath(const ItemType& item_type) const {
+std::string ShopDatabase::itemTypeToPath(const ItemType& item_type) noexcept {
     switch (item_type) {
         case BOOKS:
             return "../data/books_database.csv";
@@ -308,12 +310,12 @@ void ShopDatabase::save(const ItemType& item_type) {
     if (modified[item_type]) {
         std::ofstream save(itemTypeToPath(item_type));
         if (save.good()) {
-            std::string a = selectCorrctColumnNames(item_type);
+            std::string a = selectCorrectColumnNames(item_type);
             save << a;
             for(const auto& item_str: data[item_type])
                 save << (item_str->saveToDatabase() + "\n");
         } else {
-            std::string s = "Cannot open file: %s!" + itemTypeToPath(item_type);
+            std::string s = "Cannot open file: " + itemTypeToPath(item_type) + "!";
             throw std::runtime_error(s.c_str());
         }
     }
@@ -325,7 +327,7 @@ void ShopDatabase::save(const ItemType& item_type) {
  * @param item_type Type of item to load
  * @return Item* 
  */
-Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) {
+Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) noexcept {
     switch (item_type) {
         case BOOKS:
             return new Book;
@@ -336,7 +338,7 @@ Item* ShopDatabase::selectCorrectChild(const ItemType& item_type) {
     }
 }
 
-std::string ShopDatabase::selectCorrctColumnNames(const ItemType& item_type) const {
+std::string ShopDatabase::selectCorrectColumnNames(const ItemType& item_type) noexcept {
     switch (item_type) {
         case BOOKS:
             return "ID,Name,Author,Description,Price,Type\n";
@@ -347,8 +349,24 @@ std::string ShopDatabase::selectCorrctColumnNames(const ItemType& item_type) con
     }
 }
 
-std::map<long, bool> ShopDatabase::getUniqueID(const ItemType& item_type) const {
+std::vector<long> ShopDatabase::getUniqueID(const ItemType& item_type) const {
     if (uniqueID.empty())
         throw empty_vector("You want to get unique ID from empty DB!");
-    return uniqueID.at(item_type);
+    std::vector<long> ids;
+    std::for_each(uniqueID.at(item_type).begin(), uniqueID.at(item_type).end(), [&ids](const auto& id) {
+        ids.push_back(id.first);
+    });
+    ids.shrink_to_fit();
+    return ids;
+}
+
+void ShopDatabase::deleteByID(const ItemType &item_type, const long ID_) {
+    auto item = std::find_if(data.at(item_type).begin(), data.at(item_type).end(), [&](auto& element) {return element->getID() == ID_;});
+
+    if (item != data.at(item_type).end()) {
+        delete *item;
+        data.at(item_type).erase(item);
+        modified[item_type] = true;
+    } else throw std::invalid_argument("There is no item with this ID!");
+
 }
