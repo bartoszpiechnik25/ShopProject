@@ -21,6 +21,7 @@ Shop::Shop(QWidget *parent) :
     sellDialog = new SellDialog();
     sellBookDialog = new SellBookDialog();
     sortWindow = new SortWindow();
+
     initializeTab();
     connect(m_login, &Login::loginSuccessful, this, &Shop::loginSuccessful);
     connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sellButtonClicked()));
@@ -28,9 +29,12 @@ Shop::Shop(QWidget *parent) :
     connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(createSortWindow()));
     connect(sortWindow, &SortWindow::sortDataBy, this, &Shop::sortData);
     connect(ui->buyButton, SIGNAL(clicked()), this, SLOT(buyButtonClicked()));
+    connect(ui->searchLineEdit, SIGNAL(returnPressed()), this, SLOT(searchForData()));
+    connect(resetMenubar, SIGNAL(triggered()), this, SLOT(resetClicked()));
 }
 
 Shop::~Shop() {
+    delete resetMenubar;
     delete ui;
     delete m_login;
     delete sellDialog;
@@ -47,11 +51,6 @@ void Shop::loginSuccessful(const std::string &username) {
     std::string statusBarHelloMessage = username + " welcome to the shop!";
     ui->statusbar->showMessage(statusBarHelloMessage.c_str());
     show();
-}
-
-void Shop::cellActivated(int row, int column) {
-    Login::createMessageBox("Information", "Cell activated", QMessageBox::Information, QMessageBox::Ok | QMessageBox::NoButton);
-    std::cout << row << " " << column << std::endl;
 }
 
 void Shop::sellButtonClicked() {
@@ -100,6 +99,14 @@ void Shop::initializeUi() {
     ui->sellButton->setStatusTip("Create new item to be sold");
     ui->buyButton->setStatusTip("Buy selected item from table");
     ui->searchLineEdit->setPlaceholderText("Search...");
+    resetMenubar = new QAction("Reset");
+    QFont font = resetMenubar->font();
+    font.setPointSize(15);
+    font.setBold(true);
+    resetMenubar->setFont(font);
+    resetMenubar->setVisible(false);
+    ui->menubar->setStyleSheet("color: white;background-color: rgb(54, 69, 79); border-radius: 5px;");
+    ui->menubar->addAction(resetMenubar);
 }
 
 void Shop::initializeTab() {
@@ -191,6 +198,58 @@ void Shop::buyButtonClicked() {
     tableWidget->removeRow(row);
     tableWidget->update();
     tableWidget->setCurrentCell(-1, -1);
+//    QDialog *dialog = new QDialog(this);
+//    QVBoxLayout * layout1 = new QVBoxLayout;
+//    QLabel *label = new QLabel("You have bought:");
+//
+//    QTableView *table = new QTableView;
+//    layout1->addWidget(label);
+//    layout1->addWidget(table);
+//
+//    QStandardItemModel *model = new QStandardItemModel(dialog);
+//    model->setHorizontalHeaderLabels(QStringList() << "ID" << "Price" << "Name" << "Manufacturer");
+//    QStandardItem *item = new QStandardItem(QString::number(pair.second));
+
+
     Login::createMessageBox("Information", soldItem.c_str(), QMessageBox::Information,
                             QMessageBox::Ok | QMessageBox::NoButton);
+}
+
+void Shop::searchForData() {
+    QTableWidget* tableWidget;
+    ItemType item_type;
+    std::string search_data = ui->searchLineEdit->text().toStdString();
+    ui->searchLineEdit->clear();
+
+    if (ui->tabWidget->currentWidget() == phones) {
+        tableWidget = phones;
+        item_type = PHONES;
+    } else {
+        tableWidget = books;
+        item_type = BOOKS;
+    }
+    tableWidget->clearContents();
+    tableWidget->setRowCount(0);
+    std::vector<std::string> headers = database->getHeaders(item_type);
+    int counter = 0;
+    for(auto& item: database->getItems()[item_type]) {
+        if(item->contains(search_data)) {
+            std::map<std::string, std::string> itemData = item->getAll();
+            int i = 0;
+            tableWidget->insertRow(counter);
+            for(const auto& header: headers)
+                tableWidget->setItem(counter, i++, new QTableWidgetItem(itemData[header].c_str()));
+            ++counter;
+        }
+    }
+    tableWidget->resizeColumnsToContents();
+    resetMenubar->setVisible(true);
+}
+
+void Shop::resetClicked() {
+    if (ui->tabWidget->currentWidget() == phones) {
+        initializeTable(PHONES,phones);
+    } else
+        initializeTable(BOOKS, books);
+    resetMenubar->setVisible(false);
 }

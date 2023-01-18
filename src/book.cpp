@@ -220,3 +220,18 @@ void Book::readBinary(std::ifstream & in) {
     description.resize(description_size);
     in.read(&description[0], description_size);
 }
+
+/**
+ * @brief Search all fields in the class for specified pattern.
+ * @param str Pattern to be found in the fields;
+ * @return True if pattern was found otherwise false.
+ */
+bool Book::contains(const std::string &str) {
+    using namespace std;
+    regex pattern = regex(".*" + str + ".*", regex_constants::icase|regex_constants::optimize);
+    for (const auto &[key, value]: getAll()) {
+        if (regex_search(value, pattern))
+            return true;
+    }
+    return false;
+}

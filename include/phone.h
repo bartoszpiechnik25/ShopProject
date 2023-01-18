@@ -19,11 +19,12 @@ public:
     void setManufacturer(const std::string&);
     void setSpecs(const char*);
     void setSpecs(const std::string&);
-    std::string getModel() const;
-    std::string getManufacturer() const;
-    std::string getSpecs() const;
-    std::map<std::string, std::string> getAll() const override;
+    [[nodiscard]]std::string getModel() const;
+    [[nodiscard]]std::string getManufacturer() const;
+    [[nodiscard]]std::string getSpecs() const;
+    [[nodiscard]]std::map<std::string, std::string> getAll() const override;
     void setAll(std::map<std::string, std::string>&) override;
     void readFromStr(std::string&) override;
+    bool contains(const std::string& str) override;
     std::string saveToDatabase() override;
 };

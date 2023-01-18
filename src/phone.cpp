@@ -193,3 +193,18 @@ bool Phone::isEmpty() const {
         return true;
     return false;
 }
+
+/**
+ * @brief Search all fields in the class for specified pattern.
+ * @param str Pattern to be found in the fields;
+ * @return True if pattern was found otherwise false.
+ */
+bool Phone::contains(const std::string &str) {
+    using namespace std;
+    regex pattern = regex(".*" + str + ".*", regex_constants::icase | regex_constants::optimize);
+    for (const auto &[key, value]: getAll()) {
+        if (regex_match(value, pattern))
+            return true;
+    }
+    return false;
+}
