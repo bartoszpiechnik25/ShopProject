@@ -7,7 +7,9 @@
 
 #include <QMainWindow>
 #include <QStyleFactory>
+#include <QLabel>
 #include <QTableWidget>
+#include <QStandardItemModel>
 #include <QHeaderView>
 #include "database.h"
 #include "login.h"
@@ -38,16 +40,16 @@ private:
     SellDialog* sellDialog;
     SellBookDialog* sellBookDialog;
     SortWindow* sortWindow;
+    QAction* resetMenubar;
 public slots:
     void loginSuccessful(const std::string& username);
-    void cellActivated(int row, int column);
     void sellButtonClicked();
     void addNewItem(std::map<std::string, std::string>& data);
     void sortData(const std::string& column, bool ascending);
     void createSortWindow();
     void buyButtonClicked();
-    signals:
-    void uniqueIDs(std::vector<long>& ID_);
+    void searchForData();
+    void resetClicked();
 };
 
 #endif //SHOPPROJECTQT_SHOP_H

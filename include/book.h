@@ -16,12 +16,13 @@ public:
     void setAuthor(const char*);
     void setType(const char*);
     void setType(const std::string&);
-    std::string getAuthor() const;
-    std::string getType() const;
-    std::map<std::string, std::string> getAll() const override;
+    [[nodiscard]]std::string getAuthor() const;
+    [[nodiscard]]std::string getType() const;
+    [[nodiscard]]std::map<std::string, std::string> getAll() const override;
     void setAll(std::map<std::string, std::string>&) override;
     void readFromStr(std::string&) override;
     std::string saveToDatabase() override;
+    bool contains(const std::string& str) override;
     void saveToBinary(std::ofstream&);
     void readBinary(std::ifstream&);
 };
