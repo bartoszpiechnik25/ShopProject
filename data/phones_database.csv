@@ -22,10 +22,6 @@ ID,Name,Manufacturer,Description,Price,Specs
 23,Realme 6,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
 24,Oppo A92,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
 25,Vivo Y70s,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
-101,Galaxy S21 Ultra,Samsung,5G capable flagship smartphone with a 108MP camera and 12GB of RAM,1200.000000,5G 4500mAh
-123,Mi 20,Xiaomi,Cheap phone,299.000000,5G 120W charging
-234,Samsung Galaxy S22 FE,Samsung,Latest Samsung phone,1199.990000,5G 3 cameras
-345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island
 26,Razer Phone 2,Razer,A gaming smartphone with a 120Hz display and a powerful processor,799.990000,5G
 27,Huawei Mate 40 Pro,Huawei,A high-end smartphone with a 50MP camera and 5G connectivity,999.990000,5G
 28,Sony Xperia 1 III,Sony,A flagship smartphone with a 4K OLED display and a triple-camera system,999.990000,5G
@@ -55,5 +51,7 @@ ID,Name,Manufacturer,Description,Price,Specs
 52,OnePlus Nord N200,OnePlus,A budget smartphone with a 6.49-inch AMOLED display and a triple-camera system,249.990000,4G
 53,Google Pixel 4a 5G, Google,An affordable smartphone with a 5G connectivity and a dual-camera system,399.990000,5G
 54,Motorola Moto E7 Power,Motorola,An affordable smartphone with a 5000mAh battery and a dual-camera system,129.990000,4G
-55,Nokia 2.4,Nokia,A budget smartphone with a 6.5-inch IPS LCD display and a dual-camera system,99.990000,4G
 56,Xiaomi Redmi 9T,Xiaomi,An affordable smartphone with a 6.53-inch IPS LCD display and a quad-camera system,179.990000,4G
+123,Mi 20,Xiaomi,Cheap phone,299.000000,5G 120W charging
+234,Samsung Galaxy S22 FE,Samsung,Latest Samsung phone,1199.990000,5G 3 cameras
+345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island

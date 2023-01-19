@@ -1,8 +1,6 @@
 #include <QApplication>
 #include <QPushButton>
-#include "login/login.h"
-#include "shop/shop.h"
-#include "book.h"
+#include "shop.h"
 
 using namespace std;
 
@@ -13,6 +11,10 @@ void printMap(const map<string, string>& data) {
 }
 
 int main(int argc, char *argv[]) {
+    if (argc > 3) {
+        cerr << "There should be 2 command line arguments!\nAborting!" << endl;
+        exit(EXIT_FAILURE);
+    }
     QApplication a(argc, argv);
 //    qApp->setStyleSheet("QPushButton {	background-color: rgb(67,70,75); border-width: 2px; border-radius: 10px; border-color: beige; font: bold 12px; color: white; padding: 5px;} QPushButton:pressed { border-style: inset; border: 2px solid black;}");
 //    QPushButton button("Hello world!", nullptr);
@@ -21,6 +23,19 @@ int main(int argc, char *argv[]) {
 //    Login l = Login();
 //    ShopDatabase* db=new ShopDatabase((string)"../data/phones_database.csv", PHONES);
 //    db->printDB();
+//    ofstream file("../data/users.bin", ios::binary);
+//    User first("artur", "koks", 345.00);
+//    first.saveToBinary(file);
+//    first.saveToBinary(file);
+//    second.saveToBinary(file);
+//    file.close();
+//    ifstream file("../data/users.bin", ios::binary);
+//    User loaded;
+//    loaded.readFromBinary(file);
+//    file.close();
+//    cout << loaded.getUsername() << "  " << loaded.getPassword() <<endl;
+//    for(auto &it:loaded.getHistory())
+//        cout << it << endl;
     Shop s = Shop();
 //    Book* book = new Book;
 ////    book->setAll({{"title", "Harry Potter"}, {"author", "J.K. Rowling"}, {"price", "20"}, {"pages", "300"}});

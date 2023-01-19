@@ -175,7 +175,7 @@ void ShopDatabase::addRecord(const ItemType& item_type, Item* new_data) {
  * @param item_type Type of item to add
  * @param str_data String with data to add
  */
-void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string& str_data) {
+void ShopDatabase::addRecord(const ItemType& item_type, const std::string& str_data) {
     using namespace std;
     if (data[item_type].empty())
         throw empty_vector("You want to add to DB that is not loaded!");
@@ -199,8 +199,16 @@ void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string
  * @return ShopDatabase& Reference to this object
  */
 ShopDatabase& ShopDatabase::operator+=(const std::pair<ItemType, std::string>& pair_) {
-    addRecordFromStr(pair_.first, pair_.second);
+    addRecord(pair_.first, pair_.second);
     return *this;
+}
+
+Item* ShopDatabase::operator[](const std::pair<ItemType,long>& pair_) {
+    for(auto item: data[pair_.first]) {
+        if (item->getID() == pair_.second)
+            return item;
+    }
+    return nullptr;
 }
 
 /**
