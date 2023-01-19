@@ -47,134 +47,67 @@ Item::~Item() {}
  * 
  * @param id_ Item ID
  */
-void Item::setID(const long& id_) { id = id_; }
+void Item::setID(const long& id_) noexcept { id = id_; }
 
 /**
  * @brief Set the Name data
  * 
  * @param name_ Item name
  */
-void Item::setName(const std::string& name_) { name = name_; }
+void Item::setName(const std::string& name_) noexcept { name = name_; }
 
 /**
  * @brief Set the Name data
  * 
  * @param name_ Item name
  */
-void Item::setName(const char* name_) { name = name_; }
+void Item::setName(const char* name_) noexcept { name = name_; }
 
 /**
  * @brief Set the Description data
  * 
  * @param description_ Item description
  */
-void Item::setDescription(const std::string& description_) { description = description_; }
+void Item::setDescription(const std::string& description_) noexcept { description = description_; }
 
 /**
  * @brief Set the Description data
  * 
  * @param description_ Item description
  */
-void Item::setDescription(const char* description_) { description = description_; }
+void Item::setDescription(const char* description_) noexcept { description = description_; }
 
 /**
  * @brief Set the Price data
  * 
  * @param price_ Item price
  */
-void Item::setPrice(const double& price_) { price = price_; }
+void Item::setPrice(const double& price_) noexcept { price = price_; }
 
 /**
  * @brief Get the ID data
  * 
  * @return long Item ID
  */
-long Item::getID() const { return id; }
+long Item::getID() const noexcept{ return id; }
 
 /**
  * @brief Get the Name data
  * 
  * @return std::string Item name
  */
-std::string Item::getName() const { return name; }
+std::string Item::getName() const noexcept { return name; }
 
 /**
  * @brief Get the Description data
  * 
  * @return std::string Item description
  */
-std::string Item::getDescription() const { return description; }
+std::string Item::getDescription() const noexcept { return description; }
 
 /**
  * @brief Get the Price data
  * 
  * @return double Item price
  */
-double Item::getPrice() const { return price; }
-
-/**
- * @brief Read a long value from the console
- * 
- * @param message Message to display to the user
- * @return long Value read from the console
- */
-long Item::readLongValue(const char* message) {
-    std::cout << message;
-    long value;
-    do {
-        std::string str;
-        std::getline(std::cin, str);
-        while (str == "") {
-            std::cout << "Invalid input. Please enter a valid number: ";
-            std::getline(std::cin, str);
-        }
-        std::stringstream ss(str);  // create stringstream from input string
-        ss >> value;  // extract value from stringstream
-        if (value <= 0) {
-            std::cout << "Invalid input. Please enter a positive number: ";
-        }
-    } while (value <= 0);
-    return value;
-}
-
-/**
- * @brief Read a double value from the console
- * 
- * @param message Message to display to the user
- * @return double Value read from the console
- */
-double Item::readDoubleValue(const char* message) {
-    std::cout << message;
-    double value;
-    do {
-        std::string str;
-        std::getline(std::cin, str);
-        while (str == "") {
-            std::cout << "Invalid input. Please enter a valid number: ";
-            std::getline(std::cin, str);
-        }
-        std::stringstream ss(str);  // create stringstream from input string
-        ss >> value;  // extract value from stringstream
-        if (value <= 0) {
-            std::cout << "Invalid input. Please enter a positive number: ";
-        }
-    } while (value <= 0);
-    return value;
-}
-
-/**
- * @brief Read a string from the console
- * 
- * @param message Message to display to the user
- * @return std::string String read from the console
- */
-std::string Item::readString(const char* message) {
-    std::string input;
-    std::cout << message;
-    std::getline(std::cin, input);
-    while (input == "" || input == "\n") {
-        std::cout << "Invalid input. Please enter a string: ";
-        std::getline(std::cin, input);
-    }
-    return input;
-}
+double Item::getPrice() const noexcept { return price; }

@@ -19,10 +19,9 @@ Phone::Phone() : Item() {
  * @param manufacturer_ Phone manufacturer
  * @param specs_ Phone specs
  */
-Phone::Phone(const long& id_, const std::string& name_, const std::string& description_, const double& price_, const std::string& manufacturer_, const std::string& specs_) : Item(id_, name_, description_, price_) {
-    manufacturer = manufacturer_;
-    specs = specs_;
-}
+Phone::Phone(const long& id_, const std::string& name_, const std::string& description_,
+             const double& price_, const std::string& manufacturer_, const std::string& specs_):
+             Item(id_, name_, description_, price_), specs(specs_), manufacturer(manufacturer_) {}
 
 /**
  * @brief Construct a new Phone object
@@ -60,42 +59,42 @@ Phone::~Phone() {}
  * 
  * @param manufacturer_ Phone manufacturer
  */
-void Phone::setManufacturer(const char* manufacturer_) { manufacturer = manufacturer_; }
+void Phone::setManufacturer(const char* manufacturer_) noexcept { manufacturer = manufacturer_; }
 
 /**
  * @brief Set the Manufacturer data
  * 
  * @param manufacturer_ Phone manufacturer
  */
-void Phone::setManufacturer(const std::string& manufacturer_) { manufacturer = manufacturer_; }
+void Phone::setManufacturer(const std::string& manufacturer_) noexcept { manufacturer = manufacturer_; }
 
 /**
  * @brief Set the Specs data
  * 
  * @param specs_ Phone specs
  */
-void Phone::setSpecs(const char* specs_) { specs = specs_; }
+void Phone::setSpecs(const char* specs_) noexcept { specs = specs_; }
 
 /**
  * @brief Set the Specs data
  * 
  * @param specs_ Phone specs
  */
-void Phone::setSpecs(const std::string& specs_) { specs = specs_; }
+void Phone::setSpecs(const std::string& specs_) noexcept { specs = specs_; }
 
 /**
  * @brief Get the Manufacturer data
  * 
  * @return std::string Phone manufacturer
  */
-std::string Phone::getManufacturer() const { return manufacturer; }
+std::string Phone::getManufacturer() const noexcept { return manufacturer; }
 
 /**
  * @brief Get the Specs data
  * 
  * @return std::string Phone specs
  */
-std::string Phone::getSpecs() const { return specs; }
+std::string Phone::getSpecs() const noexcept { return specs; }
 
 /**
  * @brief Get all data
@@ -103,6 +102,9 @@ std::string Phone::getSpecs() const { return specs; }
  * @return std::map<std::string, std::string> Map of all data
  */
 std::map<std::string, std::string> Phone::getAll() const {
+    if (isEmpty())
+        throw empty_item("Empty phone!");
+
     std::map<std::string, std::string> map;
     map["ID"] = std::to_string(id);
     map["Name"] = name;
@@ -139,12 +141,12 @@ void Phone::readFromStr(std::string& data) {
         add.push_back(str);
     try {
         id = std::stol(add[0]);
-    }catch (std::invalid_argument& e) {
+    } catch (std::invalid_argument &e) {
         std::cerr << e.what() << std::endl;
         std::cerr << "There is an error with columns in database" << std::endl;
         std::cerr << "Perhaps description contains commas?" << std::endl;
         std::cerr << "Error in line:\n";
-        for_each(add.begin(), add.end(), [](std::string& x){ std::cerr<< x << " ";});
+        for_each(add.begin(), add.end(), [](std::string &x) { std::cerr << x << " "; });
         std::cerr << std::endl;
         exit(EXIT_FAILURE);
     }
@@ -153,12 +155,12 @@ void Phone::readFromStr(std::string& data) {
     description = add[3];
     try {
         price = std::stod(add[4]);
-    } catch (std::invalid_argument& e) {
+    } catch (std::invalid_argument &e) {
         std::cerr << e.what() << std::endl;
         std::cerr << "There is an error with columns in database" << std::endl;
         std::cerr << "Perhaps description contains commas?" << std::endl;
         std::cerr << "Error in line:\n";
-        for_each(add.begin(), add.end(), [](std::string& x){ std::cerr<< x << " ";});
+        for_each(add.begin(), add.end(), [](std::string &x) { std::cerr << x << " "; });
         std::cerr << std::endl;
         exit(EXIT_FAILURE);
     }
@@ -173,9 +175,10 @@ void Phone::readFromStr(std::string& data) {
 std::string Phone::saveToDatabase() {
     if (isEmpty())
         throw empty_item("Cannot save empty book!");
-    
+
     std::map<std::string, std::string> data = getAll();
-    std::string save = data["ID"] + "," + data["Name"] + "," + data["Manufacturer"] + "," + data["Description"] + "," + data["Price"] + "," + data["Specs"];
+    std::string save = data["ID"] + "," + data["Name"] + "," + data["Manufacturer"] + "," + data["Description"] + "," +
+                       data["Price"] + "," + data["Specs"];
     // for(const auto&[key, value]: getAll())
     //     save += (value + ",");
     // save.pop_back();
