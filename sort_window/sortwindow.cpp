@@ -7,10 +7,14 @@
 #include "sortwindow.h"
 #include "ui_SortWindow.h"
 
-
+/**
+ * @brief Create window for sorting
+ * @param parent - parent widget
+ */
 SortWindow::SortWindow(QWidget *parent) :
         QDialog(parent), ui(new Ui::SortWindow) {
     ui->setupUi(this);
+    this->setWindowTitle("Sort Data");
     ui->ascendingCheck->setStyle(QStyleFactory::create("Fusion"));
     ui->descendingCheck->setStyle(QStyleFactory::create("Fusion"));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(close()));
@@ -22,11 +26,18 @@ SortWindow::~SortWindow() {
     delete ui;
 }
 
+/**
+ * @brief Set data for combobox
+ * @data - vector of items to be added to combobox
+ */
 void SortWindow::setComboBoxData(const std::vector<std::string> &data) {
     for (const auto &item : data)
         ui->comboBox->addItem(item.c_str());
 }
 
+/**
+ * @brief Slot handling ok button click
+ */
 void SortWindow::okClicked() {
     std::string column;
     bool ascending;
@@ -51,6 +62,9 @@ void SortWindow::okClicked() {
     close();
 }
 
+/**
+ * @brief Slot handling cancel button click
+ */
 void SortWindow::cancelClicked() {
     ui->comboBox->clear();
     ui->descendingCheck->setChecked(false);

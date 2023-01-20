@@ -58,7 +58,7 @@ public:
 
     virtual void setAll(std::map<std::string, std::string> &data) = 0;
 
-    virtual void readFromStr(std::string &) = 0;
+    virtual void readFromStr(std::string &data) = 0;
 
     virtual std::string saveToDatabase() = 0;
 

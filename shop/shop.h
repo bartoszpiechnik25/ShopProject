@@ -51,6 +51,10 @@ private:
 
     void initializeTable(const ItemType &item_type, QTableWidget *tableWidget);
 
+    void connectSlots() noexcept;
+
+    void initializePointers() noexcept;
+
 public slots:
 
     void loginSuccessful(const std::string &username, std::map<std::string, User> &usersDatabase_);
@@ -70,9 +74,6 @@ public slots:
     void resetClicked();
 
     void profileClicked();
-
-signals:
-    void userProfile(User &current_user);
 };
 
 #endif //SHOPPROJECTQT_SHOP_H

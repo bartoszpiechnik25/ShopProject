@@ -14,7 +14,6 @@
 Login::Login(QWidget *parent) :
         QDialog(parent), ui(new Ui::Login) {
     std::thread load_database_thread(&Login::loadUsersDatabase, this);
-    load_database_thread.join();
     ui->setupUi(this);
     ui->passwordLineEdit->setEchoMode(QLineEdit::Password);
     ui->okButton->setDefault(false);
@@ -27,6 +26,7 @@ Login::Login(QWidget *parent) :
     connect(ui->okButton, SIGNAL(clicked()), this, SLOT(enteredPasswd()));
     loginFromArgs();
     show();
+    load_database_thread.join();
 }
 
 /**
@@ -172,7 +172,7 @@ void Login::keyPressEvent(QKeyEvent *event) {
 }
 
 /**
- * @brief Login user by values passed as arguments, if data is correct else show login window.
+ * @brief Login user by values passed as arguments, if data is correct else shows login window.
  */
 void Login::loginFromArgs() {
     QStringList args = QCoreApplication::arguments();
@@ -181,21 +181,6 @@ void Login::loginFromArgs() {
         ui->passwordLineEdit->setText(args[2]);
         ui->okButton->setFocus();
     }
-//    if (!usersDatabase.contains(username)) {
-//        createMessageBox("Warning", "User not found", QMessageBox::Warning,
-//                         QMessageBox::Ok | QMessageBox::NoButton);
-//        this->show();
-//    } else if (usersDatabase[username].getPassword() != password) {
-//        createMessageBox("Warning", "Wrong password", QMessageBox::Warning,
-//                         QMessageBox::Ok | QMessageBox::NoButton);
-//        this->show();
-//    } else {
-//        std::cout << "zara wyśle sygnal" << std::endl;
-//        this->show();
-//        ui->passwordLineEdit->setText(QString::fromStdString(password));
-//        emit loginSuccessful(username, usersDatabase);
-//        this->close();
-//    }
 }
 
 

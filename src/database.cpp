@@ -215,21 +215,12 @@ Item* ShopDatabase::operator[](const std::pair<ItemType,long>& pair_) {
  * @param ascending Ascending or descending order
  */
 void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_name, bool ascending) {
-    std::vector<std::string> book_columns = {"ID", "Name", "Author", "Price"};
-    std::vector<std::string> phone_columns = {"ID", "Name", "Manufacturer", "Price", "Specs"};
-
     if (data[item_type].empty())
         throw empty_vector("You want to sort empty DB!");
-    //check if column_name is valid
-    if (item_type == BOOKS) {
-        if (std::find(book_columns.begin(), book_columns.end(), column_name) == book_columns.end())
-            throw std::invalid_argument("Invalid column name!");
-    } else if (item_type == PHONES) {
-        if (std::find(phone_columns.begin(), phone_columns.end(), column_name) == phone_columns.end())
-            throw std::invalid_argument("Invalid column name!");
-    } else {
-        throw std::invalid_argument("Invalid item type!");
-    }
+
+    if (std::find(headers[item_type].begin(), headers[item_type].end(), column_name) == headers[item_type].end())
+        throw std::invalid_argument("Invalid column name!");
+
     if (column_name == "ID") {
         if (ascending)
             std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item *a, Item *b) {

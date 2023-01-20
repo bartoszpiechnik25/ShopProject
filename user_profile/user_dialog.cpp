@@ -7,10 +7,14 @@
 #include "user_dialog.h"
 #include "ui_user_dialog.h"
 
-
+/**
+ * @brief Create a window for user profile
+ * @param parent - parent widget
+ */
 UserDialog::UserDialog(QWidget *parent) :
         QDialog(parent), ui(new Ui::UserDialog) {
     ui->setupUi(this);
+    this->setWindowTitle("Profile");
     ui->doubleSpinBox->setMaximum(1000000);
     ui->passwordLineEdit->setEchoMode(QLineEdit::Password);
     connect(ui->addMoneyButton, SIGNAL(clicked()), this, SLOT(addMoney()));
@@ -22,28 +26,40 @@ UserDialog::~UserDialog() {
     delete ui;
 }
 
+/**
+ * @brief Initialize list of user's purchases
+ */
 void UserDialog::initializeListView(User* user_) {
     this->user = user_;
     ui->usernameFromCode->setText(user->getUsername().c_str());
-    ui->moneyFromCode->setText(std::to_string(user->getMoney()).c_str());
+    ui->moneyFromCode->setText(QString::number(user->getMoney(), 'f', 2));
     for(auto& element: user->getHistory()) {
         ui->listWidget->insertItem(0, QString(element.c_str()));
     }
 }
 
+/**
+ * @brief Handles closing user profile window
+ */
 void UserDialog::closeEvent(QCloseEvent *event) {
     ui->listWidget->clear();
     ui->moneyFromCode->clear();
     ui->usernameFromCode->clear();
 }
 
+/**
+ * @brief Slot handling adding money to user's account
+ */
 void UserDialog::addMoney() {
     double value = ui->doubleSpinBox->text().toDouble();
     user->addCredits(value);
     ui->doubleSpinBox->clear();
-    ui->moneyFromCode->setText(std::to_string(user->getMoney()).c_str());
+    ui->moneyFromCode->setText(QString::number(user->getMoney(), 'f', 2));
 }
 
+/**
+ * @brief Slot handling changing user's password
+ */
 void UserDialog::changePassword() {
     std::string new_password = ui->passwordLineEdit->text().toStdString();
     if (new_password.empty()) {
