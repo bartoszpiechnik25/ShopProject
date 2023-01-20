@@ -20,29 +20,47 @@ protected:
     std::string name;
     std::string description;
     double price;
+
     [[nodiscard]]virtual bool isEmpty() const = 0;
+
 public:
     Item();
-    Item(const long&, const std::string&, const std::string&, const double&);
-    Item(const long&, const char*, const char*, const double&);
-    Item(const Item&);
+
+    Item(const long &id_, const std::string &name_, const std::string &description_, const double &price_);
+
+    Item(const long &id_, const char *name_, const char *description_, const double &price_);
+
+    Item(const Item &other);
+
     virtual ~Item() = 0;
-    void setID(const long&);
-    void setName(const std::string&);
-    void setName(const char*);
-    void setDescription(const std::string&);
-    void setDescription(const char*);
-    void setPrice(const double&);
-    [[nodiscard]]long getID() const;
-    [[nodiscard]]std::string getName() const;
-    [[nodiscard]]std::string getDescription() const;
-    [[nodiscard]]double getPrice() const;
+
+    void setID(const long &id_) noexcept;
+
+    void setName(const std::string &name_) noexcept;
+
+    void setName(const char *name_) noexcept;
+
+    void setDescription(const std::string &description_) noexcept;
+
+    void setDescription(const char *description_) noexcept;
+
+    void setPrice(const double &price_) noexcept;
+
+    [[nodiscard]]long getID() const noexcept;
+
+    [[nodiscard]]std::string getName() const noexcept;
+
+    [[nodiscard]]std::string getDescription() const noexcept;
+
+    [[nodiscard]]double getPrice() const noexcept;
+
     [[nodiscard]]virtual std::map<std::string, std::string> getAll() const = 0;
-    virtual void setAll(std::map<std::string, std::string>&) = 0;
-    virtual void readFromStr(std::string&) = 0;
+
+    virtual void setAll(std::map<std::string, std::string> &data) = 0;
+
+    virtual void readFromStr(std::string &data) = 0;
+
     virtual std::string saveToDatabase() = 0;
-    virtual bool contains(const std::string& str) = 0;
-    static long readLongValue(const char*);
-    static double readDoubleValue(const char*);
-    static std::string readString(const char*);
+
+    virtual bool contains(const std::string &str) = 0;
 };

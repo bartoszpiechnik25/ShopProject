@@ -14,7 +14,6 @@
 Login::Login(QWidget *parent) :
         QDialog(parent), ui(new Ui::Login) {
     std::thread load_database_thread(&Login::loadUsersDatabase, this);
-    load_database_thread.join();
     ui->setupUi(this);
     ui->passwordLineEdit->setEchoMode(QLineEdit::Password);
     ui->okButton->setDefault(false);
@@ -25,14 +24,16 @@ Login::Login(QWidget *parent) :
     connect(ui->addUserButton, SIGNAL(clicked()), this, SLOT(addUser()));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(cancelClicked()));
     connect(ui->okButton, SIGNAL(clicked()), this, SLOT(enteredPasswd()));
+    loginFromArgs();
     show();
+    load_database_thread.join();
 }
 
 /**
  * @brief Get username from line edit
  * @return std::string - username
  */
-std::string Login::getUsername() const {
+std::string Login::getUsername() const noexcept{
     return ui->usernameLineEdit->text().toStdString();
 }
 
@@ -40,7 +41,7 @@ std::string Login::getUsername() const {
  * @brief Get password from line edit
  * @return std::string - password
  */
-std::string Login::getPasswd() const {
+std::string Login::getPasswd() const noexcept{
     return ui->passwordLineEdit->text().toStdString();
 }
 
@@ -49,19 +50,21 @@ std::string Login::getPasswd() const {
  */
 void Login::enteredPasswd() {
     if (!usersDatabase.contains(getUsername())) {
-        createMessageBox("Warning", "User not found", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
+        createMessageBox("Warning", "User not found", QMessageBox::Warning,
+                         QMessageBox::Ok | QMessageBox::NoButton);
         ui->usernameLineEdit->clear();
         ui->passwordLineEdit->clear();
-    }
-    else if (usersDatabase[getUsername()] != getPasswd()) {
-        createMessageBox("Warning", "Wrong password", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
+    } else if (usersDatabase[getUsername()].getPassword() != getPasswd()) {
+        createMessageBox("Warning", "Wrong password", QMessageBox::Warning,
+                         QMessageBox::Ok | QMessageBox::NoButton);
         ui->passwordLineEdit->clear();
-    }
-    else {
+    } else {
         std::string username = getUsername();
         ui->usernameLineEdit->clear();
         ui->passwordLineEdit->clear();
-        emit loginSuccessful(username);
+        std::cout << "bedzie emit?" << std::endl;
+        emit loginSuccessful(username, usersDatabase);
+//        this->close();
     }
 }
 
@@ -79,7 +82,8 @@ Login::~Login() {
 void Login::createMessageBox(const char *title, const char *text, QMessageBox::Icon icon,
                              QMessageBox::StandardButtons buttons) {
     QMessageBox messageBox;
-    messageBox.setStyleSheet("color: white; background-color: rgb(105,105,105); QPushButton {background-color: rgb(67,70,75); border-width: 2px; border-radius: 10px; border-color: beige; font: bold 12px; color: white; padding: 5px;} QPushButton:pressed {border-style: inset;border: 2px solid #add8e6;}");
+    messageBox.setStyleSheet(
+            "color: white; background-color: rgb(105,105,105); QPushButton {background-color: rgb(67,70,75); border-width: 2px; border-radius: 10px; border-color: beige; font: bold 12px; color: white; padding: 5px;} QPushButton:pressed {border-style: inset;border: 2px solid #add8e6;}");
     messageBox.setWindowTitle(title);
     messageBox.setText(text);
     messageBox.setIcon(icon);
@@ -91,20 +95,19 @@ void Login::createMessageBox(const char *title, const char *text, QMessageBox::I
  * @brief Load users database from file
  */
 void Login::loadUsersDatabase() {
-    std::ifstream database{"../data/users_database.txt", std::ios::binary};
-    size_t username_size, passwd_size;
-    std::string username, passwd;
-    if (database.good()) {
-        while (!database.eof()) {
-            database.read(reinterpret_cast<char *>(&username_size), sizeof(size_t));
-            username.resize(username_size);
-            database.read(&username[0], username_size);
-            database.read(reinterpret_cast<char *>(&passwd_size), sizeof(size_t));
-            passwd.resize(passwd_size);
-            database.read(&passwd[0], passwd_size);
-            usersDatabase[username] = passwd;
+    std::ifstream database{"../data/users.bin", std::ios::binary};
+    while (database.peek() != EOF) {
+        try {
+            User tmp;
+            tmp.readFromBinary(database);
+            usersDatabase[tmp.getUsername()] = tmp;
+        } catch (const std::runtime_error &err) {
+            Login::createMessageBox("Critical", err.what(), QMessageBox::Critical,
+                                    QMessageBox::Ok | QMessageBox::NoButton);
+            std::terminate();
         }
-    } else throw std::runtime_error("Error reading users database file");
+
+    }
     database.close();
 }
 
@@ -112,19 +115,16 @@ void Login::loadUsersDatabase() {
  * @brief Write users database to file
  */
 void Login::writeUsersDatabase() {
-    std::ofstream database{"../data/users_database.txt", std::ios::binary};
-    size_t username_size, passwd_size;
-    if (database.is_open()) {
-        for (auto &[user, passwd]: usersDatabase) {
-            username_size = user.size();
-            passwd_size = passwd.size();
-            database.write(reinterpret_cast<char*>(&username_size), sizeof(size_t));
-            database.write(&user[0], username_size);
-            database.write(reinterpret_cast<char*>(&passwd_size), sizeof(size_t));
-            database.write(&passwd[0], passwd_size);
+    std::ofstream database{"../data/users.bin", std::ios::binary};
+    for (auto &[id, user]: usersDatabase) {
+        try {
+            user.saveToBinary(database);
+        } catch (const std::runtime_error &err) {
+            Login::createMessageBox("Critical", err.what(), QMessageBox::Critical,
+                                    QMessageBox::Ok | QMessageBox::NoButton);
         }
-        database.close();
-    } else throw std::runtime_error("Cannot access database file for saving data");
+    }
+    database.close();
 }
 
 /**
@@ -133,20 +133,23 @@ void Login::writeUsersDatabase() {
 void Login::addUser() {
     std::string username = getUsername(), passwd = getPasswd();
     if (username.empty() || passwd.empty()) {
-        createMessageBox("Warning", "Cannot add empty!", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
-    }else if (username.ends_with(' ') || username.starts_with(' ') || passwd.starts_with(' ') || passwd.ends_with(' ')) {
-        createMessageBox("Warning", "Username cannot start/end with a space!", QMessageBox::Critical, QMessageBox::Ok| QMessageBox::NoButton);
+        createMessageBox("Warning", "Cannot add empty!", QMessageBox::Warning,
+                         QMessageBox::Ok | QMessageBox::NoButton);
+    } else if (username.ends_with(' ') || username.starts_with(' ') || passwd.starts_with(' ') ||
+               passwd.ends_with(' ')) {
+        createMessageBox("Warning", "Username cannot start/end with a space!", QMessageBox::Critical,
+                         QMessageBox::Ok | QMessageBox::NoButton);
         ui->passwordLineEdit->clear();
         ui->usernameLineEdit->clear();
-    }
-    else {
+    } else {
         if (usersDatabase.contains(username)) {
-            createMessageBox("Warning", "User already exists", QMessageBox::Warning, QMessageBox::Ok | QMessageBox::NoButton);
+            createMessageBox("Warning", "User already exists", QMessageBox::Warning,
+                             QMessageBox::Ok | QMessageBox::NoButton);
         } else {
-            std::string passwd = getPasswd();
-            usersDatabase[username] = passwd;
+            usersDatabase[username] = User(username, getPasswd(), 0.0);
             writeUsersDatabase();
-            createMessageBox("Information", "User added successfully", QMessageBox::Information, QMessageBox::Ok | QMessageBox::NoButton);
+            createMessageBox("Information", "User added successfully", QMessageBox::Information,
+                             QMessageBox::Ok | QMessageBox::NoButton);
         }
     }
 }
@@ -166,6 +169,18 @@ void Login::keyPressEvent(QKeyEvent *event) {
     if (event->key() == Qt::Key_Return || event->key() == Qt::Key_Enter && ui->passwordLineEdit->hasFocus()) {
         ui->passwordLineEdit->setFocus();
     } else QDialog::keyPressEvent(event);
+}
+
+/**
+ * @brief Login user by values passed as arguments, if data is correct else shows login window.
+ */
+void Login::loginFromArgs() {
+    QStringList args = QCoreApplication::arguments();
+    if (args.size() == 3) {
+        ui->usernameLineEdit->setText(args[1]);
+        ui->passwordLineEdit->setText(args[2]);
+        ui->okButton->setFocus();
+    }
 }
 
 

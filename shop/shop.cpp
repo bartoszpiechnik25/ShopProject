@@ -7,34 +7,33 @@
 #include "shop.h"
 #include "ui_Shop.h"
 
-
+/**
+ * @brief Create a Shop object
+ * @param parent - parent widget
+ */
 Shop::Shop(QWidget *parent) :
         QMainWindow(parent), ui(new Ui::Shop) {
     initializeUi();
-    m_login = new Login();
-    std::map<std::string, ItemType> paths = {{"../data/phones_database.csv", PHONES}, {"../data/books_database.csv", BOOKS}};
-    database = new ShopDatabase(paths);
-    books = new QTableWidget(this);
+    std::map<std::string, ItemType> paths = {{"../data/phones_database.csv", PHONES},
+                                             {"../data/books_database.csv",  BOOKS}};
+    try {
+        database = new ShopDatabase(paths);
+    } catch (std::exception &e) {
+        Login::createMessageBox("Error", e.what(), QMessageBox::Critical,
+                                QMessageBox::Ok | QMessageBox::NoButton);
+        exit(1);
+    }
+    initializePointers();
     books->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    phones = new QTableWidget(this);
     phones->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    sellDialog = new SellDialog();
-    sellBookDialog = new SellBookDialog();
-    sortWindow = new SortWindow();
-
     initializeTab();
-    connect(m_login, &Login::loginSuccessful, this, &Shop::loginSuccessful);
-    connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sellButtonClicked()));
-    connect(sellDialog, &SellDialog::sendData, this, &Shop::addNewItem);
-    connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(createSortWindow()));
-    connect(sortWindow, &SortWindow::sortDataBy, this, &Shop::sortData);
-    connect(ui->buyButton, SIGNAL(clicked()), this, SLOT(buyButtonClicked()));
-    connect(ui->searchLineEdit, SIGNAL(returnPressed()), this, SLOT(searchForData()));
-    connect(resetMenubar, SIGNAL(triggered()), this, SLOT(resetClicked()));
+    connectSlots();
 }
 
 Shop::~Shop() {
+    delete userDialog;
     delete resetMenubar;
+    delete menuProfile;
     delete ui;
     delete m_login;
     delete sellDialog;
@@ -42,21 +41,30 @@ Shop::~Shop() {
     delete database;
     delete phones;
     delete books;
+    delete sortWindow;
 }
 
-void Shop::loginSuccessful(const std::string &username) {
+/**
+ * @breif Slot handling signal from login window
+ * @param username - current username that have been logged in
+ * @param usersDatabase_ - reference to users database passed from login window
+ */
+void Shop::loginSuccessful(const std::string &username, std::map<std::string, User>& usersDatabase_) {
     m_login->close();
-    if (username == "admin")
-        Login::createMessageBox("Information", "Admin login successful", QMessageBox::Information, QMessageBox::Ok | QMessageBox::NoButton);
-    std::string statusBarHelloMessage = username + " welcome to the shop!";
+    currentUser = username;
+    this->usersDatabase = usersDatabase_;
+    std::string statusBarHelloMessage = currentUser + " welcome to the shop!";
     ui->statusbar->showMessage(statusBarHelloMessage.c_str());
     show();
 }
 
+/**
+ * @brief Handles clicking on the "Sell" button
+ */
 void Shop::sellButtonClicked() {
     std::vector<long> uniqueIDs;
     if (ui->tabWidget->currentWidget() == phones) {
-         uniqueIDs = database->getUniqueID(PHONES);
+        uniqueIDs = database->getUniqueID(PHONES);
         sellDialog->setID(uniqueIDs);
         sellDialog->show();
     }
@@ -67,11 +75,15 @@ void Shop::sellButtonClicked() {
     }
 }
 
+/**
+ * @brief Adds new item to the database and items table
+ * @param data - map containing new data
+ */
 void Shop::addNewItem(std::map<std::string, std::string>& data) {
     if (data.empty())
         return;
     ItemType item_type;
-    QTableWidget* tableWidget;
+    QTableWidget *tableWidget;
 
     if (ui->tabWidget->currentWidget() == phones) {
         item_type = PHONES;
@@ -81,24 +93,31 @@ void Shop::addNewItem(std::map<std::string, std::string>& data) {
         tableWidget = books;
     }
 
-    Item* new_item= ShopDatabase::selectCorrectChild(item_type);
+    Item *new_item = ShopDatabase::selectCorrectChild(item_type);
     new_item->setAll(data);
     database->addRecord(item_type, new_item);
     tableWidget->setRowCount(tableWidget->rowCount() + 1);
 
     int row_count = phones->rowCount() - 1, counter = 0;
-    for(const auto& column_name: database->getHeaders(item_type))
+    for (const auto &column_name: database->getHeaders(item_type))
         tableWidget->setItem(row_count, counter++, new QTableWidgetItem(data[column_name].c_str()));
     tableWidget->repaint();
 }
 
+/**
+ * @brief Initialize main window UI
+ */
 void Shop::initializeUi() {
     ui->setupUi(this);
     ui->statusbar->setStyleSheet("QStatusBar { color: white; font: 13px;}");
     ui->sortByButton->setStatusTip("Create new window with sorting properties");
     ui->sellButton->setStatusTip("Create new item to be sold");
     ui->buyButton->setStatusTip("Buy selected item from table");
+    ui->searchLineEdit->setStatusTip("Search for item in table");
     ui->searchLineEdit->setPlaceholderText("Search...");
+    menuProfile = new QAction("Profile");
+    menuProfile->setVisible(true);
+    ui->menubar->addAction(menuProfile);
     resetMenubar = new QAction("Reset");
     QFont font = resetMenubar->font();
     font.setPointSize(15);
@@ -109,6 +128,10 @@ void Shop::initializeUi() {
     ui->menubar->addAction(resetMenubar);
 }
 
+/**
+ * @brief Initialize tab view
+ * @details Initialize pointers to widgets
+ */
 void Shop::initializeTab() {
     initializeTable(PHONES, phones);
     ui->tabWidget->addTab(phones, "Phones");
@@ -117,40 +140,76 @@ void Shop::initializeTab() {
     ui->tabWidget->addTab(books, "Books");
 }
 
+/**
+ * @brief Initialize table with headers and data
+ * @param item_type - type of item
+ * @param tableWidget - pointer to table
+ * @details Initialize table with headers and data from database
+ */
 void Shop::initializeTable(const ItemType &item_type, QTableWidget* tableWidget) {
-    std::map<ItemType, std::vector<Item*>>& items = database->getItems();
-    tableWidget->setStyleSheet("QTableWidget { background-color: #171717; color: #FFFDE4; font: 12px; }  QHeaderView::section { border-radius: 10px; background-color: #171717; color: #FFFDE4; font: 12px; }");
-    tableWidget->horizontalHeader()->setStyleSheet("QHeaderView { background-color: #171717; color: #FFFDE4; font: 12px; }");
-    tableWidget->verticalHeader()->setStyleSheet("QHeaderView { background-color: #171717; color: #FFFDE4; font: 12px; }");
+    std::map<ItemType, std::vector<Item *>> &items = database->getItems();
+    tableWidget->setStyleSheet(
+            "QTableWidget { background-color: #171717; color: #FFFDE4; font: 12px; }  QHeaderView::section { border-radius: 10px; background-color: #171717; color: #FFFDE4; font: 12px; }");
+    tableWidget->horizontalHeader()->setStyleSheet(
+            "QHeaderView { background-color: #171717; color: #FFFDE4; font: 12px; }");
+    tableWidget->verticalHeader()->setStyleSheet(
+            "QHeaderView { background-color: #171717; color: #FFFDE4; font: 12px; }");
     tableWidget->verticalHeader()->setVisible(false);
     QStringList list = QStringList();
     std::vector<std::string> headers = database->getHeaders(item_type);
-    std::for_each(headers.begin(), headers.end(), [&list](const auto& header) { list << header.c_str(); });
+    std::for_each(headers.begin(), headers.end(),
+                  [&list](const auto &header) { list << header.c_str(); });
 
     tableWidget->setColumnCount(6);
     tableWidget->setHorizontalHeaderLabels(list);
     tableWidget->setRowCount(items[item_type].size());
     int counter = 0;
-    for(auto item: items[item_type]) {
+    for (auto item: items[item_type]) {
         std::map<std::string, std::string> itemData = item->getAll();
         int i = 0;
-        for(const auto& header: headers)
-            tableWidget->setItem(counter, i++, new QTableWidgetItem(itemData[header].c_str()));
+        for (const auto &header: headers) {
+            if (header == "Price")
+                tableWidget->setItem(counter, i++, new QTableWidgetItem(QString::number(item->getPrice(), 'f', 2)));
+            else
+                tableWidget->setItem(counter, i++, new QTableWidgetItem(itemData[header].c_str()));
+        }
         counter++;
     }
     tableWidget->resizeColumnsToContents();
 }
 
+/**
+ * @brief Handles closing main window
+ * @param event
+ */
 void Shop::closeEvent(QCloseEvent *event) {
-    int result = QMessageBox::warning(this, "Confirm exit", "Are you sure you want to quit?", QMessageBox::Ok | QMessageBox::Cancel);
+    if (m_login->isVisible() || sellDialog->isVisible() || sellBookDialog->isVisible() || userDialog->isVisible()) {
+        Login::createMessageBox("Warning", "Please close all windows before exit!", QMessageBox::Warning,
+                                QMessageBox::Ok);
+        event->ignore();
+        return;
+    }
+    int result = QMessageBox::warning(this, "Confirm exit", "Are you sure you want to quit?",
+                                      QMessageBox::Ok | QMessageBox::Cancel);
     if (result == QMessageBox::Ok) {
+        std::ofstream file("../data/users.bin", std::ios::binary);
+        for (auto &[id, user]: usersDatabase) {
+            user.saveToBinary(file);
+        }
         database->saveData();
         event->accept();
     } else
         event->ignore();
 }
 
+/**
+ * @breif Sort table with items
+ * @param column
+ * @param ascending
+ */
 void Shop::sortData(const std::string& column, bool ascending) {
+    if (resetMenubar->isVisible())
+        resetClicked();
     if (ui->tabWidget->currentWidget() == phones) {
         phones->clearContents();
         database->sortBy(PHONES, column, ascending);
@@ -162,6 +221,9 @@ void Shop::sortData(const std::string& column, bool ascending) {
     }
 }
 
+/**
+ * @breif Create window for sorting
+ */
 void Shop::createSortWindow() {
     if (ui->tabWidget->currentWidget() == phones)
         sortWindow->setComboBoxData({"ID", "Price", "Name", "Manufacturer"});
@@ -170,6 +232,9 @@ void Shop::createSortWindow() {
     sortWindow->show();
 }
 
+/**
+ * @brief Handles selling item
+ */
 void Shop::buyButtonClicked() {
     ItemType item_type;
     QTableWidget *tableWidget;
@@ -188,35 +253,38 @@ void Shop::buyButtonClicked() {
                                 QMessageBox::Ok | QMessageBox::NoButton);
         return;
     }
-    std::pair<ItemType, long> pair(item_type, tableWidget->item(row, 0)->text().toLong());
+    long id = tableWidget->item(row, 0)->text().toLong();
+    std::pair<ItemType, long> pair(item_type, id);
+    Item *item_to_be_sold = (*database)[pair];
+    double item_price = item_to_be_sold->getPrice();
+    if (item_price > usersDatabase[currentUser].getMoney()) {
+        Login::createMessageBox("Inforamtion", "You don't have enough credits to buy this item!\n\tAdd some credits.",
+                                QMessageBox::Information, QMessageBox::Ok | QMessageBox::NoButton);
+        return;
+    }
+    usersDatabase[currentUser].subtractCredits(item_price);
     *database -= pair;
-    std::string soldItem = "Thank you for buying:\n";
+    std::string soldItem;
+    usersDatabase[currentUser];
     int counter = 0;
     for (const auto &header: database->getHeaders(item_type)) {
-        soldItem += header + ": \t" + tableWidget->item(row, counter++)->text().toStdString() + "\n";
+        soldItem += tableWidget->item(row, counter++)->text().toStdString() + "  ";
     }
+    soldItem.pop_back();
+    soldItem.pop_back();
     tableWidget->removeRow(row);
     tableWidget->update();
     tableWidget->setCurrentCell(-1, -1);
-//    QDialog *dialog = new QDialog(this);
-//    QVBoxLayout * layout1 = new QVBoxLayout;
-//    QLabel *label = new QLabel("You have bought:");
-//
-//    QTableView *table = new QTableView;
-//    layout1->addWidget(label);
-//    layout1->addWidget(table);
-//
-//    QStandardItemModel *model = new QStandardItemModel(dialog);
-//    model->setHorizontalHeaderLabels(QStringList() << "ID" << "Price" << "Name" << "Manufacturer");
-//    QStandardItem *item = new QStandardItem(QString::number(pair.second));
-
-
+    usersDatabase[currentUser].appendHistory(soldItem);
     Login::createMessageBox("Information", soldItem.c_str(), QMessageBox::Information,
                             QMessageBox::Ok | QMessageBox::NoButton);
 }
 
+/**
+ * @brief Handles searching for items containing given string
+ */
 void Shop::searchForData() {
-    QTableWidget* tableWidget;
+    QTableWidget *tableWidget;
     ItemType item_type;
     std::string search_data = ui->searchLineEdit->text().toStdString();
     ui->searchLineEdit->clear();
@@ -232,12 +300,12 @@ void Shop::searchForData() {
     tableWidget->setRowCount(0);
     std::vector<std::string> headers = database->getHeaders(item_type);
     int counter = 0;
-    for(auto& item: database->getItems()[item_type]) {
-        if(item->contains(search_data)) {
+    for (auto &item: database->getItems()[item_type]) {
+        if (item->contains(search_data)) {
             std::map<std::string, std::string> itemData = item->getAll();
             int i = 0;
             tableWidget->insertRow(counter);
-            for(const auto& header: headers)
+            for (const auto &header: headers)
                 tableWidget->setItem(counter, i++, new QTableWidgetItem(itemData[header].c_str()));
             ++counter;
         }
@@ -246,10 +314,49 @@ void Shop::searchForData() {
     resetMenubar->setVisible(true);
 }
 
+/**
+ * @breief Resets table with items to original state
+ */
 void Shop::resetClicked() {
     if (ui->tabWidget->currentWidget() == phones) {
         initializeTable(PHONES,phones);
     } else
         initializeTable(BOOKS, books);
     resetMenubar->setVisible(false);
+}
+
+/**
+ * @brief Handles the event when the user clicks on the Profile in the menu bar
+ */
+void Shop::profileClicked() {
+    userDialog->initializeListView(&usersDatabase[currentUser]);
+    userDialog->show();
+}
+
+/**
+ * @brief Connect all signals and slots
+ */
+void Shop::connectSlots() noexcept {
+    connect(m_login, &Login::loginSuccessful, this, &Shop::loginSuccessful);
+    connect(ui->sellButton, SIGNAL(clicked()), this, SLOT(sellButtonClicked()));
+    connect(sellDialog, &SellDialog::sendData, this, &Shop::addNewItem);
+    connect(ui->sortByButton, SIGNAL(clicked()), this, SLOT(createSortWindow()));
+    connect(sortWindow, &SortWindow::sortDataBy, this, &Shop::sortData);
+    connect(ui->buyButton, SIGNAL(clicked()), this, SLOT(buyButtonClicked()));
+    connect(ui->searchLineEdit, SIGNAL(returnPressed()), this, SLOT(searchForData()));
+    connect(resetMenubar, SIGNAL(triggered()), this, SLOT(resetClicked()));
+    connect(menuProfile, SIGNAL(triggered()), this, SLOT(profileClicked()));
+}
+
+/**
+ * @brief Initialize all pointers from the class
+ */
+void Shop::initializePointers() noexcept {
+    sellDialog = new SellDialog();
+    sellBookDialog = new SellBookDialog();
+    sortWindow = new SortWindow();
+    userDialog = new UserDialog();
+    m_login = new Login();
+    phones = new QTableWidget(this);
+    books = new QTableWidget(this);
 }

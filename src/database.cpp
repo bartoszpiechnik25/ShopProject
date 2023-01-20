@@ -14,15 +14,15 @@ ShopDatabase::ShopDatabase() {}
 ShopDatabase::ShopDatabase(const std::map<std::string, ItemType>& paths_) {
     initMap();
     std::vector<std::thread> threads;
-    for(const auto& [key, value]: paths_) {
+    for (const auto &[key, value]: paths_) {
         try {
             threads.emplace_back(std::thread(&ShopDatabase::open, this, key, value));
-        } catch (const std::system_error& e) {
+        } catch (const std::system_error &e) {
             std::cerr << "Error: " << e.what() << std::endl;
             std::terminate();
         }
     }
-    for(auto& th: threads)
+    for (auto &th: threads)
         th.join();
 }
 
@@ -42,13 +42,13 @@ ShopDatabase::ShopDatabase(const std::string& path_, const ItemType& item_type) 
  * 
  */
 ShopDatabase::~ShopDatabase() {
-    for(const auto& [key, value]: files)
+    for (const auto &[key, value]: files)
         delete value;
-    for(const auto& [key, value]: data) {
-        for(Item* it: value)
+    for (const auto &[key, value]: data) {
+        for (Item *it: value)
             delete it;
     }
-    delete [] modified;
+    delete[] modified;
 }
 
 /**
@@ -62,13 +62,13 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
 
     if (files.empty())
         initMap();
-    
+
     files[item_type]->open(path);
     if (files[item_type]->fail()) {
         std::string s = "Cannot open file: %s!" + path;
         throw runtime_error(s.c_str());
     }
-    data[item_type] = vector<Item*>();
+    data[item_type] = vector<Item *>();
 
     string header;
     getline(*files[item_type], header);
@@ -78,7 +78,7 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
 
     string line;
     while (getline(*files[item_type], line)) {
-        Item* item = selectCorrectChild(item_type);
+        Item *item = selectCorrectChild(item_type);
         if (!item)
             throw runtime_error("Error allocating memory for Item*!");
         item->readFromStr(line);
@@ -96,11 +96,10 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
  */
 template <typename K, typename V>
 void printMap(const std::map<K, V> &m) {
-    for (const auto &[key, value] : m) {
+    for (const auto &[key, value]: m) {
         std::cout << key << ": " << value << std::endl;
     }
     std::cout << std::endl;
-
 }
 
 /**
@@ -117,8 +116,8 @@ void ShopDatabase::printDB() const {
  * @brief Initializes map with ifstream objects and allocates memory for modified array
  * 
  */
-void ShopDatabase::initMap() noexcept{
-    for (const auto& item_num: initDatabaseItems)
+void ShopDatabase::initMap() noexcept {
+    for (const auto &item_num: initDatabaseItems)
         files[item_num] = new std::ifstream;
     modified = new bool[data.size() + 1];
 }
@@ -136,8 +135,7 @@ void ShopDatabase::deleteRecord(const ItemType& item_type, int index) {
     if (index < data[item_type].size() && index >= 0) {
         data[item_type].erase(data[item_type].begin() + index);
         modified[item_type] = true;
-    }
-    else {
+    } else {
         throw std::out_of_range("Index out of range!");
     }
 }
@@ -161,8 +159,7 @@ ShopDatabase& ShopDatabase::operator-=(std::pair<ItemType, long>& pair_) {
 void ShopDatabase::addRecord(const ItemType& item_type, Item* new_data) {
     if (data[item_type].empty())
         throw empty_vector("You want to add to DB that is not loaded!");
-//    Item* item = selectCorrectChild(item_type);
-//    data[item_type].push_back(new_data);
+
     if (new_data) {
         data[item_type].push_back(new_data);
         modified[item_type] = true;
@@ -175,7 +172,7 @@ void ShopDatabase::addRecord(const ItemType& item_type, Item* new_data) {
  * @param item_type Type of item to add
  * @param str_data String with data to add
  */
-void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string& str_data) {
+void ShopDatabase::addRecord(const ItemType& item_type, const std::string& str_data) {
     using namespace std;
     if (data[item_type].empty())
         throw empty_vector("You want to add to DB that is not loaded!");
@@ -183,8 +180,7 @@ void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string
     stringstream str_to_be_added(str_data);
 
     while (getline(str_to_be_added, line)) {
-        // stringstream stream(line);
-        Item* item = selectCorrectChild(item_type);
+        Item *item = selectCorrectChild(item_type);
         item->readFromStr(line);
         data[item_type].push_back(item);
     }
@@ -199,8 +195,16 @@ void ShopDatabase::addRecordFromStr(const ItemType& item_type, const std::string
  * @return ShopDatabase& Reference to this object
  */
 ShopDatabase& ShopDatabase::operator+=(const std::pair<ItemType, std::string>& pair_) {
-    addRecordFromStr(pair_.first, pair_.second);
+    addRecord(pair_.first, pair_.second);
     return *this;
+}
+
+Item* ShopDatabase::operator[](const std::pair<ItemType,long>& pair_) {
+    for (auto item: data[pair_.first]) {
+        if (item->getID() == pair_.second)
+            return item;
+    }
+    return nullptr;
 }
 
 /**
@@ -211,46 +215,39 @@ ShopDatabase& ShopDatabase::operator+=(const std::pair<ItemType, std::string>& p
  * @param ascending Ascending or descending order
  */
 void ShopDatabase::sortBy(const ItemType& item_type, const std::string& column_name, bool ascending) {
-    std::vector<std::string> book_columns = {"ID", "Name", "Author", "Price"};
-    std::vector<std::string> phone_columns = {"ID","Name","Manufacturer","Price","Specs"};
-
     if (data[item_type].empty())
         throw empty_vector("You want to sort empty DB!");
-    //check if column_name is valid
-    if (item_type == BOOKS) {
-        if (std::find(book_columns.begin(), book_columns.end(), column_name) == book_columns.end())
-            throw std::invalid_argument("Invalid column name!");
-    }
-    else if (item_type == PHONES) {
-        if (std::find(phone_columns.begin(), phone_columns.end(), column_name) == phone_columns.end())
-            throw std::invalid_argument("Invalid column name!");
-    }
-    else {
-        throw std::invalid_argument("Invalid item type!");
-    }
+
+    if (std::find(headers[item_type].begin(), headers[item_type].end(), column_name) == headers[item_type].end())
+        throw std::invalid_argument("Invalid column name!");
+
     if (column_name == "ID") {
         if (ascending)
-            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-                return std::stol(a->getAll().at(column_name)) < std::stol(b->getAll().at(column_name));});
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item *a, Item *b) {
+                return std::stol(a->getAll().at(column_name)) < std::stol(b->getAll().at(column_name));
+            });
         else
-            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-                return std::stol(a->getAll().at(column_name)) > std::stol(b->getAll().at(column_name));});
-    }
-    else if (column_name == "Price") {
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item *a, Item *b) {
+                return std::stol(a->getAll().at(column_name)) > std::stol(b->getAll().at(column_name));
+            });
+    } else if (column_name == "Price") {
         if (ascending)
-            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-                return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));});
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item *a, Item *b) {
+                return std::stod(a->getAll().at(column_name)) < std::stod(b->getAll().at(column_name));
+            });
         else
-        std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-            return std::stod(a->getAll().at(column_name)) > std::stod(b->getAll().at(column_name));});
-    }
-    else {
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item *a, Item *b) {
+                return std::stod(a->getAll().at(column_name)) > std::stod(b->getAll().at(column_name));
+            });
+    } else {
         if (ascending)
-            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-                return a->getAll().at(column_name) < b->getAll().at(column_name);});
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item *a, Item *b) {
+                return a->getAll().at(column_name) < b->getAll().at(column_name);
+            });
         else
-            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item* a, Item* b) {
-                return a->getAll().at(column_name) > b->getAll().at(column_name);});
+            std::sort(data[item_type].begin(), data[item_type].end(), [column_name](Item *a, Item *b) {
+                return a->getAll().at(column_name) > b->getAll().at(column_name);
+            });
     }
 }
 
@@ -272,14 +269,14 @@ std::vector<std::string> ShopDatabase::getHeaders(const ItemType& item_type) con
  */
 void ShopDatabase::saveData() noexcept {
     std::vector<std::thread> threads;
-    for(const auto& type: initDatabaseItems) {
+    for (const auto &type: initDatabaseItems) {
         try {
             threads.emplace_back(std::thread(&ShopDatabase::save, this, type));
-        } catch (const std::system_error& e) {
+        } catch (const std::system_error &e) {
             std::cerr << "Error: " << e.what() << std::endl;
         }
-    }   
-    for(auto& th: threads)
+    }
+    for (auto &th: threads)
         th.join();
 }
 
@@ -312,7 +309,7 @@ void ShopDatabase::save(const ItemType& item_type) {
         if (save.good()) {
             std::string a = selectCorrectColumnNames(item_type);
             save << a;
-            for(const auto& item_str: data[item_type])
+            for (const auto &item_str: data[item_type])
                 save << (item_str->saveToDatabase() + "\n");
         } else {
             std::string s = "Cannot open file: " + itemTypeToPath(item_type) + "!";
@@ -353,7 +350,7 @@ std::vector<long> ShopDatabase::getUniqueID(const ItemType& item_type) const {
     if (uniqueID.empty())
         throw empty_vector("You want to get unique ID from empty DB!");
     std::vector<long> ids;
-    std::for_each(uniqueID.at(item_type).begin(), uniqueID.at(item_type).end(), [&ids](const auto& id) {
+    std::for_each(uniqueID.at(item_type).begin(), uniqueID.at(item_type).end(), [&ids](const auto &id) {
         ids.push_back(id.first);
     });
     ids.shrink_to_fit();
@@ -361,12 +358,12 @@ std::vector<long> ShopDatabase::getUniqueID(const ItemType& item_type) const {
 }
 
 void ShopDatabase::deleteByID(const ItemType &item_type, const long ID_) {
-    auto item = std::find_if(data.at(item_type).begin(), data.at(item_type).end(), [&](auto& element) {return element->getID() == ID_;});
+    auto item = std::find_if(data.at(item_type).begin(), data.at(item_type).end(),
+                             [&](auto &element) { return element->getID() == ID_; });
 
     if (item != data.at(item_type).end()) {
         delete *item;
         data.at(item_type).erase(item);
         modified[item_type] = true;
     } else throw std::invalid_argument("There is no item with this ID!");
-
 }

@@ -16,7 +16,8 @@ Book::Book(): Item(), author(""), type("") {}
  * @param author_ Book author
  * @param type_ Book type
  */
-Book::Book(const long& id_, const std::string& name_, const std::string& description_, const double& price_, const std::string& author_, const std::string& type_):
+Book::Book(const long& id_, const std::string& name_, const std::string& description_,
+           const double& price_, const std::string& author_, const std::string& type_):
 Item(id_, name_, description_, price_), author(author_), type(type_) {}
 
 /**
@@ -29,7 +30,8 @@ Item(id_, name_, description_, price_), author(author_), type(type_) {}
  * @param author_ Book author
  * @param type_ Book type
  */
-Book::Book(const long& id_, const char* name_, const char* description_, const double& price_, const char* author_, const char* type_):
+Book::Book(const long& id_, const char* name_, const char* description_,
+           const double& price_, const char* author_, const char* type_):
 Item(id_, name_, description_, price_), author(author_), type(type_) {}
 
 /**
@@ -53,42 +55,42 @@ Book::~Book() {}
  * 
  * @param id_ Book ID
  */
-void Book::setAuthor(const std::string& author_) { author = author_; }
+void Book::setAuthor(const std::string& author_) noexcept { author = author_; }
 
 /**
  * @brief Set the Author data
  * 
  * @param id_ Book author
  */
-void Book::setAuthor(const char* author_) { author = author_; }
+void Book::setAuthor(const char* author_) noexcept { author = author_; }
 
 /**
  * @brief Set the Type data
  * 
  * @param id_ Book type
  */
-void Book::setType(const std::string& type_) { author = type_; }
+void Book::setType(const std::string& type_) noexcept { author = type_; }
 
 /**
  * @brief Set the Type data
  * 
  * @param id_ Book type
  */
-void Book::setType(const char* type_) { author = type_; }
+void Book::setType(const char* type_) noexcept { author = type_; }
 
 /**
  * @brief Get the Author data
  * 
  * @return std::string Book author
  */
-std::string Book::getAuthor() const { return author; }
+std::string Book::getAuthor() const noexcept { return author; }
 
 /**
  * @brief Get the Type data
  * 
  * @return std::string Book type
  */
-std::string Book::getType() const { return type; }
+std::string Book::getType() const noexcept { return type; }
 
 /**
  * @brief Get all data from object
@@ -96,17 +98,17 @@ std::string Book::getType() const { return type; }
  * @return std::map<std::string, std::string> Map with all data from object
  */
 std::map<std::string, std::string> Book::getAll() const {
-    if ( isEmpty() )
+    if (isEmpty())
         throw empty_item("Empty book!");
 
     std::string id_ = std::to_string(id), price_ = std::to_string(price);
-    std::map<std::string, std::string> data = 
-     {{"ID", id_},
-     {"Name", name},
-     {"Author", author},
-     {"Description", description},
-     {"Price", price_},
-     {"Type", type}};
+    std::map<std::string, std::string> data =
+            {{"ID",          id_},
+             {"Name",        name},
+             {"Author",      author},
+             {"Description", description},
+             {"Price",       price_},
+             {"Type",        type}};
     return data;
 }
 
@@ -183,42 +185,10 @@ std::string Book::saveToDatabase() {
         throw empty_item("Cannot save empty book!");
     std::map<std::string, std::string> data = getAll();
     std::string save =
-     data["ID"] + "," + data["Name"] + "," + 
-     data["Author"] + "," + data["Description"] + "," + 
-     data["Price"] + "," + data["Type"];
+            data["ID"] + "," + data["Name"] + "," +
+            data["Author"] + "," + data["Description"] + "," +
+            data["Price"] + "," + data["Type"];
     return save;
-}
-
-void Book::saveToBinary(std::ofstream & out) {
-    out.write(reinterpret_cast<char*>(&id), sizeof(id));
-    out.write(reinterpret_cast<char*>(&price), sizeof(price));
-    int name_size = name.size(), author_size = author.size(), description_size = description.size(), type_size = type.size();
-    out.write(reinterpret_cast<char*>(&type_size), sizeof(type_size));
-    out.write(&type[0], type_size);
-    out.write(reinterpret_cast<char*>(&author_size), sizeof(author_size));
-    out.write(&author[0], author_size);
-    out.write(reinterpret_cast<char*>(&name_size), sizeof(name_size));
-    out.write(&name[0], name_size);
-    out.write(reinterpret_cast<char*>(&description_size), sizeof(description_size));
-    out.write(&description[0], description_size);
-}
-
-void Book::readBinary(std::ifstream & in) {
-    int name_size, author_size, description_size, type_size;
-    in.read(reinterpret_cast<char*>(&id), sizeof(id));
-    in.read(reinterpret_cast<char*>(&price), sizeof(price));
-    in.read(reinterpret_cast<char*>(&type_size), sizeof(type_size));
-    type.resize(type_size);
-    in.read(&type[0], type_size);
-    in.read(reinterpret_cast<char*>(&author_size), sizeof(author_size));
-    author.resize(author_size);
-    in.read(&author[0], author_size);
-    in.read(reinterpret_cast<char*>(&name_size), sizeof(name_size));
-    name.resize(name_size);
-    in.read(&name[0], name_size);
-    in.read(reinterpret_cast<char*>(&description_size), sizeof(description_size));
-    description.resize(description_size);
-    in.read(&description[0], description_size);
 }
 
 /**
@@ -228,7 +198,7 @@ void Book::readBinary(std::ifstream & in) {
  */
 bool Book::contains(const std::string &str) {
     using namespace std;
-    regex pattern = regex(".*" + str + ".*", regex_constants::icase|regex_constants::optimize);
+    regex pattern = regex(".*" + str + ".*", regex_constants::icase | regex_constants::optimize);
     for (const auto &[key, value]: getAll()) {
         if (regex_search(value, pattern))
             return true;
