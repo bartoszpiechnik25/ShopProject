@@ -1,0 +1,107 @@
+\hypertarget{class_sell_book_dialog}{}\doxysection{Sell\+Book\+Dialog Class Reference}
+\label{class_sell_book_dialog}\index{SellBookDialog@{SellBookDialog}}
+
+
+The \mbox{\hyperlink{class_sell_book_dialog}{Sell\+Book\+Dialog}} class This class creates a dialog window for the user to sell a book.  
+
+
+
+
+{\ttfamily \#include $<$sellbookdialog.\+h$>$}
+
+Inheritance diagram for Sell\+Book\+Dialog\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sell_book_dialog}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sell_book_dialog_ae6fb731a1b15dc5b58f9d261e808c243}\label{class_sell_book_dialog_ae6fb731a1b15dc5b58f9d261e808c243}} 
+void {\bfseries clear\+Text} ()
+\begin{DoxyCompactList}\small\item\em Slot for the clear button This slot is called when the user clicks the clear button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sell_book_dialog_a27781bc7195af530559b52854722a923}\label{class_sell_book_dialog_a27781bc7195af530559b52854722a923}} 
+void {\bfseries ok\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot for the ok button This slot is called when the user clicks the ok button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sell_book_dialog_ab7764a7ca214afb176b9afa71f59205e}\label{class_sell_book_dialog_ab7764a7ca214afb176b9afa71f59205e}} 
+void {\bfseries close\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot for the close button This slot is called when the user clicks the close button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_sell_book_dialog_a430fad141d774b486c8729afc06dd22f}{send\+Data}} (std\+::map$<$ std\+::string, std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em Signal emitted when the user clicks the ok button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sell_book_dialog_a6a61f22406c8dd733fed2e8971e82cef}{Sell\+Book\+Dialog}} (QWidget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Construct a new Sell \mbox{\hyperlink{class_book}{Book}} Dialog object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sell_book_dialog_ab2f07411fe07e1b5b2b57a4d585299a4}\label{class_sell_book_dialog_ab2f07411fe07e1b5b2b57a4d585299a4}} 
+{\bfseries $\sim$\+Sell\+Book\+Dialog} () override
+\begin{DoxyCompactList}\small\item\em Destroy the Sell \mbox{\hyperlink{class_book}{Book}} Dialog object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sell_book_dialog_a426cb77c684948c6a7c437de6085d20e}{set\+ID}} (std\+::vector$<$ long $>$ \&id\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the data for the combo box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_sell_book_dialog}{Sell\+Book\+Dialog}} class This class creates a dialog window for the user to sell a book. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sell_book_dialog_a6a61f22406c8dd733fed2e8971e82cef}\label{class_sell_book_dialog_a6a61f22406c8dd733fed2e8971e82cef}} 
+\index{SellBookDialog@{SellBookDialog}!SellBookDialog@{SellBookDialog}}
+\index{SellBookDialog@{SellBookDialog}!SellBookDialog@{SellBookDialog}}
+\doxysubsubsection{\texorpdfstring{SellBookDialog()}{SellBookDialog()}}
+{\footnotesize\ttfamily Sell\+Book\+Dialog\+::\+Sell\+Book\+Dialog (\begin{DoxyParamCaption}\item[{QWidget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new Sell \mbox{\hyperlink{class_book}{Book}} Dialog object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sell_book_dialog_a430fad141d774b486c8729afc06dd22f}\label{class_sell_book_dialog_a430fad141d774b486c8729afc06dd22f}} 
+\index{SellBookDialog@{SellBookDialog}!sendData@{sendData}}
+\index{sendData@{sendData}!SellBookDialog@{SellBookDialog}}
+\doxysubsubsection{\texorpdfstring{sendData}{sendData}}
+{\footnotesize\ttfamily void Sell\+Book\+Dialog\+::send\+Data (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when the user clicks the ok button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Map containing the data entered by the user \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sell_book_dialog_a426cb77c684948c6a7c437de6085d20e}\label{class_sell_book_dialog_a426cb77c684948c6a7c437de6085d20e}} 
+\index{SellBookDialog@{SellBookDialog}!setID@{setID}}
+\index{setID@{setID}!SellBookDialog@{SellBookDialog}}
+\doxysubsubsection{\texorpdfstring{setID()}{setID()}}
+{\footnotesize\ttfamily void Sell\+Book\+Dialog\+::set\+ID (\begin{DoxyParamCaption}\item[{std\+::vector$<$ long $>$ \&}]{id\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the data for the combo box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Vector of strings containing the data for the combo box \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ui/sell/sell\+\_\+book\+\_\+dialog/\mbox{\hyperlink{sellbookdialog_8h}{sellbookdialog.\+h}}\item 
+cmake-\/build-\/debug/\+Shop\+Project\+Qt\+\_\+autogen/\+UYU7\+MTWGGM/moc\+\_\+sellbookdialog.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/\+UYU7\+MTWGGM/moc\+\_\+sellbookdialog.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/\+WAM5\+MFG7\+JL/moc\+\_\+sellbookdialog.\+cpp\item 
+ui/sell/sell\+\_\+book\+\_\+dialog/sellbookdialog.\+cpp\end{DoxyCompactItemize}

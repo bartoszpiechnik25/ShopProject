@@ -1,0 +1,46 @@
+\hypertarget{user_8h_source}{}\doxysection{user.\+h}
+\label{user_8h_source}\index{include/user.h@{include/user.h}}
+\mbox{\hyperlink{user_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00025\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_user}{User}}\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00027\ \ \ \ \ std::string\ username,\ password;}
+\DoxyCodeLine{00028\ \ \ \ \ std::vector<std::string>\ history;}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{double}\ credits;}
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_user_a4a0137053e591fbb79d9057dd7d2283d}{User}}();}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_user_a4a0137053e591fbb79d9057dd7d2283d}{User}}(\textcolor{keyword}{const}\ std::string\ \&username,\ \textcolor{keyword}{const}\ std::string\ \&passwd,\ \textcolor{keywordtype}{double}\ money);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_user_aaaa11924d837d07cbf5deb2cb71b83c1}{\string~User}}()\ =\ \textcolor{keywordflow}{default};}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_aca37eb42462e07ffa007948e0e478548}{addCredits}}(\textcolor{keywordtype}{double}\ amount)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_ac0ce873b5b78ea2cb8c6fed32d3caa90}{subtractCredits}}(\textcolor{keywordtype}{double}\ amount)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a004a74dc17904b4ec9e21e272a09ebde}{appendHistory}}(\textcolor{keyword}{const}\ std::string\ \&bought\_item)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00073\ \ \ \ \ [[nodiscard]]\ \textcolor{keyword}{const}\ std::vector<std::string>\ \&\mbox{\hyperlink{class_user_a0fc59fad336ea78da1a0e19e0b9628de}{getHistory}}()\ const\ noexcept;}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00079\ \ \ \ \ [[nodiscard]]\ const\ std::\textcolor{keywordtype}{string}\ \&\mbox{\hyperlink{class_user_ac5e25cd9f37b915d336b1215e187b926}{getUsername}}()\ const\ noexcept;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00085\ \ \ \ \ [[nodiscard]]\ const\ std::\textcolor{keywordtype}{string}\ \&\mbox{\hyperlink{class_user_abdcc449403eb8347f9d1a886e8b1acb1}{getPassword}}()\ const\ noexcept;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00091\ \ \ \ \ [[nodiscard]]\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_user_ad1f30a6c8ff55c11b6f2bb7dee1697bc}{getMoney}}()\ const\ noexcept;}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a0ea868da1f787d975dcd3d02cb5ab478}{setPassword}}(const\ std::\textcolor{keywordtype}{string}\ \&passwd)\ noexcept;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a709e6548afc913677cabeafce3c49a55}{saveToBinary}}(std::ofstream\ \&file);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_user_a6ecc6afa3312224ad5ad1fc09baefa42}{readFromBinary}}(std::ifstream\ \&file);}
+\DoxyCodeLine{00110\ \};}
+
+\end{DoxyCode}

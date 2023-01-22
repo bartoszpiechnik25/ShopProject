@@ -1,0 +1,73 @@
+\hypertarget{item_8h_source}{}\doxysection{item.\+h}
+\label{item_8h_source}\index{include/item.h@{include/item.h}}
+\mbox{\hyperlink{item_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <typeinfo>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ <sstream>}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ <limits>}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ <regex>}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{exception_8h}{exception.h}}"{}}}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_item}{Item}}\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{long}\ id;}
+\DoxyCodeLine{00037\ \ \ \ \ std::string\ name;}
+\DoxyCodeLine{00038\ \ \ \ \ std::string\ description;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{double}\ price;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00045\ \ \ \ \ [[nodiscard]]\textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_item_a2ef09cedd1c21b2d5d8adf02c3b1d9e0}{isEmpty}}()\ \textcolor{keyword}{const}\ =\ 0;}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_item_a297720c02984eab37332ae795d22189d}{Item}}();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00062\ \ \ \ \ \mbox{\hyperlink{class_item_a297720c02984eab37332ae795d22189d}{Item}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \&id\_,\ \textcolor{keyword}{const}\ std::string\ \&name\_,\ \textcolor{keyword}{const}\ std::string\ \&description\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&price\_);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{class_item_a297720c02984eab37332ae795d22189d}{Item}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \&id\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *description\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&price\_);}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00079\ \ \ \ \ \mbox{\hyperlink{class_item_a297720c02984eab37332ae795d22189d}{Item}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_item}{Item}}\ \&other);}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_item_a0fa84a8ac1a4560611b1ebfb75fe5e61}{\string~Item}}()\ =\ 0;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_a43da66a17359839e998e3e71c3a19383}{setID}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \&id\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_a922171147d5dd76754dc185ba121aff5}{setName}}(\textcolor{keyword}{const}\ std::string\ \&name\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_a922171147d5dd76754dc185ba121aff5}{setName}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_a14195c77ab6eb69f0fb94a1f8c9486f5}{setDescription}}(\textcolor{keyword}{const}\ std::string\ \&description\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_a14195c77ab6eb69f0fb94a1f8c9486f5}{setDescription}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *description\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_a6da677229888d474090786190e7dc0be}{setPrice}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&price\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00126\ \ \ \ \ [[nodiscard]]\textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_item_ac631cee9070be88b52758790351bd353}{getID}}()\ const\ noexcept;}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00132\ \ \ \ \ [[nodiscard]]std::\textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_item_a976e577691c9da0bf18fe4741740eea3}{getName}}()\ const\ noexcept;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00138\ \ \ \ \ [[nodiscard]]std::\textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_item_a89ef3bdc54af937d974d644f967cc2c8}{getDescription}}()\ const\ noexcept;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00144\ \ \ \ \ [[nodiscard]]\textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_item_a5c9c1c82d7405d19899ec019bc88d370}{getPrice}}()\ const\ noexcept;}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00150\ \ \ \ \ [[nodiscard]]virtual\ std::map<std::\textcolor{keywordtype}{string},\ std::\textcolor{keywordtype}{string}>\ \mbox{\hyperlink{class_item_a286ff8d78a126547af7b91d85dfc2405}{getAll}}()\ const\ =\ 0;}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00156\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_ae9d955019836a75f473d17dae3a08ce7}{setAll}}(std::map<std::\textcolor{keywordtype}{string},\ std::\textcolor{keywordtype}{string}>\ \&data)\ =\ 0;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00162\ \ \ \ \ virtual\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_item_a68b0a7042c1580617302b76e032fe397}{readFromStr}}(std::\textcolor{keywordtype}{string}\ \&data)\ =\ 0;}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00168\ \ \ \ \ virtual\ std::\textcolor{keywordtype}{string}\ \mbox{\hyperlink{class_item_ad89f00a8d4126838b1bf13bd475d8259}{saveToDatabase}}()\ =\ 0;}
+\DoxyCodeLine{00169\ }
+\DoxyCodeLine{00175\ \ \ \ \ virtual\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_item_a4a2ba44c86461210c57d0c8da7a77978}{contains}}(const\ std::\textcolor{keywordtype}{string}\ \&str)\ =\ 0;}
+\DoxyCodeLine{00176\ \};}
+
+\end{DoxyCode}

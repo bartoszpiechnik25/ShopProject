@@ -1,0 +1,123 @@
+\hypertarget{class_sort_window}{}\doxysection{Sort\+Window Class Reference}
+\label{class_sort_window}\index{SortWindow@{SortWindow}}
+
+
+The \mbox{\hyperlink{class_sort_window}{Sort\+Window}} class This class creates a dialog window for the user to select the sorting criteria and the sorting order.  
+
+
+
+
+{\ttfamily \#include $<$sortwindow.\+h$>$}
+
+Inheritance diagram for Sort\+Window\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sort_window}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sort_window_a66ade92ce0df8634f42513ca330c5b03}\label{class_sort_window_a66ade92ce0df8634f42513ca330c5b03}} 
+void {\bfseries ok\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot for the ok button This slot is called when the user clicks the ok button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sort_window_ab0499e5f4fd21056b1fe505c6bb85362}\label{class_sort_window_ab0499e5f4fd21056b1fe505c6bb85362}} 
+void {\bfseries cancel\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot for the cancel button This slot is called when the user clicks the cancel button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_sort_window_a6496d97f80336d788d2b8ba7b4b1fc3f}{sort\+Data\+By}} (const std\+::string \&, bool)
+\begin{DoxyCompactList}\small\item\em Signal emitted when the user clicks the ok button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sort_window_abbae925920f03465f1d18adb856ed6a9}{Sort\+Window}} (QWidget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Construct a new Sort Window object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sort_window_aef427503623bf99dd13b4178ef612263}\label{class_sort_window_aef427503623bf99dd13b4178ef612263}} 
+{\bfseries $\sim$\+Sort\+Window} () override
+\begin{DoxyCompactList}\small\item\em Destroy the Sort Window object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sort_window_a83d3daf7805b52c62dea0cf322c4426d}{set\+Combo\+Box\+Data}} (const std\+::vector$<$ std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em Sets the data for the combo box. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sort_window_abab905cc50be6443665c61dca2bba818}{close\+Event}} (QClose\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Overriden close event handler This function is called when the user closes the window. It emits the \mbox{\hyperlink{class_sort_window_ab0499e5f4fd21056b1fe505c6bb85362}{cancel\+Clicked()}} signal. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_sort_window}{Sort\+Window}} class This class creates a dialog window for the user to select the sorting criteria and the sorting order. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sort_window_abbae925920f03465f1d18adb856ed6a9}\label{class_sort_window_abbae925920f03465f1d18adb856ed6a9}} 
+\index{SortWindow@{SortWindow}!SortWindow@{SortWindow}}
+\index{SortWindow@{SortWindow}!SortWindow@{SortWindow}}
+\doxysubsubsection{\texorpdfstring{SortWindow()}{SortWindow()}}
+{\footnotesize\ttfamily Sort\+Window\+::\+Sort\+Window (\begin{DoxyParamCaption}\item[{QWidget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new Sort Window object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sort_window_abab905cc50be6443665c61dca2bba818}\label{class_sort_window_abab905cc50be6443665c61dca2bba818}} 
+\index{SortWindow@{SortWindow}!closeEvent@{closeEvent}}
+\index{closeEvent@{closeEvent}!SortWindow@{SortWindow}}
+\doxysubsubsection{\texorpdfstring{closeEvent()}{closeEvent()}}
+{\footnotesize\ttfamily void Sort\+Window\+::close\+Event (\begin{DoxyParamCaption}\item[{QClose\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Overriden close event handler This function is called when the user closes the window. It emits the \mbox{\hyperlink{class_sort_window_ab0499e5f4fd21056b1fe505c6bb85362}{cancel\+Clicked()}} signal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Pointer to the close event \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sort_window_a83d3daf7805b52c62dea0cf322c4426d}\label{class_sort_window_a83d3daf7805b52c62dea0cf322c4426d}} 
+\index{SortWindow@{SortWindow}!setComboBoxData@{setComboBoxData}}
+\index{setComboBoxData@{setComboBoxData}!SortWindow@{SortWindow}}
+\doxysubsubsection{\texorpdfstring{setComboBoxData()}{setComboBoxData()}}
+{\footnotesize\ttfamily void Sort\+Window\+::set\+Combo\+Box\+Data (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::string $>$ \&}]{data }\end{DoxyParamCaption})}
+
+
+
+Sets the data for the combo box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Vector of strings containing the data for the combo box \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sort_window_a6496d97f80336d788d2b8ba7b4b1fc3f}\label{class_sort_window_a6496d97f80336d788d2b8ba7b4b1fc3f}} 
+\index{SortWindow@{SortWindow}!sortDataBy@{sortDataBy}}
+\index{sortDataBy@{sortDataBy}!SortWindow@{SortWindow}}
+\doxysubsubsection{\texorpdfstring{sortDataBy}{sortDataBy}}
+{\footnotesize\ttfamily void Sort\+Window\+::sort\+Data\+By (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{\+\_\+t1,  }\item[{bool}]{\+\_\+t2 }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when the user clicks the ok button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em sort\+Data\+By} & String containing the sorting criteria \\
+\hline
+{\em ascending} & Boolean indicating the sorting order \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ui/sort\+\_\+window/\mbox{\hyperlink{sortwindow_8h}{sortwindow.\+h}}\item 
+cmake-\/build-\/debug/\+Shop\+Project\+Qt\+\_\+autogen/\+ZEQORYCQH5/moc\+\_\+sortwindow.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/\+R5\+FFBUUZBA/moc\+\_\+sortwindow.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/\+ZEQORYCQH5/moc\+\_\+sortwindow.\+cpp\item 
+ui/sort\+\_\+window/sortwindow.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,61 @@
+\hypertarget{login_8h_source}{}\doxysection{login.\+h}
+\label{login_8h_source}\index{ui/login/login.h@{ui/login/login.h}}
+\mbox{\hyperlink{login_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QDialog>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QMessageBox>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <map>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ <QCloseEvent>}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{user_8h}{user.h}}"{}}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00025\ \textcolor{keyword}{namespace\ }Ui\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_login}{Login}};\ \}}
+\DoxyCodeLine{00026\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_login}{Login}}\ :\ \textcolor{keyword}{public}\ QDialog\ \{}
+\DoxyCodeLine{00035\ Q\_OBJECT}
+\DoxyCodeLine{00036\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00037\ \ \ \ \ \mbox{\hyperlink{class_ui_1_1_login}{Ui::Login}}\ *ui;}
+\DoxyCodeLine{00038\ \ \ \ \ std::map<std::string,\ User>\ usersDatabase;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_login}{Login}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_login_a9dcc3015e1c20793ab1b6a98dccf7d6e}{\string~Login}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00056\ \ \ \ \ [[nodiscard]]std::string\ \mbox{\hyperlink{class_login_a54158e286461cbcc77541ccc3424d731}{getUsername}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ [[nodiscard]]std::string\ \mbox{\hyperlink{class_login_aa511e0f95567d98f12edf4b2ea28fc38}{getPasswd}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}}
+\DoxyCodeLine{00073\ \ \ \ \ \mbox{\hyperlink{class_login_a1f8f9035bb4c7263f2602a967f7e73d1}{createMessageBox}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *title,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *text,\ QMessageBox::Icon\ icon,\ QMessageBox::StandardButtons\ buttons);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_login_aafdbc7184fbfceab54e897bb58a6feea}{loginFromArgs}}();}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_login_aec7426a50a97d6999433e837f1d80007}{enteredPasswd}}();}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_login_a828f55393f3d9cffc59c157876ff1e16}{addUser}}();}
+\DoxyCodeLine{00090\ \ \ \ \ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_login_a48cf2f17853fec1be95a01701537892b}{cancelClicked}}();}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00096\ signals:}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_login_a3e6029d7cd3d5972a38c511a20199a9e}{loginSuccessful}}(\textcolor{keyword}{const}\ std::string\ \&username,\ std::map<std::string,\ User>\ \&database);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ loadUsersDatabase();}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ writeUsersDatabase();}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_login_aebc06c88ed02da29c962624e4dad2225}{keyPressEvent}}(QKeyEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00123\ \};}
+
+\end{DoxyCode}

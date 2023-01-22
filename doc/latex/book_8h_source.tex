@@ -1,0 +1,53 @@
+\hypertarget{book_8h_source}{}\doxysection{book.\+h}
+\label{book_8h_source}\index{include/book.h@{include/book.h}}
+\mbox{\hyperlink{book_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{item_8h}{item.h}}"{}}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_book}{Book}}\ final:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_item}{Item}}\ \{}
+\DoxyCodeLine{00021\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ author;}
+\DoxyCodeLine{00023\ \ \ \ \ std::string\ type;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ [[nodiscard]]\textcolor{keywordtype}{bool}\ isEmpty()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_book_a2eac9e235a08763158f78533f7a83e1f}{Book}}();}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_book_a2eac9e235a08763158f78533f7a83e1f}{Book}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \&id\_,\ \textcolor{keyword}{const}\ std::string\ \&name\_,\ \textcolor{keyword}{const}\ std::string\ \&description\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&price\_,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&author\_,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&type\_);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00055\ \ \ \ \ \mbox{\hyperlink{class_book_a2eac9e235a08763158f78533f7a83e1f}{Book}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \&id\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *description,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&price\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *author\_,}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type\_);}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00063\ \ \ \ \ \mbox{\hyperlink{class_book_a2eac9e235a08763158f78533f7a83e1f}{Book}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_book}{Book}}\ \&other\_book);}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_book_a656bf27f28655cbe791473adf00ce985}{\string~Book}}()\ \textcolor{keyword}{final};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_book_a75ee42bda9dc77378aad091978293a5a}{setAuthor}}(\textcolor{keyword}{const}\ std::string\ \&author\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_book_a75ee42bda9dc77378aad091978293a5a}{setAuthor}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *author\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_book_a74891b3b2e5cc452d12cfd185b9019e9}{setType}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_book_a74891b3b2e5cc452d12cfd185b9019e9}{setType}}(\textcolor{keyword}{const}\ std::string\ \&type)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00098\ \ \ \ \ [[nodiscard]]std::string\ \mbox{\hyperlink{class_book_a752ee1f0ed03c5f3fef5aa945c14629b}{getAuthor}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00104\ \ \ \ \ [[nodiscard]]std::string\ \mbox{\hyperlink{class_book_a568b91add0406d8568d939241a185aab}{getType}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00110\ \ \ \ \ [[nodiscard]]std::map<std::string,\ std::string>\ \mbox{\hyperlink{class_book_a2c86b8648f55aba7bbbda7c294c8cec3}{getAll}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00111\ }
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_book_a81492e7c55372dd0762f9710a462e345}{setAll}}(std::map<std::string,\ std::string>\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_book_a99c7ad921d6d495ee67d8c53b8829205}{readFromStr}}(std::string\ \&data)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00128\ \ \ \ \ std::string\ \mbox{\hyperlink{class_book_a7790191da34bea0e2678c787ad5b2bff}{saveToDatabase}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_book_aaf2c7a3806349a465980db91678c75bb}{contains}}(\textcolor{keyword}{const}\ std::string\ \&str)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00136\ \};}
+
+\end{DoxyCode}

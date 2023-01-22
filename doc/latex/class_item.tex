@@ -1,0 +1,403 @@
+\hypertarget{class_item}{}\doxysection{Item Class Reference}
+\label{class_item}\index{Item@{Item}}
+
+
+The \mbox{\hyperlink{class_item}{Item}} class is the base class for books and phones, and provides a common interface for handling the basic properties of an item such as ID, name, description and price.  
+
+
+
+
+{\ttfamily \#include $<$item.\+h$>$}
+
+Inheritance diagram for Item\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_item}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_item_a297720c02984eab37332ae795d22189d}\label{class_item_a297720c02984eab37332ae795d22189d}} 
+{\bfseries Item} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{class_item}{Item}} class. Initializes the data members of the class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_item_a7facd37851028fe11818724811542190}{Item}} (const long \&id\+\_\+, const std\+::string \&name\+\_\+, const std\+::string \&description\+\_\+, const double \&price\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_item}{Item}} class that takes an ID, name, description, and price as arguments. Initializes the data members of the class with the provided values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_item_af6ef9daf77862645ab5657245ce4cf16}{Item}} (const long \&id\+\_\+, const char $\ast$name\+\_\+, const char $\ast$description\+\_\+, const double \&price\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_item}{Item}} class that takes an ID, name, description, and price as arguments. Initializes the data members of the class with the provided values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_item_a44f7e3f580bd6c0fa2e1c288dff484be}{Item}} (const \mbox{\hyperlink{class_item}{Item}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \mbox{\hyperlink{class_item}{Item}} class. Initializes the data members of the class with the values from the other item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_item_a0fa84a8ac1a4560611b1ebfb75fe5e61}\label{class_item_a0fa84a8ac1a4560611b1ebfb75fe5e61}} 
+virtual {\bfseries $\sim$\+Item} ()=0
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{class_item}{Item}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a43da66a17359839e998e3e71c3a19383}{set\+ID}} (const long \&id\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the ID of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a922171147d5dd76754dc185ba121aff5}{set\+Name}} (const std\+::string \&name\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the name of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a4a04fad21550fdec375cd50d6c5ac472}{set\+Name}} (const char $\ast$name\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the name of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a14195c77ab6eb69f0fb94a1f8c9486f5}{set\+Description}} (const std\+::string \&description\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the description of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a1087e81870676585e0c0adc45ea50e16}{set\+Description}} (const char $\ast$description\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the description of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a6da677229888d474090786190e7dc0be}{set\+Price}} (const double \&price\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the price of the item. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{class_item_ac631cee9070be88b52758790351bd353}{get\+ID}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the ID of the item. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_item_a976e577691c9da0bf18fe4741740eea3}{get\+Name}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the name of the item. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_item_a89ef3bdc54af937d974d644f967cc2c8}{get\+Description}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the description of the item. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_item_a5c9c1c82d7405d19899ec019bc88d370}{get\+Price}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the price of the item. \end{DoxyCompactList}\item 
+virtual std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_item_a286ff8d78a126547af7b91d85dfc2405}{get\+All}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns all properties of the item in a map. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_item_ae9d955019836a75f473d17dae3a08ce7}{set\+All}} (std\+::map$<$ std\+::string, std\+::string $>$ \&data)=0
+\begin{DoxyCompactList}\small\item\em Sets all the properties of the item from a map. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_item_a68b0a7042c1580617302b76e032fe397}{read\+From\+Str}} (std\+::string \&data)=0
+\begin{DoxyCompactList}\small\item\em Reads the properties of the item from a string. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{class_item_ad89f00a8d4126838b1bf13bd475d8259}{save\+To\+Database}} ()=0
+\begin{DoxyCompactList}\small\item\em Saves the properties of the item to a string in the format for writing to a file. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_item_a4a2ba44c86461210c57d0c8da7a77978}{contains}} (const std\+::string \&str)=0
+\begin{DoxyCompactList}\small\item\em Check if the item contains the given string in any of its properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{class_item_a2ef09cedd1c21b2d5d8adf02c3b1d9e0}{is\+Empty}} () const =0
+\begin{DoxyCompactList}\small\item\em Check if the item is empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_item_ab698200bfffb60169f58babf15518b04}\label{class_item_ab698200bfffb60169f58babf15518b04}} 
+long {\bfseries id}
+\item 
+\mbox{\Hypertarget{class_item_a342b7a351c9ae1c5430aa3ef65b670bd}\label{class_item_a342b7a351c9ae1c5430aa3ef65b670bd}} 
+std\+::string {\bfseries name}
+\item 
+\mbox{\Hypertarget{class_item_a7417563f4b149d5e531cea1e993f66f6}\label{class_item_a7417563f4b149d5e531cea1e993f66f6}} 
+std\+::string {\bfseries description}
+\item 
+\mbox{\Hypertarget{class_item_acbfaa5182305c5993cf937d43feaecf8}\label{class_item_acbfaa5182305c5993cf937d43feaecf8}} 
+double {\bfseries price}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_item}{Item}} class is the base class for books and phones, and provides a common interface for handling the basic properties of an item such as ID, name, description and price. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_item_a7facd37851028fe11818724811542190}\label{class_item_a7facd37851028fe11818724811542190}} 
+\index{Item@{Item}!Item@{Item}}
+\index{Item@{Item}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{Item()}{Item()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Item\+::\+Item (\begin{DoxyParamCaption}\item[{const long \&}]{id\+\_\+,  }\item[{const std\+::string \&}]{name\+\_\+,  }\item[{const std\+::string \&}]{description\+\_\+,  }\item[{const double \&}]{price\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{class_item}{Item}} class that takes an ID, name, description, and price as arguments. Initializes the data members of the class with the provided values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & The ID of the item. \\
+\hline
+{\em name\+\_\+} & The name of the item. \\
+\hline
+{\em description\+\_\+} & The description of the item. \\
+\hline
+{\em price\+\_\+} & The price of the item. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_item_af6ef9daf77862645ab5657245ce4cf16}\label{class_item_af6ef9daf77862645ab5657245ce4cf16}} 
+\index{Item@{Item}!Item@{Item}}
+\index{Item@{Item}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{Item()}{Item()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Item\+::\+Item (\begin{DoxyParamCaption}\item[{const long \&}]{id\+\_\+,  }\item[{const char $\ast$}]{name\+\_\+,  }\item[{const char $\ast$}]{description\+\_\+,  }\item[{const double \&}]{price\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{class_item}{Item}} class that takes an ID, name, description, and price as arguments. Initializes the data members of the class with the provided values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & The ID of the item. \\
+\hline
+{\em name\+\_\+} & The name of the item. \\
+\hline
+{\em description\+\_\+} & The description of the item. \\
+\hline
+{\em price\+\_\+} & The price of the item. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_item_a44f7e3f580bd6c0fa2e1c288dff484be}\label{class_item_a44f7e3f580bd6c0fa2e1c288dff484be}} 
+\index{Item@{Item}!Item@{Item}}
+\index{Item@{Item}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{Item()}{Item()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Item\+::\+Item (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_item}{Item}} \&}]{other }\end{DoxyParamCaption})}
+
+
+
+Copy constructor for the \mbox{\hyperlink{class_item}{Item}} class. Initializes the data members of the class with the values from the other item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em other} & The other item. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_item_a4a2ba44c86461210c57d0c8da7a77978}\label{class_item_a4a2ba44c86461210c57d0c8da7a77978}} 
+\index{Item@{Item}!contains@{contains}}
+\index{contains@{contains}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily virtual bool Item\+::contains (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Check if the item contains the given string in any of its properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating if the item contains the given string. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_book_aaf2c7a3806349a465980db91678c75bb}{Book}}, and \mbox{\hyperlink{class_phone_ada4de7f3a975314c1eac838a5389ab4e}{Phone}}.
+
+\mbox{\Hypertarget{class_item_a286ff8d78a126547af7b91d85dfc2405}\label{class_item_a286ff8d78a126547af7b91d85dfc2405}} 
+\index{Item@{Item}!getAll@{getAll}}
+\index{getAll@{getAll}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily virtual std\+::map$<$ std\+::string, std\+::string $>$ Item\+::get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Returns all properties of the item in a map. 
+
+\begin{DoxyReturn}{Returns}
+A map containing all the properties of the item. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_book_a2c86b8648f55aba7bbbda7c294c8cec3}{Book}}, and \mbox{\hyperlink{class_phone_a6450e1b05beabc1dcd03ac353502e2ca}{Phone}}.
+
+\mbox{\Hypertarget{class_item_a89ef3bdc54af937d974d644f967cc2c8}\label{class_item_a89ef3bdc54af937d974d644f967cc2c8}} 
+\index{Item@{Item}!getDescription@{getDescription}}
+\index{getDescription@{getDescription}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{getDescription()}{getDescription()}}
+{\footnotesize\ttfamily std\+::string Item\+::get\+Description (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the description of the item. 
+
+\begin{DoxyReturn}{Returns}
+The description of the item. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_item_ac631cee9070be88b52758790351bd353}\label{class_item_ac631cee9070be88b52758790351bd353}} 
+\index{Item@{Item}!getID@{getID}}
+\index{getID@{getID}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{getID()}{getID()}}
+{\footnotesize\ttfamily long Item\+::get\+ID (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the ID of the item. 
+
+\begin{DoxyReturn}{Returns}
+The ID of the item. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_item_a976e577691c9da0bf18fe4741740eea3}\label{class_item_a976e577691c9da0bf18fe4741740eea3}} 
+\index{Item@{Item}!getName@{getName}}
+\index{getName@{getName}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{getName()}{getName()}}
+{\footnotesize\ttfamily std\+::string Item\+::get\+Name (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the name of the item. 
+
+\begin{DoxyReturn}{Returns}
+The name of the item. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_item_a5c9c1c82d7405d19899ec019bc88d370}\label{class_item_a5c9c1c82d7405d19899ec019bc88d370}} 
+\index{Item@{Item}!getPrice@{getPrice}}
+\index{getPrice@{getPrice}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{getPrice()}{getPrice()}}
+{\footnotesize\ttfamily double Item\+::get\+Price (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the price of the item. 
+
+\begin{DoxyReturn}{Returns}
+The price of the item. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_item_a2ef09cedd1c21b2d5d8adf02c3b1d9e0}\label{class_item_a2ef09cedd1c21b2d5d8adf02c3b1d9e0}} 
+\index{Item@{Item}!isEmpty@{isEmpty}}
+\index{isEmpty@{isEmpty}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{isEmpty()}{isEmpty()}}
+{\footnotesize\ttfamily virtual bool Item\+::is\+Empty (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [protected]}, {\ttfamily [pure virtual]}}
+
+
+
+Check if the item is empty. 
+
+\begin{DoxyReturn}{Returns}
+A boolean indicating if the item is empty. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_item_a68b0a7042c1580617302b76e032fe397}\label{class_item_a68b0a7042c1580617302b76e032fe397}} 
+\index{Item@{Item}!readFromStr@{readFromStr}}
+\index{readFromStr@{readFromStr}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{readFromStr()}{readFromStr()}}
+{\footnotesize\ttfamily virtual void Item\+::read\+From\+Str (\begin{DoxyParamCaption}\item[{std\+::string \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Reads the properties of the item from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The string containing the properties of the item. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_phone_ac0f354ba80d09fea8df7841f2c3d9dff}{Phone}}, and \mbox{\hyperlink{class_book_a99c7ad921d6d495ee67d8c53b8829205}{Book}}.
+
+\mbox{\Hypertarget{class_item_ad89f00a8d4126838b1bf13bd475d8259}\label{class_item_ad89f00a8d4126838b1bf13bd475d8259}} 
+\index{Item@{Item}!saveToDatabase@{saveToDatabase}}
+\index{saveToDatabase@{saveToDatabase}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{saveToDatabase()}{saveToDatabase()}}
+{\footnotesize\ttfamily virtual std\+::string Item\+::save\+To\+Database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Saves the properties of the item to a string in the format for writing to a file. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the properties of the item. 
+\end{DoxyReturn}
+
+
+Implemented in \mbox{\hyperlink{class_book_a7790191da34bea0e2678c787ad5b2bff}{Book}}, and \mbox{\hyperlink{class_phone_a3268b470a207d4e18fc34d3936acdb08}{Phone}}.
+
+\mbox{\Hypertarget{class_item_ae9d955019836a75f473d17dae3a08ce7}\label{class_item_ae9d955019836a75f473d17dae3a08ce7}} 
+\index{Item@{Item}!setAll@{setAll}}
+\index{setAll@{setAll}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{setAll()}{setAll()}}
+{\footnotesize\ttfamily virtual void Item\+::set\+All (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [pure virtual]}}
+
+
+
+Sets all the properties of the item from a map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The map containing the properties of the item. \\
+\hline
+\end{DoxyParams}
+
+
+Implemented in \mbox{\hyperlink{class_phone_aa12df6e5fed5cc0a2ad7b61ccd639dca}{Phone}}, and \mbox{\hyperlink{class_book_a81492e7c55372dd0762f9710a462e345}{Book}}.
+
+\mbox{\Hypertarget{class_item_a1087e81870676585e0c0adc45ea50e16}\label{class_item_a1087e81870676585e0c0adc45ea50e16}} 
+\index{Item@{Item}!setDescription@{setDescription}}
+\index{setDescription@{setDescription}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{setDescription()}{setDescription()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Item\+::set\+Description (\begin{DoxyParamCaption}\item[{const char $\ast$}]{description\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the description of the item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em description\+\_\+} & The new description. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_item_a14195c77ab6eb69f0fb94a1f8c9486f5}\label{class_item_a14195c77ab6eb69f0fb94a1f8c9486f5}} 
+\index{Item@{Item}!setDescription@{setDescription}}
+\index{setDescription@{setDescription}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{setDescription()}{setDescription()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Item\+::set\+Description (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{description\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the description of the item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em description\+\_\+} & The new description. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_item_a43da66a17359839e998e3e71c3a19383}\label{class_item_a43da66a17359839e998e3e71c3a19383}} 
+\index{Item@{Item}!setID@{setID}}
+\index{setID@{setID}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{setID()}{setID()}}
+{\footnotesize\ttfamily void Item\+::set\+ID (\begin{DoxyParamCaption}\item[{const long \&}]{id\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the ID of the item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & The new ID. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_item_a4a04fad21550fdec375cd50d6c5ac472}\label{class_item_a4a04fad21550fdec375cd50d6c5ac472}} 
+\index{Item@{Item}!setName@{setName}}
+\index{setName@{setName}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Item\+::set\+Name (\begin{DoxyParamCaption}\item[{const char $\ast$}]{name\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the name of the item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+\_\+} & The new name. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_item_a922171147d5dd76754dc185ba121aff5}\label{class_item_a922171147d5dd76754dc185ba121aff5}} 
+\index{Item@{Item}!setName@{setName}}
+\index{setName@{setName}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{setName()}{setName()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Item\+::set\+Name (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{name\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the name of the item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em name\+\_\+} & The new name. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_item_a6da677229888d474090786190e7dc0be}\label{class_item_a6da677229888d474090786190e7dc0be}} 
+\index{Item@{Item}!setPrice@{setPrice}}
+\index{setPrice@{setPrice}!Item@{Item}}
+\doxysubsubsection{\texorpdfstring{setPrice()}{setPrice()}}
+{\footnotesize\ttfamily void Item\+::set\+Price (\begin{DoxyParamCaption}\item[{const double \&}]{price\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the price of the item. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em price\+\_\+} & The new price. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{item_8h}{item.\+h}}\item 
+src/item.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,171 @@
+\hypertarget{class_login}{}\doxysection{Login Class Reference}
+\label{class_login}\index{Login@{Login}}
+
+
+Handles user login and registration This class creates a login dialog for the user to enter their credentials and also allows for new user registration. It also handles loading and saving the user database from a file.  
+
+
+
+
+{\ttfamily \#include $<$login.\+h$>$}
+
+Inheritance diagram for Login\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_login}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_login_aec7426a50a97d6999433e837f1d80007}\label{class_login_aec7426a50a97d6999433e837f1d80007}} 
+void {\bfseries entered\+Passwd} ()
+\begin{DoxyCompactList}\small\item\em Slot for the login button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_login_a828f55393f3d9cffc59c157876ff1e16}\label{class_login_a828f55393f3d9cffc59c157876ff1e16}} 
+void {\bfseries add\+User} ()
+\begin{DoxyCompactList}\small\item\em Slot for the Add user button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_login_a48cf2f17853fec1be95a01701537892b}\label{class_login_a48cf2f17853fec1be95a01701537892b}} 
+void {\bfseries cancel\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot for the Cancel button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_login_a3e6029d7cd3d5972a38c511a20199a9e}{login\+Successful}} (const std\+::string \&username, std\+::map$<$ std\+::string, \mbox{\hyperlink{class_user}{User}} $>$ \&database)
+\begin{DoxyCompactList}\small\item\em Signal emitted when the user successfully logs in. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_login_a5d0ad68bb85df1299c7513e476211c98}{Login}} (QWidget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em onstructor for the \mbox{\hyperlink{class_login}{Login}} class This constructor initializes the user interface and loads the user database from a file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_login_a9dcc3015e1c20793ab1b6a98dccf7d6e}\label{class_login_a9dcc3015e1c20793ab1b6a98dccf7d6e}} 
+{\bfseries $\sim$\+Login} () override
+\begin{DoxyCompactList}\small\item\em Destroy the \mbox{\hyperlink{class_login}{Login}} object. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_login_a54158e286461cbcc77541ccc3424d731}{get\+Username}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Getter for the entered username. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_login_aa511e0f95567d98f12edf4b2ea28fc38}{get\+Passwd}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Getter for the entered password. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_login_aafdbc7184fbfceab54e897bb58a6feea}\label{class_login_aafdbc7184fbfceab54e897bb58a6feea}} 
+void {\bfseries login\+From\+Args} ()
+\begin{DoxyCompactList}\small\item\em Fill line edits with data from programme arguments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_login_a1f8f9035bb4c7263f2602a967f7e73d1}{create\+Message\+Box}} (const char $\ast$title, const char $\ast$text, QMessage\+Box\+::\+Icon icon, QMessage\+Box\+::\+Standard\+Buttons buttons)
+\begin{DoxyCompactList}\small\item\em Creates a message box with the given parameters This function is a static function that creates a message box with the given title, text, icon, and buttons. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_login_aebc06c88ed02da29c962624e4dad2225}{key\+Press\+Event}} (QKey\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Overridden close event handler This function overrides the default close event handler and emits the login\+Successful signal with the username and users database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Handles user login and registration This class creates a login dialog for the user to enter their credentials and also allows for new user registration. It also handles loading and saving the user database from a file. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_login_a5d0ad68bb85df1299c7513e476211c98}\label{class_login_a5d0ad68bb85df1299c7513e476211c98}} 
+\index{Login@{Login}!Login@{Login}}
+\index{Login@{Login}!Login@{Login}}
+\doxysubsubsection{\texorpdfstring{Login()}{Login()}}
+{\footnotesize\ttfamily Login\+::\+Login (\begin{DoxyParamCaption}\item[{QWidget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+onstructor for the \mbox{\hyperlink{class_login}{Login}} class This constructor initializes the user interface and loads the user database from a file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_login_a1f8f9035bb4c7263f2602a967f7e73d1}\label{class_login_a1f8f9035bb4c7263f2602a967f7e73d1}} 
+\index{Login@{Login}!createMessageBox@{createMessageBox}}
+\index{createMessageBox@{createMessageBox}!Login@{Login}}
+\doxysubsubsection{\texorpdfstring{createMessageBox()}{createMessageBox()}}
+{\footnotesize\ttfamily void Login\+::create\+Message\+Box (\begin{DoxyParamCaption}\item[{const char $\ast$}]{title,  }\item[{const char $\ast$}]{text,  }\item[{QMessage\+Box\+::\+Icon}]{icon,  }\item[{QMessage\+Box\+::\+Standard\+Buttons}]{buttons }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+Creates a message box with the given parameters This function is a static function that creates a message box with the given title, text, icon, and buttons. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em title} & Title of the message box \\
+\hline
+{\em text} & Text of the message box \\
+\hline
+{\em icon} & Icon of the message box \\
+\hline
+{\em buttons} & Buttons of the message box \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_login_aa511e0f95567d98f12edf4b2ea28fc38}\label{class_login_aa511e0f95567d98f12edf4b2ea28fc38}} 
+\index{Login@{Login}!getPasswd@{getPasswd}}
+\index{getPasswd@{getPasswd}!Login@{Login}}
+\doxysubsubsection{\texorpdfstring{getPasswd()}{getPasswd()}}
+{\footnotesize\ttfamily std\+::string Login\+::get\+Passwd (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Getter for the entered password. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string The password entered by the user 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_login_a54158e286461cbcc77541ccc3424d731}\label{class_login_a54158e286461cbcc77541ccc3424d731}} 
+\index{Login@{Login}!getUsername@{getUsername}}
+\index{getUsername@{getUsername}!Login@{Login}}
+\doxysubsubsection{\texorpdfstring{getUsername()}{getUsername()}}
+{\footnotesize\ttfamily std\+::string Login\+::get\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Getter for the entered username. 
+
+\begin{DoxyReturn}{Returns}
+std\+::string The username entered by the user 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_login_aebc06c88ed02da29c962624e4dad2225}\label{class_login_aebc06c88ed02da29c962624e4dad2225}} 
+\index{Login@{Login}!keyPressEvent@{keyPressEvent}}
+\index{keyPressEvent@{keyPressEvent}!Login@{Login}}
+\doxysubsubsection{\texorpdfstring{keyPressEvent()}{keyPressEvent()}}
+{\footnotesize\ttfamily void Login\+::key\+Press\+Event (\begin{DoxyParamCaption}\item[{QKey\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [protected]}}
+
+
+
+Overridden close event handler This function overrides the default close event handler and emits the login\+Successful signal with the username and users database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & Pointer to the close event \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_login_a3e6029d7cd3d5972a38c511a20199a9e}\label{class_login_a3e6029d7cd3d5972a38c511a20199a9e}} 
+\index{Login@{Login}!loginSuccessful@{loginSuccessful}}
+\index{loginSuccessful@{loginSuccessful}!Login@{Login}}
+\doxysubsubsection{\texorpdfstring{loginSuccessful}{loginSuccessful}}
+{\footnotesize\ttfamily void Login\+::login\+Successful (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{class_user}{User}} $>$ \&}]{database }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when the user successfully logs in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & std\+::string The username of the user \\
+\hline
+{\em database} & std\+::map$<$std\+::string, User$>$ The users database \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ui/login/\mbox{\hyperlink{login_8h}{login.\+h}}\item 
+cmake-\/build-\/debug/\+Shop\+Project\+Qt\+\_\+autogen/7\+UJL7\+PXKVV/moc\+\_\+login.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/7\+UJL7\+PXKVV/moc\+\_\+login.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/\+PTJZ5\+WSQDW/moc\+\_\+login.\+cpp\item 
+ui/login/login.\+cpp\end{DoxyCompactItemize}

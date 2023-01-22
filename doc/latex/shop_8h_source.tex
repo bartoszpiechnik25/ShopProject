@@ -1,0 +1,79 @@
+\hypertarget{shop_8h_source}{}\doxysection{shop.\+h}
+\label{shop_8h_source}\index{ui/shop/shop.h@{ui/shop/shop.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QMainWindow>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QStyleFactory>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QLabel>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ <QTableWidget>}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ <QStandardItemModel>}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ <QHeaderView>}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{database_8h}{database.h}}"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{login_8h}{login.h}}"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{selldialog_8h}{selldialog.h}}"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sellbookdialog_8h}{sellbookdialog.h}}"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{sortwindow_8h}{sortwindow.h}}"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{user__dialog_8h}{user\_dialog.h}}"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00028\ \textcolor{keyword}{namespace\ }Ui\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_shop}{Shop}};\ \}}
+\DoxyCodeLine{00029\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00037\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_shop}{Shop}}\ :\ \textcolor{keyword}{public}\ QMainWindow\ \{}
+\DoxyCodeLine{00038\ Q\_OBJECT}
+\DoxyCodeLine{00039\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_ui_1_1_shop}{Ui::Shop}}\ *ui;}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_shop_database}{ShopDatabase}}\ *database;}
+\DoxyCodeLine{00042\ \ \ \ \ QTableWidget\ *phones,\ *books;}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_login}{Login}}\ *m\_login;}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_sell_dialog}{SellDialog}}\ *sellDialog;}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_sell_book_dialog}{SellBookDialog}}\ *sellBookDialog;}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_sort_window}{SortWindow}}\ *sortWindow;}
+\DoxyCodeLine{00047\ \ \ \ \ QAction\ *resetMenubar,\ *menuProfile;}
+\DoxyCodeLine{00048\ \ \ \ \ std::map<std::string,\ User>\ usersDatabase;}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_user_dialog}{UserDialog}}\ *userDialog;}
+\DoxyCodeLine{00050\ \ \ \ \ std::string\ currentUser;}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_shop}{Shop}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00061\ \ \ \ \ \mbox{\hyperlink{class_shop_a0653b7f4a2a546a84df19ff01df80131}{\string~Shop}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_ae3a603a9cd1b6e218447a014f9a44ce3}{closeEvent}}(QCloseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeUi();}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeTab();}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeTable(\textcolor{keyword}{const}\ ItemType\ \&item\_type,\ QTableWidget\ *tableWidget);}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{void}\ connectSlots()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ initializePointers()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_a508ecacd5e81f031d95dd662b1344311}{loginSuccessful}}(\textcolor{keyword}{const}\ std::string\ \&username,\ std::map<std::string,\ User>\ \&usersDatabase\_);}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_aa6f198cbe4e146ed48e5c81f85a8b83c}{sellButtonClicked}}();}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_a0d53d1c62db775305e92b1155b8f3405}{addNewItem}}(std::map<std::string,\ std::string>\ \&data);}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_a81884d4d08c1efd9bdef44a80c4693e2}{sortData}}(\textcolor{keyword}{const}\ std::string\ \&column,\ \textcolor{keywordtype}{bool}\ ascending);}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_aaf932ea55f191f74f4ac5ab6585c3f5a}{createSortWindow}}();}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_a9f33eb4b0697cc12ea7ebf6d5d037716}{buyButtonClicked}}();}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_a3b481f7a5a6310400dd53f96ec6e35eb}{searchForData}}();}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_adacd24db017381723b6d033f14766854}{resetClicked}}();}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_a6673bad2cd6a1e37142425edd24385d0}{profileClicked}}();}
+\DoxyCodeLine{00148\ \};}
+
+\end{DoxyCode}

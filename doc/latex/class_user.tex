@@ -1,0 +1,218 @@
+\hypertarget{class_user}{}\doxysection{User Class Reference}
+\label{class_user}\index{User@{User}}
+
+
+The \mbox{\hyperlink{class_user}{User}} class is responsible for storing and managing the data for a user of the shop, such as their username, password, purchase history, and credit balance.  
+
+
+
+
+{\ttfamily \#include $<$user.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_user_a4a0137053e591fbb79d9057dd7d2283d}\label{class_user_a4a0137053e591fbb79d9057dd7d2283d}} 
+{\bfseries User} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{class_user}{User}} class. Initializes the data members of the class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_user_a1f11293daf985bd5e629f732fdf03b4c}{User}} (const std\+::string \&username, const std\+::string \&passwd, double money)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_user}{User}} class that takes a username, password and money as arguments. Initializes the data members of the class with the provided values. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_user_aaaa11924d837d07cbf5deb2cb71b83c1}\label{class_user_aaaa11924d837d07cbf5deb2cb71b83c1}} 
+{\bfseries $\sim$\+User} ()=default
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{class_user}{User}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_aca37eb42462e07ffa007948e0e478548}{add\+Credits}} (double amount) noexcept
+\begin{DoxyCompactList}\small\item\em Add credits to the user\textquotesingle{}s balance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_ac0ce873b5b78ea2cb8c6fed32d3caa90}{subtract\+Credits}} (double amount) noexcept
+\begin{DoxyCompactList}\small\item\em Subtract credits from the user\textquotesingle{}s balance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a004a74dc17904b4ec9e21e272a09ebde}{append\+History}} (const std\+::string \&bought\+\_\+item) noexcept
+\begin{DoxyCompactList}\small\item\em Append an item to the user\textquotesingle{}s purchase history. \end{DoxyCompactList}\item 
+const std\+::vector$<$ std\+::string $>$ \& \mbox{\hyperlink{class_user_a0fc59fad336ea78da1a0e19e0b9628de}{get\+History}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Get the user\textquotesingle{}s purchase history. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_user_ac5e25cd9f37b915d336b1215e187b926}{get\+Username}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Get the user\textquotesingle{}s username. \end{DoxyCompactList}\item 
+const std\+::string \& \mbox{\hyperlink{class_user_abdcc449403eb8347f9d1a886e8b1acb1}{get\+Password}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Get the user\textquotesingle{}s password. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_user_ad1f30a6c8ff55c11b6f2bb7dee1697bc}{get\+Money}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Get the user\textquotesingle{}s credit balance. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a0ea868da1f787d975dcd3d02cb5ab478}{set\+Password}} (const std\+::string \&passwd) noexcept
+\begin{DoxyCompactList}\small\item\em Set the user\textquotesingle{}s password. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a709e6548afc913677cabeafce3c49a55}{save\+To\+Binary}} (std\+::ofstream \&file)
+\begin{DoxyCompactList}\small\item\em Save the user\textquotesingle{}s data to a binary file. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_user_a6ecc6afa3312224ad5ad1fc09baefa42}{read\+From\+Binary}} (std\+::ifstream \&file)
+\begin{DoxyCompactList}\small\item\em Read the user\textquotesingle{}s data from a binary file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_user}{User}} class is responsible for storing and managing the data for a user of the shop, such as their username, password, purchase history, and credit balance. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_user_a1f11293daf985bd5e629f732fdf03b4c}\label{class_user_a1f11293daf985bd5e629f732fdf03b4c}} 
+\index{User@{User}!User@{User}}
+\index{User@{User}!User@{User}}
+\doxysubsubsection{\texorpdfstring{User()}{User()}}
+{\footnotesize\ttfamily User\+::\+User (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username,  }\item[{const std\+::string \&}]{passwd,  }\item[{double}]{money }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for the \mbox{\hyperlink{class_user}{User}} class that takes a username, password and money as arguments. Initializes the data members of the class with the provided values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the user. \\
+\hline
+{\em passwd} & The password of the user. \\
+\hline
+{\em money} & The credit balance of the user. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_user_aca37eb42462e07ffa007948e0e478548}\label{class_user_aca37eb42462e07ffa007948e0e478548}} 
+\index{User@{User}!addCredits@{addCredits}}
+\index{addCredits@{addCredits}!User@{User}}
+\doxysubsubsection{\texorpdfstring{addCredits()}{addCredits()}}
+{\footnotesize\ttfamily void User\+::add\+Credits (\begin{DoxyParamCaption}\item[{double}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Add credits to the user\textquotesingle{}s balance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of credits to add \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a004a74dc17904b4ec9e21e272a09ebde}\label{class_user_a004a74dc17904b4ec9e21e272a09ebde}} 
+\index{User@{User}!appendHistory@{appendHistory}}
+\index{appendHistory@{appendHistory}!User@{User}}
+\doxysubsubsection{\texorpdfstring{appendHistory()}{appendHistory()}}
+{\footnotesize\ttfamily void User\+::append\+History (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{bought\+\_\+item }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Append an item to the user\textquotesingle{}s purchase history. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em bought\+\_\+item} & The item to append \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a0fc59fad336ea78da1a0e19e0b9628de}\label{class_user_a0fc59fad336ea78da1a0e19e0b9628de}} 
+\index{User@{User}!getHistory@{getHistory}}
+\index{getHistory@{getHistory}!User@{User}}
+\doxysubsubsection{\texorpdfstring{getHistory()}{getHistory()}}
+{\footnotesize\ttfamily const std\+::vector$<$ std\+::string $>$ \& User\+::get\+History (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Get the user\textquotesingle{}s purchase history. 
+
+\begin{DoxyReturn}{Returns}
+A vector of strings containing the user\textquotesingle{}s purchase history 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_ad1f30a6c8ff55c11b6f2bb7dee1697bc}\label{class_user_ad1f30a6c8ff55c11b6f2bb7dee1697bc}} 
+\index{User@{User}!getMoney@{getMoney}}
+\index{getMoney@{getMoney}!User@{User}}
+\doxysubsubsection{\texorpdfstring{getMoney()}{getMoney()}}
+{\footnotesize\ttfamily double User\+::get\+Money (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Get the user\textquotesingle{}s credit balance. 
+
+\begin{DoxyReturn}{Returns}
+A double containing the user\textquotesingle{}s credit balance 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_abdcc449403eb8347f9d1a886e8b1acb1}\label{class_user_abdcc449403eb8347f9d1a886e8b1acb1}} 
+\index{User@{User}!getPassword@{getPassword}}
+\index{getPassword@{getPassword}!User@{User}}
+\doxysubsubsection{\texorpdfstring{getPassword()}{getPassword()}}
+{\footnotesize\ttfamily const std\+::string \& User\+::get\+Password (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Get the user\textquotesingle{}s password. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the user\textquotesingle{}s password 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_ac5e25cd9f37b915d336b1215e187b926}\label{class_user_ac5e25cd9f37b915d336b1215e187b926}} 
+\index{User@{User}!getUsername@{getUsername}}
+\index{getUsername@{getUsername}!User@{User}}
+\doxysubsubsection{\texorpdfstring{getUsername()}{getUsername()}}
+{\footnotesize\ttfamily const std\+::string \& User\+::get\+Username (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Get the user\textquotesingle{}s username. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the user\textquotesingle{}s username 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_user_a6ecc6afa3312224ad5ad1fc09baefa42}\label{class_user_a6ecc6afa3312224ad5ad1fc09baefa42}} 
+\index{User@{User}!readFromBinary@{readFromBinary}}
+\index{readFromBinary@{readFromBinary}!User@{User}}
+\doxysubsubsection{\texorpdfstring{readFromBinary()}{readFromBinary()}}
+{\footnotesize\ttfamily void User\+::read\+From\+Binary (\begin{DoxyParamCaption}\item[{std\+::ifstream \&}]{file }\end{DoxyParamCaption})}
+
+
+
+Read the user\textquotesingle{}s data from a binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The binary file to read the data from \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a709e6548afc913677cabeafce3c49a55}\label{class_user_a709e6548afc913677cabeafce3c49a55}} 
+\index{User@{User}!saveToBinary@{saveToBinary}}
+\index{saveToBinary@{saveToBinary}!User@{User}}
+\doxysubsubsection{\texorpdfstring{saveToBinary()}{saveToBinary()}}
+{\footnotesize\ttfamily void User\+::save\+To\+Binary (\begin{DoxyParamCaption}\item[{std\+::ofstream \&}]{file }\end{DoxyParamCaption})}
+
+
+
+Save the user\textquotesingle{}s data to a binary file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em file} & The binary file to save the data to \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_a0ea868da1f787d975dcd3d02cb5ab478}\label{class_user_a0ea868da1f787d975dcd3d02cb5ab478}} 
+\index{User@{User}!setPassword@{setPassword}}
+\index{setPassword@{setPassword}!User@{User}}
+\doxysubsubsection{\texorpdfstring{setPassword()}{setPassword()}}
+{\footnotesize\ttfamily void User\+::set\+Password (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{passwd }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the user\textquotesingle{}s password. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em passwd} & The new password \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_user_ac0ce873b5b78ea2cb8c6fed32d3caa90}\label{class_user_ac0ce873b5b78ea2cb8c6fed32d3caa90}} 
+\index{User@{User}!subtractCredits@{subtractCredits}}
+\index{subtractCredits@{subtractCredits}!User@{User}}
+\doxysubsubsection{\texorpdfstring{subtractCredits()}{subtractCredits()}}
+{\footnotesize\ttfamily void User\+::subtract\+Credits (\begin{DoxyParamCaption}\item[{double}]{amount }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Subtract credits from the user\textquotesingle{}s balance. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em amount} & The amount of credits to subtract \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{user_8h}{user.\+h}}\item 
+src/user.\+cpp\end{DoxyCompactItemize}

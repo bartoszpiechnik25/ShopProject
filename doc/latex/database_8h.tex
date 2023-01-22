@@ -1,0 +1,76 @@
+\hypertarget{database_8h}{}\doxysection{include/database.h File Reference}
+\label{database_8h}\index{include/database.h@{include/database.h}}
+
+
+This file contains the implementation of the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class. The \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class provides an interface for performing database operations on books and phones. The class uses std\+::map and std\+::vector to store the data internally and provides various methods for adding, deleting, and modifying the data. The class also provides a mechanism for loading and saving the data from and to files.  
+
+
+{\ttfamily \#include \char`\"{}book.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}phone.\+h\char`\"{}}\newline
+\doxysubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_shop_database}{Shop\+Database}}
+\begin{DoxyCompactList}\small\item\em The \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class provides an interface for performing database operations on books and phones. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{database_8h_a443f647757dde85043b49343f5cbe66b}\label{database_8h_a443f647757dde85043b49343f5cbe66b}} 
+enum {\bfseries Item\+Type} \{ {\bfseries BOOKS}
+, {\bfseries PHONES}
+ \}
+\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+{\footnotesize template$<$typename K , typename V $>$ }\\void \mbox{\hyperlink{database_8h_a3166d339c6bd9726c0dadb7ba5d475f1}{print\+Map}} (const std\+::map$<$ K, V $>$ \&m)
+\begin{DoxyCompactList}\small\item\em Template function for printing the contents of a map. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{database_8h_a9c9dbd20c1ff2aa7aedb7d2c04c243a3}\label{database_8h_a9c9dbd20c1ff2aa7aedb7d2c04c243a3}} 
+const Item\+Type {\bfseries init\+Database\+Items} \mbox{[}$\,$\mbox{]} = \{BOOKS, PHONES\}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+This file contains the implementation of the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class. The \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class provides an interface for performing database operations on books and phones. The class uses std\+::map and std\+::vector to store the data internally and provides various methods for adding, deleting, and modifying the data. The class also provides a mechanism for loading and saving the data from and to files. 
+
+\begin{DoxyAuthor}{Author}
+\href{mailto:bartoszpiechnik25@gmail.com}{\texttt{ bartoszpiechnik25@gmail.\+com}} 
+\end{DoxyAuthor}
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyDate}{Date}
+2023-\/01-\/22
+\end{DoxyDate}
+\begin{DoxyCopyright}{Copyright}
+Copyright (c) 2023 
+\end{DoxyCopyright}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{database_8h_a3166d339c6bd9726c0dadb7ba5d475f1}\label{database_8h_a3166d339c6bd9726c0dadb7ba5d475f1}} 
+\index{database.h@{database.h}!printMap@{printMap}}
+\index{printMap@{printMap}!database.h@{database.h}}
+\doxysubsubsection{\texorpdfstring{printMap()}{printMap()}}
+{\footnotesize\ttfamily template$<$typename K , typename V $>$ \\
+void print\+Map (\begin{DoxyParamCaption}\item[{const std\+::map$<$ K, V $>$ \&}]{m }\end{DoxyParamCaption})}
+
+
+
+Template function for printing the contents of a map. 
+
+
+\begin{DoxyTemplParams}{Template Parameters}
+{\em K} & The type of the key in the map. \\
+\hline
+{\em V} & The type of the value in the map. \\
+\hline
+\end{DoxyTemplParams}
+
+\begin{DoxyParams}{Parameters}
+{\em m} & The map to be printed. \\
+\hline
+\end{DoxyParams}

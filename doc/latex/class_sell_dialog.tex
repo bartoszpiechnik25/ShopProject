@@ -1,0 +1,107 @@
+\hypertarget{class_sell_dialog}{}\doxysection{Sell\+Dialog Class Reference}
+\label{class_sell_dialog}\index{SellDialog@{SellDialog}}
+
+
+The \mbox{\hyperlink{class_sell_dialog}{Sell\+Dialog}} class This class creates a dialog window for the user to sell a phone.  
+
+
+
+
+{\ttfamily \#include $<$selldialog.\+h$>$}
+
+Inheritance diagram for Sell\+Dialog\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sell_dialog}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_sell_dialog_af351a9d993b431c0e639be5129ae19cf}\label{class_sell_dialog_af351a9d993b431c0e639be5129ae19cf}} 
+void {\bfseries clear\+Text} ()
+\begin{DoxyCompactList}\small\item\em Slot for the clear button This slot is called when the user clicks the clear button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sell_dialog_abe26f2b55052626809d95dc95282decf}\label{class_sell_dialog_abe26f2b55052626809d95dc95282decf}} 
+void {\bfseries ok\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot for the ok button This slot is called when the user clicks the ok button. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sell_dialog_afaa3d50559f3b5cb523e2cc893eb4980}\label{class_sell_dialog_afaa3d50559f3b5cb523e2cc893eb4980}} 
+void {\bfseries close\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot for the close button This slot is called when the user clicks the close button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Signals}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_sell_dialog_a896b31b7ad88108ffafcba2263c1eec7}{send\+Data}} (std\+::map$<$ std\+::string, std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em Signal emitted when the user clicks the ok button. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_sell_dialog_ac9b07b38829f10c654e156db28807631}{Sell\+Dialog}} (QWidget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Construct a new Sell Dialog object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_sell_dialog_adf576b94e9a8484e258c364d03a8e1d4}\label{class_sell_dialog_adf576b94e9a8484e258c364d03a8e1d4}} 
+{\bfseries $\sim$\+Sell\+Dialog} () override
+\begin{DoxyCompactList}\small\item\em Destroy the Sell Dialog object. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_sell_dialog_a179d8adc6b17f3d884459713d3b42d6a}{set\+ID}} (std\+::vector$<$ long $>$ \&id\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the data for the combo box. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_sell_dialog}{Sell\+Dialog}} class This class creates a dialog window for the user to sell a phone. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_sell_dialog_ac9b07b38829f10c654e156db28807631}\label{class_sell_dialog_ac9b07b38829f10c654e156db28807631}} 
+\index{SellDialog@{SellDialog}!SellDialog@{SellDialog}}
+\index{SellDialog@{SellDialog}!SellDialog@{SellDialog}}
+\doxysubsubsection{\texorpdfstring{SellDialog()}{SellDialog()}}
+{\footnotesize\ttfamily Sell\+Dialog\+::\+Sell\+Dialog (\begin{DoxyParamCaption}\item[{QWidget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Construct a new Sell Dialog object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & Pointer to the parent widget \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_sell_dialog_a896b31b7ad88108ffafcba2263c1eec7}\label{class_sell_dialog_a896b31b7ad88108ffafcba2263c1eec7}} 
+\index{SellDialog@{SellDialog}!sendData@{sendData}}
+\index{sendData@{sendData}!SellDialog@{SellDialog}}
+\doxysubsubsection{\texorpdfstring{sendData}{sendData}}
+{\footnotesize\ttfamily void Sell\+Dialog\+::send\+Data (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [signal]}}
+
+
+
+Signal emitted when the user clicks the ok button. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & std\+::map containing the data entered by the user \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_sell_dialog_a179d8adc6b17f3d884459713d3b42d6a}\label{class_sell_dialog_a179d8adc6b17f3d884459713d3b42d6a}} 
+\index{SellDialog@{SellDialog}!setID@{setID}}
+\index{setID@{setID}!SellDialog@{SellDialog}}
+\doxysubsubsection{\texorpdfstring{setID()}{setID()}}
+{\footnotesize\ttfamily void Sell\+Dialog\+::set\+ID (\begin{DoxyParamCaption}\item[{std\+::vector$<$ long $>$ \&}]{id\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Sets the data for the combo box. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & Vector of IDs. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ui/sell/sell\+\_\+phone\+\_\+dialog/\mbox{\hyperlink{selldialog_8h}{selldialog.\+h}}\item 
+cmake-\/build-\/debug/\+Shop\+Project\+Qt\+\_\+autogen/\+ZVOUB7\+UND4/moc\+\_\+selldialog.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/\+VNGIRQKN6\+C/moc\+\_\+selldialog.\+cpp\item 
+cmake-\/build-\/release/\+Shop\+Project\+Qt\+\_\+autogen/\+ZVOUB7\+UND4/moc\+\_\+selldialog.\+cpp\item 
+ui/sell/sell\+\_\+phone\+\_\+dialog/selldialog.\+cpp\end{DoxyCompactItemize}

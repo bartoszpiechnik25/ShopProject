@@ -1,0 +1,56 @@
+\hypertarget{database_8h_source}{}\doxysection{database.\+h}
+\label{database_8h_source}\index{include/database.h@{include/database.h}}
+\mbox{\hyperlink{database_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{book_8h}{book.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{phone_8h}{phone.h}}"{}}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{comment}{//Define\ on\ which\ item\ perform\ database\ operations}}
+\DoxyCodeLine{00022\ \textcolor{keyword}{enum}\ ItemType\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ BOOKS,}
+\DoxyCodeLine{00024\ \ \ \ \ PHONES}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{const}\ ItemType\ initDatabaseItems[]\ =\ \{BOOKS,\ PHONES\};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_shop_database}{ShopDatabase}}\ \{}
+\DoxyCodeLine{00034\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00035\ \ \ \ \ std::map<ItemType,\ std::vector<Item\ *>>\ data;}
+\DoxyCodeLine{00036\ \ \ \ \ std::map<ItemType,\ std::map<long,\ bool>>\ uniqueID;}
+\DoxyCodeLine{00037\ \ \ \ \ std::map<ItemType,\ std::vector<std::string>>\ headers;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ *modified;}
+\DoxyCodeLine{00039\ \ \ \ \ std::map<ItemType,\ std::ifstream\ *>\ files;}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_shop_database_a69d5e0b216cbad9ec02b39894bc74d0c}{ShopDatabase}}();}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_shop_database_a69d5e0b216cbad9ec02b39894bc74d0c}{ShopDatabase}}(\textcolor{keyword}{const}\ std::map<std::string,\ ItemType>\ \&paths\_);}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_shop_database_a69d5e0b216cbad9ec02b39894bc74d0c}{ShopDatabase}}(\textcolor{keyword}{const}\ std::string\ \&path\_,\ \textcolor{keyword}{const}\ ItemType\ \&item\_type);}
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_shop_database_a1e1a77e07e75b0c8e491833d89765434}{\string~ShopDatabase}}();}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_database_aef36c335b3393a0dd44efb4e096e6d0a}{printDB}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_database_ad446dcfe9064be648b7014f89b143277}{saveData}}()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_database_ac598166e8ceb25ccbf96b6e273de5a96}{deleteRecord}}(\textcolor{keyword}{const}\ ItemType\ \&item\_type,\ \textcolor{keywordtype}{int}\ index);}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_database_ad9400353c72d9183259fd335888292b0}{deleteByID}}(\textcolor{keyword}{const}\ ItemType\ \&item\_type,\ \textcolor{keywordtype}{long}\ ID\_);}
+\DoxyCodeLine{00090\ \ \ \ \ \mbox{\hyperlink{class_shop_database}{ShopDatabase}}\ \&\mbox{\hyperlink{class_shop_database_ac10a63f4c6206c07e662e835f9826466}{operator-\/=}}(std::pair<ItemType,\ long>\ \&pair\_);}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_database_a7226fcb74c9dff36dad2c259d33a565f}{addRecord}}(\textcolor{keyword}{const}\ ItemType\ \&item\_type,\ \mbox{\hyperlink{class_item}{Item}}\ *new\_data);}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_database_a7226fcb74c9dff36dad2c259d33a565f}{addRecord}}(\textcolor{keyword}{const}\ ItemType\ \&item\_type,\ \textcolor{keyword}{const}\ std::string\ \&str\_data);}
+\DoxyCodeLine{00107\ \ \ \ \ \mbox{\hyperlink{class_shop_database}{ShopDatabase}}\ \&\mbox{\hyperlink{class_shop_database_a801fedbbaa133aa089ae3c1254b89d69}{operator+=}}(\textcolor{keyword}{const}\ std::pair<ItemType,\ std::string>\ \&pair\_);}
+\DoxyCodeLine{00112\ \ \ \ \ \mbox{\hyperlink{class_item}{Item}}\ *\mbox{\hyperlink{class_shop_database_ab3cb7a7012c9b4b6140355fb639e6c82}{operator[]}}(\textcolor{keyword}{const}\ std::pair<ItemType,\ long>\ \&pair\_);}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_shop_database_a2f4a36db52ad80779b84906823b4717b}{sortBy}}(\textcolor{keyword}{const}\ ItemType\ \&item\_type,\ \textcolor{keyword}{const}\ std::string\ \&column\_name,\ \textcolor{keywordtype}{bool}\ ascending\ =\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00124\ \ \ \ \ std::map<ItemType,\ std::vector<Item\ *>>\ \&\mbox{\hyperlink{class_shop_database_af8d953d32465ce59c3f483f9a720a830}{getItems}}();}
+\DoxyCodeLine{00130\ \ \ \ \ [[nodiscard]]std::vector<std::string>\ \mbox{\hyperlink{class_shop_database_afd069edd7d5be3d772e2792e53159027}{getHeaders}}(\textcolor{keyword}{const}\ ItemType\ \&item\_type)\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keyword}{static}\ \mbox{\hyperlink{class_item}{Item}}\ *\mbox{\hyperlink{class_shop_database_a473f6c9763a991d2f5c1ae8f3cc24248}{selectCorrectChild}}(\textcolor{keyword}{const}\ ItemType\ \&)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00142\ \ \ \ \ [[nodiscard]]std::vector<long>\ \mbox{\hyperlink{class_shop_database_a923b814377a1d2f89bb277f9b2c1e81d}{getUniqueID}}(\textcolor{keyword}{const}\ ItemType\ \&item\_type)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00143\ }
+\DoxyCodeLine{00144\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keywordtype}{void}\ open(\textcolor{keyword}{const}\ std::string\ \&path,\ \textcolor{keyword}{const}\ ItemType\ \&item\_type);}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{void}\ save(\textcolor{keyword}{const}\ ItemType\ \&item\_type);}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{void}\ initMap()\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ itemTypeToPath(\textcolor{keyword}{const}\ ItemType\ \&item\_type)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keyword}{static}\ std::string\ selectCorrectColumnNames(\textcolor{keyword}{const}\ ItemType\ \&item\_type)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00172\ \};}
+\DoxyCodeLine{00179\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ K,\ \textcolor{keyword}{typename}\ V>}
+\DoxyCodeLine{00180\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{database_8h_a3166d339c6bd9726c0dadb7ba5d475f1}{printMap}}(\textcolor{keyword}{const}\ std::map<K,\ V>\ \&m);}
+
+\end{DoxyCode}

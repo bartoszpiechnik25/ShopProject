@@ -1,0 +1,42 @@
+\hypertarget{sortwindow_8h_source}{}\doxysection{sortwindow.\+h}
+\label{sortwindow_8h_source}\index{ui/sort\_window/sortwindow.h@{ui/sort\_window/sortwindow.h}}
+\mbox{\hyperlink{sortwindow_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QDialog>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <QStyleFactory>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <QCommonStyle>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{login_8h}{login.h}}"{}}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00020\ \textcolor{keyword}{namespace\ }Ui\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sort_window}{SortWindow}};\ \}}
+\DoxyCodeLine{00021\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sort_window}{SortWindow}}\ :\ \textcolor{keyword}{public}\ QDialog\ \{}
+\DoxyCodeLine{00028\ Q\_OBJECT}
+\DoxyCodeLine{00029\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_ui_1_1_sort_window}{Ui::SortWindow}}\ *ui;}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_sort_window}{SortWindow}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_sort_window_aef427503623bf99dd13b4178ef612263}{\string~SortWindow}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sort_window_a83d3daf7805b52c62dea0cf322c4426d}{setComboBoxData}}(\textcolor{keyword}{const}\ std::vector<std::string>\ \&data);}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sort_window_abab905cc50be6443665c61dca2bba818}{closeEvent}}(QCloseEvent\ *event)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sort_window_a66ade92ce0df8634f42513ca330c5b03}{okClicked}}();}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sort_window_ab0499e5f4fd21056b1fe505c6bb85362}{cancelClicked}}();}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ signals:}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sort_window_a6496d97f80336d788d2b8ba7b4b1fc3f}{sortDataBy}}(\textcolor{keyword}{const}\ std::string\ \&,\ \textcolor{keywordtype}{bool});}
+\DoxyCodeLine{00078\ \};}
+
+\end{DoxyCode}

@@ -1,106 +1,38 @@
 #include "phone.h"
 
-/**
- * @brief Construct a new empty Phone object
- * 
- */
 Phone::Phone() : Item() {
     manufacturer = "";
     specs = "";
 }
 
-/**
- * @brief Construct a new Phone object
- * 
- * @param id_ Phone ID
- * @param name_ Phone name
- * @param description_ Phone description
- * @param price_ Phone price
- * @param manufacturer_ Phone manufacturer
- * @param specs_ Phone specs
- */
 Phone::Phone(const long& id_, const std::string& name_, const std::string& description_,
              const double& price_, const std::string& manufacturer_, const std::string& specs_):
              Item(id_, name_, description_, price_), specs(specs_), manufacturer(manufacturer_) {}
 
-/**
- * @brief Construct a new Phone object
- * 
- * @param id_ Phone ID
- * @param name_ Phone name
- * @param description_ Phone description
- * @param price_ Phone price
- * @param manufacturer_ Phone manufacturer
- * @param specs_ Phone specs
- */
 Phone::Phone(const long& id_, const char* name_, const char* description_, const double& price_, const char* manufacturer_, const char* specs_) : Item(id_, name_, description_, price_) {
     manufacturer = manufacturer_;
     specs = specs_;
 }
 
-/**
- * @brief Construct a new Phone object from another Phone object
- * 
- * @param phone Reference to other Phone object
- */
 Phone::Phone(const Phone& phone) : Item(phone.id, phone.name, phone.description, phone.price) {
     manufacturer = phone.manufacturer;
     specs = phone.specs;
 }
 
-/**
- * @brief Destroy the Phone object
- * 
- */
 Phone::~Phone() {}
 
-/**
- * @brief Set the Manufacturer data
- * 
- * @param manufacturer_ Phone manufacturer
- */
 void Phone::setManufacturer(const char* manufacturer_) noexcept { manufacturer = manufacturer_; }
 
-/**
- * @brief Set the Manufacturer data
- * 
- * @param manufacturer_ Phone manufacturer
- */
 void Phone::setManufacturer(const std::string& manufacturer_) noexcept { manufacturer = manufacturer_; }
 
-/**
- * @brief Set the Specs data
- * 
- * @param specs_ Phone specs
- */
 void Phone::setSpecs(const char* specs_) noexcept { specs = specs_; }
 
-/**
- * @brief Set the Specs data
- * 
- * @param specs_ Phone specs
- */
 void Phone::setSpecs(const std::string& specs_) noexcept { specs = specs_; }
 
-/**
- * @brief Get the Manufacturer data
- * 
- * @return std::string Phone manufacturer
- */
 std::string Phone::getManufacturer() const noexcept { return manufacturer; }
 
-/**
- * @brief Get the Specs data
- * 
- * @return std::string Phone specs
- */
 std::string Phone::getSpecs() const noexcept { return specs; }
 
-/**
- * @brief Get all data
- * 
- * @return std::map<std::string, std::string> Map of all data
- */
 std::map<std::string, std::string> Phone::getAll() const {
     if (isEmpty())
         throw empty_item("Empty phone!");
@@ -115,10 +47,6 @@ std::map<std::string, std::string> Phone::getAll() const {
     return map;
 }
 
-/**
- * @brief Set all data from user input
- * 
- */
 void Phone::setAll(std::map<std::string, std::string>& data) {
     id = stol(data["ID"]);
     manufacturer = data["Manufacturer"];
@@ -128,11 +56,6 @@ void Phone::setAll(std::map<std::string, std::string>& data) {
     specs = data["Specs"];
 }
 
-/**
- * @brief Reads data from string and sets it to the object
- * 
- * @param data String with data
- */
 void Phone::readFromStr(std::string& data) {
     std::vector<std::string> add;
     std::string str;
@@ -167,11 +90,6 @@ void Phone::readFromStr(std::string& data) {
     specs = add[5];
 }
 
-/**
- * @brief Convert object to comma separated string
- * 
- * @return std::string Commas separated string of all data from object
- */
 std::string Phone::saveToDatabase() {
     if (isEmpty())
         throw empty_item("Cannot save empty book!");
@@ -179,29 +97,15 @@ std::string Phone::saveToDatabase() {
     std::map<std::string, std::string> data = getAll();
     std::string save = data["ID"] + "," + data["Name"] + "," + data["Manufacturer"] + "," + data["Description"] + "," +
                        data["Price"] + "," + data["Specs"];
-    // for(const auto&[key, value]: getAll())
-    //     save += (value + ",");
-    // save.pop_back();
     return save;
 }
 
-/**
- * @brief Check if object is empty
- * 
- * @return true Object is empty
- * @return false Object is not empty
- */
 bool Phone::isEmpty() const {
     if (id == 0 || name.empty() || manufacturer.empty() || price == 0 || specs.empty())
         return true;
     return false;
 }
 
-/**
- * @brief Search all fields in the class for specified pattern.
- * @param str Pattern to be found in the fields;
- * @return True if pattern was found otherwise false.
- */
 bool Phone::contains(const std::string &str) {
     using namespace std;
     regex pattern = regex(".*" + str + ".*", regex_constants::icase | regex_constants::optimize);

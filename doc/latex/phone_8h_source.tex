@@ -1,0 +1,53 @@
+\hypertarget{phone_8h_source}{}\doxysection{phone.\+h}
+\label{phone_8h_source}\index{include/phone.h@{include/phone.h}}
+\mbox{\hyperlink{phone_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{item_8h}{item.h}}"{}}}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_phone}{Phone}}\ final:\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_item}{Item}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ std::string\ manufacturer;}
+\DoxyCodeLine{00022\ \ \ \ \ std::string\ specs;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ [[nodiscard]]\textcolor{keywordtype}{bool}\ isEmpty()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_phone_ac5ec115fb10c28d4710170c52d2a0826}{Phone}}();}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_phone_ac5ec115fb10c28d4710170c52d2a0826}{Phone}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \&id\_,\ \textcolor{keyword}{const}\ std::string\ \&name\_,\ \textcolor{keyword}{const}\ std::string\ \&description\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&price\_,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&manufacturer\_,}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::string\ \&specs\_);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{class_phone_ac5ec115fb10c28d4710170c52d2a0826}{Phone}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{long}\ \&id\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *name\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *description\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{double}\ \&price\_,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *manufacturer\_,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *specs\_);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00065\ \ \ \ \ \mbox{\hyperlink{class_phone_ac5ec115fb10c28d4710170c52d2a0826}{Phone}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_phone}{Phone}}\ \&phone);}
+\DoxyCodeLine{00066\ }
+\DoxyCodeLine{00070\ \ \ \ \ \mbox{\hyperlink{class_phone_a2793eb19cee129ec53a705864f64f4a1}{\string~Phone}}()\ \textcolor{keyword}{final};}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_phone_a2475e139ec9b77e6f3efc1cd07a70ce8}{setManufacturer}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *manufacturer\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_phone_a2475e139ec9b77e6f3efc1cd07a70ce8}{setManufacturer}}(\textcolor{keyword}{const}\ std::string\ \&manufacturer\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00088\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_phone_a0e46e744c4d58776700481f52072374f}{setSpecs}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *specs\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_phone_a0e46e744c4d58776700481f52072374f}{setSpecs}}(\textcolor{keyword}{const}\ std::string\ \&specs\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00095\ }
+\DoxyCodeLine{00100\ \ \ \ \ [[nodiscard]]std::string\ \mbox{\hyperlink{class_phone_ac3c5db1bc5bac4ed309ac095f57879e7}{getManufacturer}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00106\ \ \ \ \ [[nodiscard]]std::string\ \mbox{\hyperlink{class_phone_a23c3c6ef710112bdcd400825e9cfccf6}{getSpecs}}()\ \textcolor{keyword}{const}\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00112\ \ \ \ \ [[nodiscard]]std::map<std::string,\ std::string>\ \mbox{\hyperlink{class_phone_a6450e1b05beabc1dcd03ac353502e2ca}{getAll}}()\ \textcolor{keyword}{const\ override};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_phone_aa12df6e5fed5cc0a2ad7b61ccd639dca}{setAll}}(std::map<std::string,\ std::string>\ \&)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_phone_ac0f354ba80d09fea8df7841f2c3d9dff}{readFromStr}}(std::string\ \&)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00125\ }
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_phone_ada4de7f3a975314c1eac838a5389ab4e}{contains}}(\textcolor{keyword}{const}\ std::string\ \&str)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00137\ \ \ \ \ std::string\ \mbox{\hyperlink{class_phone_a3268b470a207d4e18fc34d3936acdb08}{saveToDatabase}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00138\ \};}
+
+\end{DoxyCode}

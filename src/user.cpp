@@ -3,88 +3,43 @@
 //
 #include "user.h"
 
-/**
- * Creates empty user object
- */
 User::User() {}
 
-/**
- * @brief Creates user object with given parameters
- * @param username Username
- * @param passwd Password
- * @param money Money
- */
 User::User(const std::string &username, const std::string &passwd, const double money):
         username(username), password(passwd), credits(money) {}
 
-/**
- * @brief Adds credits to a user
- * @param amount
- */
 void User::addCredits(const double amount) noexcept {
     credits += amount;
 }
 
-/**
- * @brief Subtracts credits from a user
- * @param amount
- */
 void User::subtractCredits(const double amount) noexcept {
     credits -= amount;
 }
 
-/**
- * @brief Appends history of a user
- * @param bought_item
- */
 void User::appendHistory(const std::string &bought_item) noexcept {
     history.push_back(bought_item);
 }
 
-/**
- * @brief Returns username
- * @return string containing username
- */
 const std::string& User::getUsername() const noexcept {
     return username;
 }
 
-/**
- * @brief Returns password
- * @return string containing user password
- */
 const std::string& User::getPassword() const noexcept {
     return password;
 }
 
-/**
- * @brief Returns user's purchases history
- * @return double containing user money
- */
 const std::vector<std::string>& User::getHistory() const noexcept {
     return history;
 }
 
-/**
- * @brief Returns money
- * @return double containing user money
- */
 double User::getMoney() const noexcept {
     return credits;
 }
 
-/**
- * @brief Sets user password
- * @param passwd
- */
 void User::setPassword(const std::string &passwd) noexcept {
     this->password = passwd;
 }
 
-/**
- * @brief Saves user to binary file
- * @param file
- */
 void User::saveToBinary(std::ofstream &file) {
     if (file.good()) {
         std::size_t username_size = username.size(), passwd_size = password.size(), history_size = history.size();
@@ -102,10 +57,6 @@ void User::saveToBinary(std::ofstream &file) {
     } else throw std::runtime_error("Error saving to file!");
 }
 
-/**
- * @brief Reads user from binary file
- * @param file
- */
 void User::readFromBinary(std::ifstream &file) {
     if (file.good()) {
         std::size_t username_size, passwd_size, history_size;

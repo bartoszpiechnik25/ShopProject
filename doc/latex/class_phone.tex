@@ -1,0 +1,379 @@
+\hypertarget{class_phone}{}\doxysection{Phone Class Reference}
+\label{class_phone}\index{Phone@{Phone}}
+
+
+The \mbox{\hyperlink{class_phone}{Phone}} class is a child class of \mbox{\hyperlink{class_item}{Item}}, and provides additional properties for phones such as manufacturer and specs.  
+
+
+
+
+{\ttfamily \#include $<$phone.\+h$>$}
+
+Inheritance diagram for Phone\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_phone}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_phone_ac5ec115fb10c28d4710170c52d2a0826}\label{class_phone_ac5ec115fb10c28d4710170c52d2a0826}} 
+{\bfseries Phone} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{class_phone}{Phone}} class. Initializes the data members of the class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_phone_a52b0bb9e4cebec26208c90f1a194e72f}{Phone}} (const long \&id\+\_\+, const std\+::string \&name\+\_\+, const std\+::string \&description\+\_\+, const double \&price\+\_\+, const std\+::string \&manufacturer\+\_\+, const std\+::string \&specs\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_phone}{Phone}} class that takes an ID, name, description, price, manufacturer, and specs as arguments. Initializes the data members of the class with the provided values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_phone_ad429fc385bb68b39020adc91184aa4af}{Phone}} (const long \&id\+\_\+, const char $\ast$name\+\_\+, const char $\ast$description\+\_\+, const double \&price\+\_\+, const char $\ast$manufacturer\+\_\+, const char $\ast$specs\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_phone}{Phone}} class that takes an ID, name, description, price, manufacturer, and specs as arguments. Initializes the data members of the class with the provided values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_phone_a39a7034076efc16c9ccef5c7633d32d1}{Phone}} (const \mbox{\hyperlink{class_phone}{Phone}} \&phone)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \mbox{\hyperlink{class_phone}{Phone}} class. Initializes the data members of the class with the values of another \mbox{\hyperlink{class_phone}{Phone}} object. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_phone_a2793eb19cee129ec53a705864f64f4a1}\label{class_phone_a2793eb19cee129ec53a705864f64f4a1}} 
+{\bfseries $\sim$\+Phone} () final
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{class_phone}{Phone}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_phone_a2475e139ec9b77e6f3efc1cd07a70ce8}{set\+Manufacturer}} (const char $\ast$manufacturer\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Set the manufacturer of the phone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_phone_aee1d6812ac95216cf5d462ece710ed7a}{set\+Manufacturer}} (const std\+::string \&manufacturer\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Set the manufacturer of the phone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_phone_a0e46e744c4d58776700481f52072374f}{set\+Specs}} (const char $\ast$specs\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Set the specs of the phone. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_phone_ac403da1a8af2ad8c3fcfee696223e6e7}{set\+Specs}} (const std\+::string \&specs\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Set the specs of the phone. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_phone_ac3c5db1bc5bac4ed309ac095f57879e7}{get\+Manufacturer}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Get the manufacturer of the phone. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_phone_a23c3c6ef710112bdcd400825e9cfccf6}{get\+Specs}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Get the specs of the phone. \end{DoxyCompactList}\item 
+std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_phone_a6450e1b05beabc1dcd03ac353502e2ca}{get\+All}} () const override
+\begin{DoxyCompactList}\small\item\em Returns all properties of the phone in a map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_phone_aa12df6e5fed5cc0a2ad7b61ccd639dca}{set\+All}} (std\+::map$<$ std\+::string, std\+::string $>$ \&) override
+\begin{DoxyCompactList}\small\item\em Sets all the properties of the phone from a map. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_phone_ac0f354ba80d09fea8df7841f2c3d9dff}{read\+From\+Str}} (std\+::string \&) override
+\begin{DoxyCompactList}\small\item\em Reads the properties of the phone from a string. \end{DoxyCompactList}\item 
+bool \mbox{\hyperlink{class_phone_ada4de7f3a975314c1eac838a5389ab4e}{contains}} (const std\+::string \&str) override
+\begin{DoxyCompactList}\small\item\em Check if the phone contains the given string in any of its properties. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_phone_a3268b470a207d4e18fc34d3936acdb08}{save\+To\+Database}} () override
+\begin{DoxyCompactList}\small\item\em Saves the properties of the phone to a string in the format for writing to a file. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_item}{Item}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_item_a297720c02984eab37332ae795d22189d}\label{class_item_a297720c02984eab37332ae795d22189d}} 
+{\bfseries Item} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{class_item}{Item}} class. Initializes the data members of the class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_item_a7facd37851028fe11818724811542190}{Item}} (const long \&id\+\_\+, const std\+::string \&name\+\_\+, const std\+::string \&description\+\_\+, const double \&price\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_item}{Item}} class that takes an ID, name, description, and price as arguments. Initializes the data members of the class with the provided values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_item_af6ef9daf77862645ab5657245ce4cf16}{Item}} (const long \&id\+\_\+, const char $\ast$name\+\_\+, const char $\ast$description\+\_\+, const double \&price\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_item}{Item}} class that takes an ID, name, description, and price as arguments. Initializes the data members of the class with the provided values. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_item_a44f7e3f580bd6c0fa2e1c288dff484be}{Item}} (const \mbox{\hyperlink{class_item}{Item}} \&other)
+\begin{DoxyCompactList}\small\item\em Copy constructor for the \mbox{\hyperlink{class_item}{Item}} class. Initializes the data members of the class with the values from the other item. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_item_a0fa84a8ac1a4560611b1ebfb75fe5e61}\label{class_item_a0fa84a8ac1a4560611b1ebfb75fe5e61}} 
+virtual {\bfseries $\sim$\+Item} ()=0
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{class_item}{Item}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a43da66a17359839e998e3e71c3a19383}{set\+ID}} (const long \&id\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the ID of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a922171147d5dd76754dc185ba121aff5}{set\+Name}} (const std\+::string \&name\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the name of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a4a04fad21550fdec375cd50d6c5ac472}{set\+Name}} (const char $\ast$name\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the name of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a14195c77ab6eb69f0fb94a1f8c9486f5}{set\+Description}} (const std\+::string \&description\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the description of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a1087e81870676585e0c0adc45ea50e16}{set\+Description}} (const char $\ast$description\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the description of the item. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_item_a6da677229888d474090786190e7dc0be}{set\+Price}} (const double \&price\+\_\+) noexcept
+\begin{DoxyCompactList}\small\item\em Sets the price of the item. \end{DoxyCompactList}\item 
+long \mbox{\hyperlink{class_item_ac631cee9070be88b52758790351bd353}{get\+ID}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the ID of the item. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_item_a976e577691c9da0bf18fe4741740eea3}{get\+Name}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the name of the item. \end{DoxyCompactList}\item 
+std\+::string \mbox{\hyperlink{class_item_a89ef3bdc54af937d974d644f967cc2c8}{get\+Description}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the description of the item. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_item_a5c9c1c82d7405d19899ec019bc88d370}{get\+Price}} () const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the price of the item. \end{DoxyCompactList}\item 
+virtual std\+::map$<$ std\+::string, std\+::string $>$ \mbox{\hyperlink{class_item_a286ff8d78a126547af7b91d85dfc2405}{get\+All}} () const =0
+\begin{DoxyCompactList}\small\item\em Returns all properties of the item in a map. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_item_ae9d955019836a75f473d17dae3a08ce7}{set\+All}} (std\+::map$<$ std\+::string, std\+::string $>$ \&data)=0
+\begin{DoxyCompactList}\small\item\em Sets all the properties of the item from a map. \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_item_a68b0a7042c1580617302b76e032fe397}{read\+From\+Str}} (std\+::string \&data)=0
+\begin{DoxyCompactList}\small\item\em Reads the properties of the item from a string. \end{DoxyCompactList}\item 
+virtual std\+::string \mbox{\hyperlink{class_item_ad89f00a8d4126838b1bf13bd475d8259}{save\+To\+Database}} ()=0
+\begin{DoxyCompactList}\small\item\em Saves the properties of the item to a string in the format for writing to a file. \end{DoxyCompactList}\item 
+virtual bool \mbox{\hyperlink{class_item_a4a2ba44c86461210c57d0c8da7a77978}{contains}} (const std\+::string \&str)=0
+\begin{DoxyCompactList}\small\item\em Check if the item contains the given string in any of its properties. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Additional Inherited Members}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{class_item_a2ef09cedd1c21b2d5d8adf02c3b1d9e0}{is\+Empty}} () const =0
+\begin{DoxyCompactList}\small\item\em Check if the item is empty. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_item}{Item}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_item_ab698200bfffb60169f58babf15518b04}\label{class_item_ab698200bfffb60169f58babf15518b04}} 
+long {\bfseries id}
+\item 
+\mbox{\Hypertarget{class_item_a342b7a351c9ae1c5430aa3ef65b670bd}\label{class_item_a342b7a351c9ae1c5430aa3ef65b670bd}} 
+std\+::string {\bfseries name}
+\item 
+\mbox{\Hypertarget{class_item_a7417563f4b149d5e531cea1e993f66f6}\label{class_item_a7417563f4b149d5e531cea1e993f66f6}} 
+std\+::string {\bfseries description}
+\item 
+\mbox{\Hypertarget{class_item_acbfaa5182305c5993cf937d43feaecf8}\label{class_item_acbfaa5182305c5993cf937d43feaecf8}} 
+double {\bfseries price}
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_phone}{Phone}} class is a child class of \mbox{\hyperlink{class_item}{Item}}, and provides additional properties for phones such as manufacturer and specs. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_phone_a52b0bb9e4cebec26208c90f1a194e72f}\label{class_phone_a52b0bb9e4cebec26208c90f1a194e72f}} 
+\index{Phone@{Phone}!Phone@{Phone}}
+\index{Phone@{Phone}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{Phone()}{Phone()}\hspace{0.1cm}{\footnotesize\ttfamily [1/3]}}
+{\footnotesize\ttfamily Phone\+::\+Phone (\begin{DoxyParamCaption}\item[{const long \&}]{id\+\_\+,  }\item[{const std\+::string \&}]{name\+\_\+,  }\item[{const std\+::string \&}]{description\+\_\+,  }\item[{const double \&}]{price\+\_\+,  }\item[{const std\+::string \&}]{manufacturer\+\_\+,  }\item[{const std\+::string \&}]{specs\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{class_phone}{Phone}} class that takes an ID, name, description, price, manufacturer, and specs as arguments. Initializes the data members of the class with the provided values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & The ID of the phone. \\
+\hline
+{\em name\+\_\+} & The name of the phone. \\
+\hline
+{\em description\+\_\+} & The description of the phone. \\
+\hline
+{\em price\+\_\+} & The price of the phone. \\
+\hline
+{\em manufacturer\+\_\+} & The manufacturer of the phone. \\
+\hline
+{\em specs\+\_\+} & The specs of the phone. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_phone_ad429fc385bb68b39020adc91184aa4af}\label{class_phone_ad429fc385bb68b39020adc91184aa4af}} 
+\index{Phone@{Phone}!Phone@{Phone}}
+\index{Phone@{Phone}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{Phone()}{Phone()}\hspace{0.1cm}{\footnotesize\ttfamily [2/3]}}
+{\footnotesize\ttfamily Phone\+::\+Phone (\begin{DoxyParamCaption}\item[{const long \&}]{id\+\_\+,  }\item[{const char $\ast$}]{name\+\_\+,  }\item[{const char $\ast$}]{description\+\_\+,  }\item[{const double \&}]{price\+\_\+,  }\item[{const char $\ast$}]{manufacturer\+\_\+,  }\item[{const char $\ast$}]{specs\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Constructor for the \mbox{\hyperlink{class_phone}{Phone}} class that takes an ID, name, description, price, manufacturer, and specs as arguments. Initializes the data members of the class with the provided values. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em id\+\_\+} & The ID of the phone. \\
+\hline
+{\em name\+\_\+} & The name of the phone, as a C-\/style string. \\
+\hline
+{\em description\+\_\+} & The description of the phone, as a C-\/style string. \\
+\hline
+{\em price\+\_\+} & The price of the phone. \\
+\hline
+{\em manufacturer\+\_\+} & The manufacturer of the phone, as a C-\/style string. \\
+\hline
+{\em specs\+\_\+} & The specs of the phone, as a C-\/style string. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_phone_a39a7034076efc16c9ccef5c7633d32d1}\label{class_phone_a39a7034076efc16c9ccef5c7633d32d1}} 
+\index{Phone@{Phone}!Phone@{Phone}}
+\index{Phone@{Phone}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{Phone()}{Phone()}\hspace{0.1cm}{\footnotesize\ttfamily [3/3]}}
+{\footnotesize\ttfamily Phone\+::\+Phone (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{class_phone}{Phone}} \&}]{phone }\end{DoxyParamCaption})}
+
+
+
+Copy constructor for the \mbox{\hyperlink{class_phone}{Phone}} class. Initializes the data members of the class with the values of another \mbox{\hyperlink{class_phone}{Phone}} object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em phone} & The \mbox{\hyperlink{class_phone}{Phone}} object to copy data from. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_phone_ada4de7f3a975314c1eac838a5389ab4e}\label{class_phone_ada4de7f3a975314c1eac838a5389ab4e}} 
+\index{Phone@{Phone}!contains@{contains}}
+\index{contains@{contains}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{contains()}{contains()}}
+{\footnotesize\ttfamily bool Phone\+::contains (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{str }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Check if the phone contains the given string in any of its properties. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em str} & The string to search for. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A boolean indicating if the phone contains the given string. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_item_a4a2ba44c86461210c57d0c8da7a77978}{Item}}.
+
+\mbox{\Hypertarget{class_phone_a6450e1b05beabc1dcd03ac353502e2ca}\label{class_phone_a6450e1b05beabc1dcd03ac353502e2ca}} 
+\index{Phone@{Phone}!getAll@{getAll}}
+\index{getAll@{getAll}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{getAll()}{getAll()}}
+{\footnotesize\ttfamily std\+::map$<$ std\+::string, std\+::string $>$ Phone\+::get\+All (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Returns all properties of the phone in a map. 
+
+\begin{DoxyReturn}{Returns}
+A map containing all the properties of the phone. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_item_a286ff8d78a126547af7b91d85dfc2405}{Item}}.
+
+\mbox{\Hypertarget{class_phone_ac3c5db1bc5bac4ed309ac095f57879e7}\label{class_phone_ac3c5db1bc5bac4ed309ac095f57879e7}} 
+\index{Phone@{Phone}!getManufacturer@{getManufacturer}}
+\index{getManufacturer@{getManufacturer}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{getManufacturer()}{getManufacturer()}}
+{\footnotesize\ttfamily std\+::string Phone\+::get\+Manufacturer (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Get the manufacturer of the phone. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the manufacturer of the phone 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_phone_a23c3c6ef710112bdcd400825e9cfccf6}\label{class_phone_a23c3c6ef710112bdcd400825e9cfccf6}} 
+\index{Phone@{Phone}!getSpecs@{getSpecs}}
+\index{getSpecs@{getSpecs}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{getSpecs()}{getSpecs()}}
+{\footnotesize\ttfamily std\+::string Phone\+::get\+Specs (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Get the specs of the phone. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the specs of the phone 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_phone_ac0f354ba80d09fea8df7841f2c3d9dff}\label{class_phone_ac0f354ba80d09fea8df7841f2c3d9dff}} 
+\index{Phone@{Phone}!readFromStr@{readFromStr}}
+\index{readFromStr@{readFromStr}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{readFromStr()}{readFromStr()}}
+{\footnotesize\ttfamily void Phone\+::read\+From\+Str (\begin{DoxyParamCaption}\item[{std\+::string \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reads the properties of the phone from a string. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The string containing the properties of the phone. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_item_a68b0a7042c1580617302b76e032fe397}{Item}}.
+
+\mbox{\Hypertarget{class_phone_a3268b470a207d4e18fc34d3936acdb08}\label{class_phone_a3268b470a207d4e18fc34d3936acdb08}} 
+\index{Phone@{Phone}!saveToDatabase@{saveToDatabase}}
+\index{saveToDatabase@{saveToDatabase}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{saveToDatabase()}{saveToDatabase()}}
+{\footnotesize\ttfamily std\+::string Phone\+::save\+To\+Database (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Saves the properties of the phone to a string in the format for writing to a file. 
+
+\begin{DoxyReturn}{Returns}
+A string containing the properties of the phone. 
+\end{DoxyReturn}
+
+
+Implements \mbox{\hyperlink{class_item_ad89f00a8d4126838b1bf13bd475d8259}{Item}}.
+
+\mbox{\Hypertarget{class_phone_aa12df6e5fed5cc0a2ad7b61ccd639dca}\label{class_phone_aa12df6e5fed5cc0a2ad7b61ccd639dca}} 
+\index{Phone@{Phone}!setAll@{setAll}}
+\index{setAll@{setAll}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{setAll()}{setAll()}}
+{\footnotesize\ttfamily void Phone\+::set\+All (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Sets all the properties of the phone from a map. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The map containing the properties of the phone. \\
+\hline
+\end{DoxyParams}
+
+
+Implements \mbox{\hyperlink{class_item_ae9d955019836a75f473d17dae3a08ce7}{Item}}.
+
+\mbox{\Hypertarget{class_phone_a2475e139ec9b77e6f3efc1cd07a70ce8}\label{class_phone_a2475e139ec9b77e6f3efc1cd07a70ce8}} 
+\index{Phone@{Phone}!setManufacturer@{setManufacturer}}
+\index{setManufacturer@{setManufacturer}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{setManufacturer()}{setManufacturer()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Phone\+::set\+Manufacturer (\begin{DoxyParamCaption}\item[{const char $\ast$}]{manufacturer\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the manufacturer of the phone. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manufacturer\+\_\+} & The new manufacturer, as a C-\/style string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_phone_aee1d6812ac95216cf5d462ece710ed7a}\label{class_phone_aee1d6812ac95216cf5d462ece710ed7a}} 
+\index{Phone@{Phone}!setManufacturer@{setManufacturer}}
+\index{setManufacturer@{setManufacturer}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{setManufacturer()}{setManufacturer()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Phone\+::set\+Manufacturer (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{manufacturer\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the manufacturer of the phone. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em manufacturer\+\_\+} & The new manufacturer \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_phone_a0e46e744c4d58776700481f52072374f}\label{class_phone_a0e46e744c4d58776700481f52072374f}} 
+\index{Phone@{Phone}!setSpecs@{setSpecs}}
+\index{setSpecs@{setSpecs}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{setSpecs()}{setSpecs()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Phone\+::set\+Specs (\begin{DoxyParamCaption}\item[{const char $\ast$}]{specs\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the specs of the phone. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em specs\+\_\+} & The new specs, as a C-\/style string \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_phone_ac403da1a8af2ad8c3fcfee696223e6e7}\label{class_phone_ac403da1a8af2ad8c3fcfee696223e6e7}} 
+\index{Phone@{Phone}!setSpecs@{setSpecs}}
+\index{setSpecs@{setSpecs}!Phone@{Phone}}
+\doxysubsubsection{\texorpdfstring{setSpecs()}{setSpecs()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Phone\+::set\+Specs (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{specs\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Set the specs of the phone. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em specs\+\_\+} & The new specs \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{phone_8h}{phone.\+h}}\item 
+src/phone.\+cpp\end{DoxyCompactItemize}

@@ -1,0 +1,148 @@
+\hypertarget{class_shop}{}\doxysection{Shop Class Reference}
+\label{class_shop}\index{Shop@{Shop}}
+
+
+The main window class of the application. The \mbox{\hyperlink{class_shop}{Shop}} class is the main window class of the application, it is responsible for displaying the main window, creating and displaying the other windows, and handling the interactions between them.  
+
+
+
+
+{\ttfamily \#include $<$shop.\+h$>$}
+
+Inheritance diagram for Shop\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_shop}
+\end{center}
+\end{figure}
+\doxysubsection*{Public Slots}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{class_shop_a508ecacd5e81f031d95dd662b1344311}{login\+Successful}} (const std\+::string \&username, std\+::map$<$ std\+::string, \mbox{\hyperlink{class_user}{User}} $>$ \&users\+Database\+\_\+)
+\begin{DoxyCompactList}\small\item\em Slot that is called when a user successfully logs in. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_aa6f198cbe4e146ed48e5c81f85a8b83c}\label{class_shop_aa6f198cbe4e146ed48e5c81f85a8b83c}} 
+void {\bfseries sell\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot that is called when the sell button is clicked. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_a0d53d1c62db775305e92b1155b8f3405}{add\+New\+Item}} (std\+::map$<$ std\+::string, std\+::string $>$ \&data)
+\begin{DoxyCompactList}\small\item\em Slot that is called when a new item is added to the database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_a81884d4d08c1efd9bdef44a80c4693e2}{sort\+Data}} (const std\+::string \&column, bool ascending)
+\begin{DoxyCompactList}\small\item\em Slot that is called when the data is sorted. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_aaf932ea55f191f74f4ac5ab6585c3f5a}\label{class_shop_aaf932ea55f191f74f4ac5ab6585c3f5a}} 
+void {\bfseries create\+Sort\+Window} ()
+\begin{DoxyCompactList}\small\item\em Slot that is called when the sort window is created. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_a9f33eb4b0697cc12ea7ebf6d5d037716}\label{class_shop_a9f33eb4b0697cc12ea7ebf6d5d037716}} 
+void {\bfseries buy\+Button\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot that is called when the buy button is clicked. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_a3b481f7a5a6310400dd53f96ec6e35eb}\label{class_shop_a3b481f7a5a6310400dd53f96ec6e35eb}} 
+void {\bfseries search\+For\+Data} ()
+\begin{DoxyCompactList}\small\item\em Slot that is called when a search is performed. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_adacd24db017381723b6d033f14766854}\label{class_shop_adacd24db017381723b6d033f14766854}} 
+void {\bfseries reset\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot that is called when the reset button is clicked. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_a6673bad2cd6a1e37142425edd24385d0}\label{class_shop_a6673bad2cd6a1e37142425edd24385d0}} 
+void {\bfseries profile\+Clicked} ()
+\begin{DoxyCompactList}\small\item\em Slot that is called when the profile button is clicked. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_shop_a9c80afe09506ea84df359a2c78bd90e5}{Shop}} (QWidget $\ast$parent=nullptr)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_shop}{Shop}} class. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_a0653b7f4a2a546a84df19ff01df80131}\label{class_shop_a0653b7f4a2a546a84df19ff01df80131}} 
+{\bfseries $\sim$\+Shop} () override
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{class_shop}{Shop}} class. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_ae3a603a9cd1b6e218447a014f9a44ce3}{close\+Event}} (QClose\+Event $\ast$event) override
+\begin{DoxyCompactList}\small\item\em Event handler for the close event. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The main window class of the application. The \mbox{\hyperlink{class_shop}{Shop}} class is the main window class of the application, it is responsible for displaying the main window, creating and displaying the other windows, and handling the interactions between them. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_shop_a9c80afe09506ea84df359a2c78bd90e5}\label{class_shop_a9c80afe09506ea84df359a2c78bd90e5}} 
+\index{Shop@{Shop}!Shop@{Shop}}
+\index{Shop@{Shop}!Shop@{Shop}}
+\doxysubsubsection{\texorpdfstring{Shop()}{Shop()}}
+{\footnotesize\ttfamily Shop\+::\+Shop (\begin{DoxyParamCaption}\item[{QWidget $\ast$}]{parent = {\ttfamily nullptr} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for the \mbox{\hyperlink{class_shop}{Shop}} class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em parent} & The parent widget of the \mbox{\hyperlink{class_shop}{Shop}} class. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_shop_a0d53d1c62db775305e92b1155b8f3405}\label{class_shop_a0d53d1c62db775305e92b1155b8f3405}} 
+\index{Shop@{Shop}!addNewItem@{addNewItem}}
+\index{addNewItem@{addNewItem}!Shop@{Shop}}
+\doxysubsubsection{\texorpdfstring{addNewItem}{addNewItem}}
+{\footnotesize\ttfamily void Shop\+::add\+New\+Item (\begin{DoxyParamCaption}\item[{std\+::map$<$ std\+::string, std\+::string $>$ \&}]{data }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot that is called when a new item is added to the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em data} & The data of the new item. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_ae3a603a9cd1b6e218447a014f9a44ce3}\label{class_shop_ae3a603a9cd1b6e218447a014f9a44ce3}} 
+\index{Shop@{Shop}!closeEvent@{closeEvent}}
+\index{closeEvent@{closeEvent}!Shop@{Shop}}
+\doxysubsubsection{\texorpdfstring{closeEvent()}{closeEvent()}}
+{\footnotesize\ttfamily void Shop\+::close\+Event (\begin{DoxyParamCaption}\item[{QClose\+Event $\ast$}]{event }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}}
+
+
+
+Event handler for the close event. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em event} & The close event. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_a508ecacd5e81f031d95dd662b1344311}\label{class_shop_a508ecacd5e81f031d95dd662b1344311}} 
+\index{Shop@{Shop}!loginSuccessful@{loginSuccessful}}
+\index{loginSuccessful@{loginSuccessful}!Shop@{Shop}}
+\doxysubsubsection{\texorpdfstring{loginSuccessful}{loginSuccessful}}
+{\footnotesize\ttfamily void Shop\+::login\+Successful (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{username,  }\item[{std\+::map$<$ std\+::string, \mbox{\hyperlink{class_user}{User}} $>$ \&}]{users\+Database\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot that is called when a user successfully logs in. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em username} & The username of the logged in user. \\
+\hline
+{\em users\+Database\+\_\+} & The map of users in the application. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_a81884d4d08c1efd9bdef44a80c4693e2}\label{class_shop_a81884d4d08c1efd9bdef44a80c4693e2}} 
+\index{Shop@{Shop}!sortData@{sortData}}
+\index{sortData@{sortData}!Shop@{Shop}}
+\doxysubsubsection{\texorpdfstring{sortData}{sortData}}
+{\footnotesize\ttfamily void Shop\+::sort\+Data (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{column,  }\item[{bool}]{ascending }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [slot]}}
+
+
+
+Slot that is called when the data is sorted. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em column} & The column by which the data will be sorted. \\
+\hline
+{\em ascending} & A boolean indicating if the data will be sorted in ascending or descending order. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+ui/shop/shop.\+h\item 
+ui/shop/shop.\+cpp\end{DoxyCompactItemize}

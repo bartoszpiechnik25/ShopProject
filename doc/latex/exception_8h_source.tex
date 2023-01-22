@@ -1,0 +1,29 @@
+\hypertarget{exception_8h_source}{}\doxysection{exception.\+h}
+\label{exception_8h_source}\index{include/exception.h@{include/exception.h}}
+\mbox{\hyperlink{exception_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <exception>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classempty__item}{empty\_item}}:\ \textcolor{keyword}{public}\ std::exception\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00023\ \ \ \ \ std::string\ message;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classempty__item_a4a3438847a5593d39cf296d19b4191d4}{empty\_item}}(std::string\ m)\ :\ message(m)\ \{\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{classempty__item_ae355c96a295af88d8de40668205167bf}{what}}()\ \textcolor{keyword}{const}\ throw()\ \{\ \textcolor{keywordflow}{return}\ message.c\_str();\ \}}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classempty__vector}{empty\_vector}}:\ \textcolor{keyword}{public}\ std::exception\ \{}
+\DoxyCodeLine{00044\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00045\ \ \ \ \ std::string\ message;}
+\DoxyCodeLine{00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classempty__vector_af2caa4e316f29c755e4a2df0031b17ad}{empty\_vector}}(std::string\ m)\ :\ message(m)\ \{\}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *\mbox{\hyperlink{classempty__vector_afc85e845bb189bf67099cb06179d743d}{what}}()\ \textcolor{keyword}{const}\ throw()\ \{\ \textcolor{keywordflow}{return}\ message.c\_str();\ \}}
+\DoxyCodeLine{00058\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,42 @@
+\hypertarget{sellbookdialog_8h_source}{}\doxysection{sellbookdialog.\+h}
+\label{sellbookdialog_8h_source}\index{ui/sell/sell\_book\_dialog/sellbookdialog.h@{ui/sell/sell\_book\_dialog/sellbookdialog.h}}
+\mbox{\hyperlink{sellbookdialog_8h}{Go to the documentation of this file.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <QDialog>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{login_8h}{login.h}}"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ QT\_BEGIN\_NAMESPACE}
+\DoxyCodeLine{00019\ \textcolor{keyword}{namespace\ }Ui\ \{\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sell_book_dialog}{SellBookDialog}};\ \}}
+\DoxyCodeLine{00020\ QT\_END\_NAMESPACE}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sell_book_dialog}{SellBookDialog}}\ :\ \textcolor{keyword}{public}\ QDialog\ \{}
+\DoxyCodeLine{00027\ Q\_OBJECT}
+\DoxyCodeLine{00028\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_ui_1_1_sell_book_dialog}{Ui::SellBookDialog}}\ *ui;}
+\DoxyCodeLine{00030\ \ \ \ \ std::vector<long>\ uniqueIDs;}
+\DoxyCodeLine{00031\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{class_sell_book_dialog}{SellBookDialog}}(QWidget\ *parent\ =\ \textcolor{keyword}{nullptr});}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_sell_book_dialog_ab2f07411fe07e1b5b2b57a4d585299a4}{\string~SellBookDialog}}()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sell_book_dialog_a426cb77c684948c6a7c437de6085d20e}{setID}}(std::vector<long>\ \&id\_)\ \textcolor{keyword}{noexcept};}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ signals:}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sell_book_dialog_a430fad141d774b486c8729afc06dd22f}{sendData}}(std::map<std::string,\ std::string>\ \&data);}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}\ slots:}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sell_book_dialog_ae6fb731a1b15dc5b58f9d261e808c243}{clearText}}();}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sell_book_dialog_a27781bc7195af530559b52854722a923}{okClicked}}();}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_sell_book_dialog_ab7764a7ca214afb176b9afa71f59205e}{closeClicked}}();}
+\DoxyCodeLine{00076\ \};}
+
+\end{DoxyCode}

@@ -1,0 +1,303 @@
+\hypertarget{class_shop_database}{}\doxysection{Shop\+Database Class Reference}
+\label{class_shop_database}\index{ShopDatabase@{ShopDatabase}}
+
+
+The \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class provides an interface for performing database operations on books and phones.  
+
+
+
+
+{\ttfamily \#include $<$database.\+h$>$}
+
+\doxysubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{class_shop_database_a69d5e0b216cbad9ec02b39894bc74d0c}\label{class_shop_database_a69d5e0b216cbad9ec02b39894bc74d0c}} 
+{\bfseries Shop\+Database} ()
+\begin{DoxyCompactList}\small\item\em Default constructor for the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class. Initializes the data members of the class. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_shop_database_aa8652cd61827eccb325163d08fd0888f}{Shop\+Database}} (const std\+::map$<$ std\+::string, Item\+Type $>$ \&paths\+\_\+)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class that takes a map of file paths and item types. Initializes the data members of the class and loads the data from the specified files. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_shop_database_aead00448b033833db3cbf15e2ba5781b}{Shop\+Database}} (const std\+::string \&path\+\_\+, const Item\+Type \&item\+\_\+type)
+\begin{DoxyCompactList}\small\item\em Constructor for the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class that takes a file path and an item type. Initializes the data members of the class and loads the data from the specified file. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_database_a1e1a77e07e75b0c8e491833d89765434}\label{class_shop_database_a1e1a77e07e75b0c8e491833d89765434}} 
+{\bfseries $\sim$\+Shop\+Database} ()
+\begin{DoxyCompactList}\small\item\em Destructor for the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class. Saves the data to the files and releases the allocated memory. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_database_aef36c335b3393a0dd44efb4e096e6d0a}\label{class_shop_database_aef36c335b3393a0dd44efb4e096e6d0a}} 
+void {\bfseries print\+DB} () const
+\begin{DoxyCompactList}\small\item\em Prints the contents of the database to the console. \end{DoxyCompactList}\item 
+\mbox{\Hypertarget{class_shop_database_ad446dcfe9064be648b7014f89b143277}\label{class_shop_database_ad446dcfe9064be648b7014f89b143277}} 
+void {\bfseries save\+Data} () noexcept
+\begin{DoxyCompactList}\small\item\em Saves the data to the files. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_database_ac598166e8ceb25ccbf96b6e273de5a96}{delete\+Record}} (const Item\+Type \&item\+\_\+type, int index)
+\begin{DoxyCompactList}\small\item\em Deletes a record from the database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_database_ad9400353c72d9183259fd335888292b0}{delete\+By\+ID}} (const Item\+Type \&item\+\_\+type, long ID\+\_\+)
+\begin{DoxyCompactList}\small\item\em Deletes a record from the database by ID. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_shop_database}{Shop\+Database}} \& \mbox{\hyperlink{class_shop_database_ac10a63f4c6206c07e662e835f9826466}{operator-\/=}} (std\+::pair$<$ Item\+Type, long $>$ \&pair\+\_\+)
+\begin{DoxyCompactList}\small\item\em Overloaded operator for deleting a record from the database by ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_database_a7226fcb74c9dff36dad2c259d33a565f}{add\+Record}} (const Item\+Type \&item\+\_\+type, \mbox{\hyperlink{class_item}{Item}} $\ast$new\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Adds a new record to the database. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_database_ab5a392556193935a03fb931a3141f2e0}{add\+Record}} (const Item\+Type \&item\+\_\+type, const std\+::string \&str\+\_\+data)
+\begin{DoxyCompactList}\small\item\em Adds a new record to the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_shop_database}{Shop\+Database}} \& \mbox{\hyperlink{class_shop_database_a801fedbbaa133aa089ae3c1254b89d69}{operator+=}} (const std\+::pair$<$ Item\+Type, std\+::string $>$ \&pair\+\_\+)
+\begin{DoxyCompactList}\small\item\em Overloaded operator for adding a new record to the database. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{class_item}{Item}} $\ast$ \mbox{\hyperlink{class_shop_database_ab3cb7a7012c9b4b6140355fb639e6c82}{operator\mbox{[}$\,$\mbox{]}}} (const std\+::pair$<$ Item\+Type, long $>$ \&pair\+\_\+)
+\begin{DoxyCompactList}\small\item\em Overloaded operator for accessing a record by ID. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{class_shop_database_a2f4a36db52ad80779b84906823b4717b}{sort\+By}} (const Item\+Type \&item\+\_\+type, const std\+::string \&column\+\_\+name, bool ascending=true)
+\begin{DoxyCompactList}\small\item\em Sorts the records in the database by a specified column. \end{DoxyCompactList}\item 
+std\+::map$<$ Item\+Type, std\+::vector$<$ \mbox{\hyperlink{class_item}{Item}} $\ast$ $>$ $>$ \& \mbox{\hyperlink{class_shop_database_af8d953d32465ce59c3f483f9a720a830}{get\+Items}} ()
+\begin{DoxyCompactList}\small\item\em Returns a reference to the map containing the records. \end{DoxyCompactList}\item 
+std\+::vector$<$ std\+::string $>$ \mbox{\hyperlink{class_shop_database_afd069edd7d5be3d772e2792e53159027}{get\+Headers}} (const Item\+Type \&item\+\_\+type) const noexcept
+\begin{DoxyCompactList}\small\item\em Returns the headers of a specific item type in the database. \end{DoxyCompactList}\item 
+std\+::vector$<$ long $>$ \mbox{\hyperlink{class_shop_database_a923b814377a1d2f89bb277f9b2c1e81d}{get\+Unique\+ID}} (const Item\+Type \&item\+\_\+type) const
+\begin{DoxyCompactList}\small\item\em Returns a vector of unique IDs for a specific item type in the database. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \mbox{\hyperlink{class_item}{Item}} $\ast$ \mbox{\hyperlink{class_shop_database_a473f6c9763a991d2f5c1ae8f3cc24248}{select\+Correct\+Child}} (const Item\+Type \&) noexcept
+\begin{DoxyCompactList}\small\item\em Helper function for creating a new object of the correct child class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+The \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class provides an interface for performing database operations on books and phones. 
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\mbox{\Hypertarget{class_shop_database_aa8652cd61827eccb325163d08fd0888f}\label{class_shop_database_aa8652cd61827eccb325163d08fd0888f}} 
+\index{ShopDatabase@{ShopDatabase}!ShopDatabase@{ShopDatabase}}
+\index{ShopDatabase@{ShopDatabase}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{ShopDatabase()}{ShopDatabase()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily Shop\+Database\+::\+Shop\+Database (\begin{DoxyParamCaption}\item[{const std\+::map$<$ std\+::string, Item\+Type $>$ \&}]{paths\+\_\+ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class that takes a map of file paths and item types. Initializes the data members of the class and loads the data from the specified files. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em paths\+\_\+} & A map of file paths and item types. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_aead00448b033833db3cbf15e2ba5781b}\label{class_shop_database_aead00448b033833db3cbf15e2ba5781b}} 
+\index{ShopDatabase@{ShopDatabase}!ShopDatabase@{ShopDatabase}}
+\index{ShopDatabase@{ShopDatabase}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{ShopDatabase()}{ShopDatabase()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily Shop\+Database\+::\+Shop\+Database (\begin{DoxyParamCaption}\item[{const std\+::string \&}]{path\+\_\+,  }\item[{const Item\+Type \&}]{item\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [explicit]}}
+
+
+
+Constructor for the \mbox{\hyperlink{class_shop_database}{Shop\+Database}} class that takes a file path and an item type. Initializes the data members of the class and loads the data from the specified file. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em path\+\_\+} & The file path. \\
+\hline
+{\em item\+\_\+type} & The item type. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\mbox{\Hypertarget{class_shop_database_ab5a392556193935a03fb931a3141f2e0}\label{class_shop_database_ab5a392556193935a03fb931a3141f2e0}} 
+\index{ShopDatabase@{ShopDatabase}!addRecord@{addRecord}}
+\index{addRecord@{addRecord}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{addRecord()}{addRecord()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
+{\footnotesize\ttfamily void Shop\+Database\+::add\+Record (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type,  }\item[{const std\+::string \&}]{str\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Adds a new record to the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+{\em str\+\_\+data} & A string containing the data for the new record. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_a7226fcb74c9dff36dad2c259d33a565f}\label{class_shop_database_a7226fcb74c9dff36dad2c259d33a565f}} 
+\index{ShopDatabase@{ShopDatabase}!addRecord@{addRecord}}
+\index{addRecord@{addRecord}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{addRecord()}{addRecord()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
+{\footnotesize\ttfamily void Shop\+Database\+::add\+Record (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type,  }\item[{\mbox{\hyperlink{class_item}{Item}} $\ast$}]{new\+\_\+data }\end{DoxyParamCaption})}
+
+
+
+Adds a new record to the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+{\em new\+\_\+data} & A pointer to the new record. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_ad9400353c72d9183259fd335888292b0}\label{class_shop_database_ad9400353c72d9183259fd335888292b0}} 
+\index{ShopDatabase@{ShopDatabase}!deleteByID@{deleteByID}}
+\index{deleteByID@{deleteByID}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{deleteByID()}{deleteByID()}}
+{\footnotesize\ttfamily void Shop\+Database\+::delete\+By\+ID (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type,  }\item[{long}]{ID\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Deletes a record from the database by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+{\em ID\+\_\+} & The ID of the record. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_ac598166e8ceb25ccbf96b6e273de5a96}\label{class_shop_database_ac598166e8ceb25ccbf96b6e273de5a96}} 
+\index{ShopDatabase@{ShopDatabase}!deleteRecord@{deleteRecord}}
+\index{deleteRecord@{deleteRecord}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{deleteRecord()}{deleteRecord()}}
+{\footnotesize\ttfamily void Shop\+Database\+::delete\+Record (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type,  }\item[{int}]{index }\end{DoxyParamCaption})}
+
+
+
+Deletes a record from the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+{\em index} & The index of the record in the vector. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_afd069edd7d5be3d772e2792e53159027}\label{class_shop_database_afd069edd7d5be3d772e2792e53159027}} 
+\index{ShopDatabase@{ShopDatabase}!getHeaders@{getHeaders}}
+\index{getHeaders@{getHeaders}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{getHeaders()}{getHeaders()}}
+{\footnotesize\ttfamily std\+::vector$<$ std\+::string $>$ Shop\+Database\+::get\+Headers (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type }\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [noexcept]}}
+
+
+
+Returns the headers of a specific item type in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of strings containing the headers. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shop_database_af8d953d32465ce59c3f483f9a720a830}\label{class_shop_database_af8d953d32465ce59c3f483f9a720a830}} 
+\index{ShopDatabase@{ShopDatabase}!getItems@{getItems}}
+\index{getItems@{getItems}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{getItems()}{getItems()}}
+{\footnotesize\ttfamily std\+::map$<$ Item\+Type, std\+::vector$<$ \mbox{\hyperlink{class_item}{Item}} $\ast$ $>$ $>$ \& Shop\+Database\+::get\+Items (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Returns a reference to the map containing the records. 
+
+\begin{DoxyReturn}{Returns}
+A reference to the map containing the records. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shop_database_a923b814377a1d2f89bb277f9b2c1e81d}\label{class_shop_database_a923b814377a1d2f89bb277f9b2c1e81d}} 
+\index{ShopDatabase@{ShopDatabase}!getUniqueID@{getUniqueID}}
+\index{getUniqueID@{getUniqueID}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{getUniqueID()}{getUniqueID()}}
+{\footnotesize\ttfamily std\+::vector$<$ long $>$ Shop\+Database\+::get\+Unique\+ID (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type }\end{DoxyParamCaption}) const}
+
+
+
+Returns a vector of unique IDs for a specific item type in the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A vector of long integers containing the unique IDs. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shop_database_a801fedbbaa133aa089ae3c1254b89d69}\label{class_shop_database_a801fedbbaa133aa089ae3c1254b89d69}} 
+\index{ShopDatabase@{ShopDatabase}!operator+=@{operator+=}}
+\index{operator+=@{operator+=}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{operator+=()}{operator+=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_shop_database}{Shop\+Database}} \& Shop\+Database\+::operator+= (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ Item\+Type, std\+::string $>$ \&}]{pair\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Overloaded operator for adding a new record to the database. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pair\+\_\+} & A pair containing the item type and data for the new record. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_ac10a63f4c6206c07e662e835f9826466}\label{class_shop_database_ac10a63f4c6206c07e662e835f9826466}} 
+\index{ShopDatabase@{ShopDatabase}!operator-\/=@{operator-\/=}}
+\index{operator-\/=@{operator-\/=}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{operator-\/=()}{operator-=()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_shop_database}{Shop\+Database}} \& Shop\+Database\+::operator-\/= (\begin{DoxyParamCaption}\item[{std\+::pair$<$ Item\+Type, long $>$ \&}]{pair\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Overloaded operator for deleting a record from the database by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pair\+\_\+} & A pair containing the item type and ID of the record. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_ab3cb7a7012c9b4b6140355fb639e6c82}\label{class_shop_database_ab3cb7a7012c9b4b6140355fb639e6c82}} 
+\index{ShopDatabase@{ShopDatabase}!operator\mbox{[}\mbox{]}@{operator[]}}
+\index{operator\mbox{[}\mbox{]}@{operator[]}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{operator[]()}{operator[]()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_item}{Item}} $\ast$ Shop\+Database\+::operator\mbox{[}$\,$\mbox{]} (\begin{DoxyParamCaption}\item[{const std\+::pair$<$ Item\+Type, long $>$ \&}]{pair\+\_\+ }\end{DoxyParamCaption})}
+
+
+
+Overloaded operator for accessing a record by ID. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em pair\+\_\+} & A pair containing the item type and ID of the record. \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{class_shop_database_a473f6c9763a991d2f5c1ae8f3cc24248}\label{class_shop_database_a473f6c9763a991d2f5c1ae8f3cc24248}} 
+\index{ShopDatabase@{ShopDatabase}!selectCorrectChild@{selectCorrectChild}}
+\index{selectCorrectChild@{selectCorrectChild}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{selectCorrectChild()}{selectCorrectChild()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{class_item}{Item}} $\ast$ Shop\+Database\+::select\+Correct\+Child (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [noexcept]}}
+
+
+
+Helper function for creating a new object of the correct child class. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+A pointer to the new object. 
+\end{DoxyReturn}
+\mbox{\Hypertarget{class_shop_database_a2f4a36db52ad80779b84906823b4717b}\label{class_shop_database_a2f4a36db52ad80779b84906823b4717b}} 
+\index{ShopDatabase@{ShopDatabase}!sortBy@{sortBy}}
+\index{sortBy@{sortBy}!ShopDatabase@{ShopDatabase}}
+\doxysubsubsection{\texorpdfstring{sortBy()}{sortBy()}}
+{\footnotesize\ttfamily void Shop\+Database\+::sort\+By (\begin{DoxyParamCaption}\item[{const Item\+Type \&}]{item\+\_\+type,  }\item[{const std\+::string \&}]{column\+\_\+name,  }\item[{bool}]{ascending = {\ttfamily true} }\end{DoxyParamCaption})}
+
+
+
+Sorts the records in the database by a specified column. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em item\+\_\+type} & The item type. \\
+\hline
+{\em column\+\_\+name} & The name of the column to sort by. \\
+\hline
+{\em ascending} & A flag indicating the sort order. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+include/\mbox{\hyperlink{database_8h}{database.\+h}}\item 
+src/database.\+cpp\end{DoxyCompactItemize}
