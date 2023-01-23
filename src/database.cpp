@@ -40,8 +40,9 @@ void ShopDatabase::open(const std::string& path, const ItemType& item_type) {
 
     files[item_type]->open(path);
     if (files[item_type]->fail()) {
-        std::string s = "Cannot open file: %s!" + path;
-        throw runtime_error(s.c_str());
+        std::string s = "Cannot open file: " + path + "\nCheck the file location.";
+        cerr << s + "\nAborting" << endl;
+        exit(1);
     }
     data[item_type] = vector<Item *>();
 

@@ -64,32 +64,42 @@ void Login::createMessageBox(const char *title, const char *text, QMessageBox::I
 
 void Login::loadUsersDatabase() {
     std::ifstream database{"../data/users.bin", std::ios::binary};
-    while (database.peek() != EOF) {
-        try {
-            User tmp;
-            tmp.readFromBinary(database);
-            usersDatabase[tmp.getUsername()] = tmp;
-        } catch (const std::runtime_error &err) {
-            Login::createMessageBox("Critical", err.what(), QMessageBox::Critical,
-                                    QMessageBox::Ok | QMessageBox::NoButton);
-            std::terminate();
-        }
+    if (database.good()) {
+        while (database.peek() != EOF) {
+            try {
+                User tmp;
+                tmp.readFromBinary(database);
+                usersDatabase[tmp.getUsername()] = tmp;
+            } catch (const std::runtime_error &err) {
+                Login::createMessageBox("Critical", err.what(), QMessageBox::Critical,
+                                        QMessageBox::Ok | QMessageBox::NoButton);
+                std::terminate();
+            }
 
+        }
+        database.close();
+    } else {
+        std::cerr << "Error: Unable to open users database!\nCheck the file location." << std::endl;
+        exit(1);
     }
-    database.close();
 }
 
 void Login::writeUsersDatabase() {
     std::ofstream database{"../data/users.bin", std::ios::binary};
-    for (auto &[id, user]: usersDatabase) {
-        try {
-            user.saveToBinary(database);
-        } catch (const std::runtime_error &err) {
-            Login::createMessageBox("Critical", err.what(), QMessageBox::Critical,
-                                    QMessageBox::Ok | QMessageBox::NoButton);
+    if (database.good()) {
+        for (auto &[id, user]: usersDatabase) {
+            try {
+                user.saveToBinary(database);
+            } catch (const std::runtime_error &err) {
+                Login::createMessageBox("Critical", err.what(), QMessageBox::Critical,
+                                        QMessageBox::Ok | QMessageBox::NoButton);
+            }
         }
+        database.close();
+    } else {
+        std::cerr << "Error: Unable to open users database for writing!\nCheck the file location." << std::endl;
+        exit(1);
     }
-    database.close();
 }
 
 void Login::addUser() {

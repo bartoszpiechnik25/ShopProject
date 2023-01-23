@@ -1,57 +1,57 @@
 ID,Name,Manufacturer,Description,Price,Specs
-54,Motorola Moto E7 Power,Motorola,An affordable smartphone with a 5000mAh battery and a dual-camera system,129.990000,4G
-7,Redmi Note 10,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
-22,Redmi Note 9 Pro,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
-20,Moto G8,Motorola,An affordable smartphone with good specs,169.990000,4G
-56,Xiaomi Redmi 9T,Xiaomi,An affordable smartphone with a 6.53-inch IPS LCD display and a quad-camera system,179.990000,4G
-46,Oppo A73,Oppo,An affordable smartphone with a 6.44-inch AMOLED display and a triple-camera system,199.990000,4G
-32,Motorola Moto G Power,Motorola,An affordable smartphone with a large battery and a triple-camera system,199.990000, 4G
-51,LG Q70,LG,A budget smartphone with a 6.1-inch IPS LCD display and a triple-camera system,199.990000,4G
-25,Vivo Y70s,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
-24,Oppo A92,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
-23,Realme 6,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
-44,Nokia 5.3,Nokia,A budget smartphone with a 6.55-inch IPS LCD display and a triple-camera system,199.990000,4G
+2,Galaxy S21,Samsung,The latest Samsung flagship,799.990000,5G
+3,Pixel 5,Google,The latest Pixel smartphone,699.990000,5G
+4,OnePlus 9,OnePlus,A high-end Android smartphone,799.990000,5G
 5,Moto G9,Motorola,An affordable smartphone with good specs,199.990000,4G
 6,Nokia 5.4,Nokia,A budget smartphone with good performance,199.990000,4G
-11,LG Stylo 6,LG,A budget smartphone with a stylus,199.990000,4G
+7,Redmi Note 10,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
 8,Realme 7,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
-10,Vivo Y51,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
 9,Oppo A53,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
-47,Vivo Y51s,Vivo,An affordable smartphone with a 6.58-inch AMOLED display and a triple-camera system,229.990000,4G
-43,Motorola Moto G Stylus,Motorola,An affordable smartphone with a 6.4-inch IPS LCD display and a stylus,249.990000,4G
-52,OnePlus Nord N200,OnePlus,A budget smartphone with a 6.49-inch AMOLED display and a triple-camera system,249.990000,4G
-123,Mi 20,Xiaomi,Cheap phone,299.000000,5G 120W charging
-45,Xiaomi Mi 10T Lite,Xiaomi,An affordable smartphone with a 6.67-inch IPS LCD display and a quad-camera system,299.990000,4G
-33,Nokia 6.3,Nokia,A mid-range smartphone with a 6.55-inch IPS LCD display and a triple-camera system,299.990000,4G
+10,Vivo Y51,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
+11,LG Stylo 6,LG,A budget smartphone with a stylus,199.990000,4G
 12,Huawei P40 Lite,Huawei,A mid-range smartphone with a good camera,299.990000,4G
-21,Nokia 7.2,Nokia,A mid-range smartphone with a good camera,349.990000,4G
-18,Pixel 4a,Google,An affordable Pixel smartphone with a good camera,349.990000,4G
-42,Google Pixel 5a,Google,An affordable smartphone with a 6.2-inch AMOLED display and a dual-camera system,399.990000,4G
-48,Samsung Galaxy A72,Samsung,A mid-range smartphone with a 6.7-inch AMOLED display and a quad-camera system,399.990000,4G
-49,Huawei Nova 8,Huawei,A mid-range smartphone with a 6.57-inch AMOLED display and a quad-camera system,399.990000,4G
-53,Google Pixel 4a 5G, Google,An affordable smartphone with a 5G connectivity and a dual-camera system,399.990000,5G
-17,iPhone SE,Apple,An affordable iPhone with good performance,399.990000,4G
-16,Galaxy A52,Samsung,A mid-range smartphone with a good camera,449.990000,5G
-15,Nokia 8.3 5G,Nokia,A mid-range smartphone with 5G connectivity,449.990000,5G
-19,OnePlus Nord,OnePlus,A mid-range smartphone with top-of-the-line specs,499.990000,5G
-3,Pixel 5,Google,The latest Pixel smartphone,699.990000,5G
-50,Sony Xperia XZ3,Sony,A high-end smartphone with a 6.0-inch AMOLED display and a triple-camera system,799.990000,4G
-31,Google Pixel 6,Google,A flagship smartphone with a 6.4-inch AMOLED display and a triple-camera system,799.990000, 5G
-40,LG G8X ThinQ,LG,A high-end smartphone with a 6.4-inch AMOLED display and a dual-screen accessory,799.990000,5G
-4,OnePlus 9,OnePlus,A high-end Android smartphone,799.990000,5G
 13,ASUS ROG Phone 3,ASUS,A gaming smartphone with top-of-the-line specs,799.990000,5G
+15,Nokia 8.3 5G,Nokia,A mid-range smartphone with 5G connectivity,449.990000,5G
+16,Galaxy A52,Samsung,A mid-range smartphone with a good camera,449.990000,5G
+17,iPhone SE,Apple,An affordable iPhone with good performance,399.990000,4G
+18,Pixel 4a,Google,An affordable Pixel smartphone with a good camera,349.990000,4G
+19,OnePlus Nord,OnePlus,A mid-range smartphone with top-of-the-line specs,499.990000,5G
+20,Moto G8,Motorola,An affordable smartphone with good specs,169.990000,4G
+21,Nokia 7.2,Nokia,A mid-range smartphone with a good camera,349.990000,4G
+22,Redmi Note 9 Pro,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
+23,Realme 6,Realme,An affordable smartphone with a high-resolution camera,199.990000,4G
+24,Oppo A92,Oppo,An affordable smartphone with a long-lasting battery,199.990000,4G
+25,Vivo Y70s,Vivo,An affordable smartphone with a high-resolution camera,199.990000,4G
 26,Razer Phone 2,Razer,A gaming smartphone with a 120Hz display and a powerful processor,799.990000,5G
-34,Xiaomi Mi 11,Xiaomi,A flagship smartphone with a 6.81-inch AMOLED display and a triple-camera system,799.990000,5G
-2,Galaxy S21,Samsung,The latest Samsung flagship,799.990000,5G
-41,OnePlus 9R,OnePlus,A high-end smartphone with a 6.55-inch AMOLED display and a quad-camera system,799.990000,5G
-29,LG V60 ThinQ 5G,LG,A 5G smartphone with a large OLED display and a dual-screen accessory,899.990000,5G
-30,OnePlus 9T Pro,OnePlus,A high-end smartphone with a 120Hz AMOLED display and 65W fast charging,999.990000,5G
 27,Huawei Mate 40 Pro,Huawei,A high-end smartphone with a 50MP camera and 5G connectivity,999.990000,5G
 28,Sony Xperia 1 III,Sony,A flagship smartphone with a 4K OLED display and a triple-camera system,999.990000,5G
+29,LG V60 ThinQ 5G,LG,A 5G smartphone with a large OLED display and a dual-screen accessory,899.990000,5G
+30,OnePlus 9T Pro,OnePlus,A high-end smartphone with a 120Hz AMOLED display and 65W fast charging,999.990000,5G
+31,Google Pixel 6,Google,A flagship smartphone with a 6.4-inch AMOLED display and a triple-camera system,799.990000, 5G
+32,Motorola Moto G Power,Motorola,An affordable smartphone with a large battery and a triple-camera system,199.990000, 4G
+33,Nokia 6.3,Nokia,A mid-range smartphone with a 6.55-inch IPS LCD display and a triple-camera system,299.990000,4G
+34,Xiaomi Mi 11,Xiaomi,A flagship smartphone with a 6.81-inch AMOLED display and a triple-camera system,799.990000,5G
 35,Oppo Find X3 Pro,Oppo,A high-end smartphone with a 6.7-inch AMOLED display and a quad-camera system,999.990000,5G
 36,Vivo X60 Pro,Vivo,A high-end smartphone with a 6.56-inch AMOLED display and a triple-camera system,999.990000,5G
-39,Sony Xperia 2,Sony,A flagship smartphone with a 6.5-inch AMOLED display and a quad-camera system,999.990000,5G
-345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island
-234,Samsung Galaxy S22 FE,Samsung,Latest Samsung phone,1199.990000,5G 3 cameras
 37,Samsung Galaxy Note 21 Ultra,Samsung,A high-end smartphone with a 6.9-inch AMOLED display and a quad-camera system,1299.990000,5G
 38,Huawei P50 Pro,Huawei,A flagship smartphone with a 6.6-inch AMOLED display and a penta-camera system,1299.990000,5G
+39,Sony Xperia 2,Sony,A flagship smartphone with a 6.5-inch AMOLED display and a quad-camera system,999.990000,5G
+40,LG G8X ThinQ,LG,A high-end smartphone with a 6.4-inch AMOLED display and a dual-screen accessory,799.990000,5G
+41,OnePlus 9R,OnePlus,A high-end smartphone with a 6.55-inch AMOLED display and a quad-camera system,799.990000,5G
+42,Google Pixel 5a,Google,An affordable smartphone with a 6.2-inch AMOLED display and a dual-camera system,399.990000,4G
+43,Motorola Moto G Stylus,Motorola,An affordable smartphone with a 6.4-inch IPS LCD display and a stylus,249.990000,4G
+44,Nokia 5.3,Nokia,A budget smartphone with a 6.55-inch IPS LCD display and a triple-camera system,199.990000,4G
+45,Xiaomi Mi 10T Lite,Xiaomi,An affordable smartphone with a 6.67-inch IPS LCD display and a quad-camera system,299.990000,4G
+46,Oppo A73,Oppo,An affordable smartphone with a 6.44-inch AMOLED display and a triple-camera system,199.990000,4G
+47,Vivo Y51s,Vivo,An affordable smartphone with a 6.58-inch AMOLED display and a triple-camera system,229.990000,4G
+48,Samsung Galaxy A72,Samsung,A mid-range smartphone with a 6.7-inch AMOLED display and a quad-camera system,399.990000,4G
+49,Huawei Nova 8,Huawei,A mid-range smartphone with a 6.57-inch AMOLED display and a quad-camera system,399.990000,4G
+50,Sony Xperia XZ3,Sony,A high-end smartphone with a 6.0-inch AMOLED display and a triple-camera system,799.990000,4G
+51,LG Q70,LG,A budget smartphone with a 6.1-inch IPS LCD display and a triple-camera system,199.990000,4G
+52,OnePlus Nord N200,OnePlus,A budget smartphone with a 6.49-inch AMOLED display and a triple-camera system,249.990000,4G
+53,Google Pixel 4a 5G, Google,An affordable smartphone with a 5G connectivity and a dual-camera system,399.990000,5G
+56,Xiaomi Redmi 9T,Xiaomi,An affordable smartphone with a 6.53-inch IPS LCD display and a quad-camera system,179.990000,4G
+123,Mi 20,Xiaomi,Cheap phone,299.000000,5G 120W charging
+345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island
+567,iPhone 11,Apple,Affordable Apple phone,699.000000,Ok camera and cpu
+45456,sadfsadfasd,sfsadfsadf,fsdfasdf,345.660000,fsadf

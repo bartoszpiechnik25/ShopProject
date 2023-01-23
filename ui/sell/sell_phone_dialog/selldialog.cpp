@@ -7,6 +7,8 @@ SellDialog::SellDialog(QWidget *parent) :
     connect(ui->clearButton, SIGNAL(clicked()), this, SLOT(clearText()));
     connect(ui->okButton, SIGNAL(clicked()), this, SLOT(okClicked()));
     connect(ui->cancelButton, SIGNAL(clicked()), this, SLOT(closeClicked()));
+    for(auto& lineEdit: findChildren<QLineEdit*>())
+        connect(lineEdit, SIGNAL(returnPressed()), this, SLOT(okClicked()));
 }
 
 SellDialog::~SellDialog() {
@@ -20,21 +22,29 @@ void SellDialog::clearText() {
 
 void SellDialog::okClicked() {
     std::map<std::string, std::string> data;
-    for(auto& lineEdit: findChildren<QLineEdit*>()) {
+    for (auto &lineEdit: findChildren<QLineEdit *>()) {
         if (lineEdit->text().isEmpty()) {
-            Login::createMessageBox("Warning", "All fields shall be filled!", QMessageBox::Critical, QMessageBox::Ok | QMessageBox::NoButton);
+            Login::createMessageBox("Warning", "All fields shall be filled!", QMessageBox::Critical,
+                                    QMessageBox::Ok | QMessageBox::NoButton);
             return;
         }
     }
-    for(auto& lineEdit : findChildren<QLineEdit*>()) {
+    for (auto &lineEdit: findChildren<QLineEdit *>()) {
         std::string lineText = lineEdit->text().toStdString();
-        if (std::find(lineText.begin(), lineText.end(), ',') != lineText.end()){
-            Login::createMessageBox("Warning", "Comma is not allowed in any field!", QMessageBox::Critical, QMessageBox::Ok | QMessageBox::NoButton);
+        if (std::find(lineText.begin(), lineText.end(), ',') != lineText.end()) {
+            Login::createMessageBox("Warning", "Comma is not allowed in any field!", QMessageBox::Critical,
+                                    QMessageBox::Ok | QMessageBox::NoButton);
             lineEdit->clear();
             return;
         }
     }
     try {
+        if (!isValidNumber(ui->idLineEdit->text().toStdString())) {
+            Login::createMessageBox("Warining", "ID shall be number!", QMessageBox::Critical,
+                                    QMessageBox::Ok | QMessageBox::NoButton);
+            ui->idLineEdit->clear();
+            return;
+        }
         long id = std::stol(ui->idLineEdit->text().toStdString());
         if (std::find(uniqueIDs.begin(), uniqueIDs.end(), id) != uniqueIDs.end()) {
             Login::createMessageBox("Warning", "ID already exists!", QMessageBox::Critical,
@@ -42,16 +52,16 @@ void SellDialog::okClicked() {
             ui->idLineEdit->clear();
             return;
         }
-    } catch (std::invalid_argument& e) {
-        Login::createMessageBox("Warining", "ID must be a number!", QMessageBox::Critical, QMessageBox::Ok | QMessageBox::NoButton);
+    } catch (std::invalid_argument &e) {
+        Login::createMessageBox("Warining", "ID must be a number!", QMessageBox::Critical,
+                                QMessageBox::Ok | QMessageBox::NoButton);
         ui->idLineEdit->clear();
         return;
     }
 
-    try {
-        std::stod(ui->priceLineEdit->text().toStdString());
-    } catch (const std::invalid_argument& e){
-        Login::createMessageBox("Warining", "Price shall be a number!", QMessageBox::Critical, QMessageBox::Ok | QMessageBox::NoButton);
+    if (!isValidNumber(ui->priceLineEdit->text().toStdString())) {
+        Login::createMessageBox("Warining", "Price shall be a number!", QMessageBox::Critical,
+                                QMessageBox::Ok | QMessageBox::NoButton);
         ui->priceLineEdit->clear();
         return;
     }
@@ -70,6 +80,11 @@ void SellDialog::okClicked() {
 void SellDialog::closeClicked() {
     clearText();
     close();
+}
+
+bool SellDialog::isValidNumber(const std::string& text) noexcept {
+    std::regex pattern("^[0-9]+\\.?[0-9]*$");
+    return std::regex_match(text, pattern);
 }
 
 void SellDialog::setID(std::vector<long> &id_) noexcept{

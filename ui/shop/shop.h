@@ -39,12 +39,12 @@ Q_OBJECT
 private:
     Ui::Shop *ui;
     ShopDatabase *database;
-    QTableWidget *phones, *books;
+    QTableWidget *phones, *books, *sorted;
     Login *m_login;
     SellDialog *sellDialog;
     SellBookDialog *sellBookDialog;
     SortWindow *sortWindow;
-    QAction *resetMenubar, *menuProfile;
+    QAction *resetMenubar, *menuProfile, *dbInfo;
     std::map<std::string, User> usersDatabase;
     UserDialog *userDialog;
     std::string currentUser;
@@ -145,4 +145,9 @@ public slots:
      * @brief Slot that is called when the profile button is clicked.
      */
     void profileClicked();
+
+    /**
+     * @brief Slot that is called when the database info button is clicked.
+     */
+    void printDBInfo();
 };

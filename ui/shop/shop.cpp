@@ -12,9 +12,10 @@ Shop::Shop(QWidget *parent) :
     initializeUi();
     std::map<std::string, ItemType> paths = {{"../data/phones_database.csv", PHONES},
                                              {"../data/books_database.csv",  BOOKS}};
+
     try {
         database = new ShopDatabase(paths);
-    } catch (std::exception &e) {
+    } catch (const std::exception &e) {
         Login::createMessageBox("Error", e.what(), QMessageBox::Critical,
                                 QMessageBox::Ok | QMessageBox::NoButton);
         exit(1);
@@ -25,6 +26,7 @@ Shop::Shop(QWidget *parent) :
 }
 
 Shop::~Shop() {
+    delete dbInfo;
     delete userDialog;
     delete resetMenubar;
     delete menuProfile;
@@ -49,12 +51,17 @@ void Shop::loginSuccessful(const std::string &username, std::map<std::string, Us
 
 void Shop::sellButtonClicked() {
     std::vector<long> uniqueIDs;
+
     if (ui->tabWidget->currentWidget() == phones) {
+        if (sellDialog->isVisible())
+            return;
         uniqueIDs = database->getUniqueID(PHONES);
         sellDialog->setID(uniqueIDs);
         sellDialog->show();
     }
     else {
+        if (sellBookDialog->isVisible())
+            return;
         uniqueIDs = database->getUniqueID(BOOKS);
         sellBookDialog->setID(uniqueIDs);
         sellBookDialog->show();
@@ -80,7 +87,7 @@ void Shop::addNewItem(std::map<std::string, std::string>& data) {
     database->addRecord(item_type, new_item);
     tableWidget->setRowCount(tableWidget->rowCount() + 1);
 
-    int row_count = phones->rowCount() - 1, counter = 0;
+    int row_count = tableWidget->rowCount() - 1, counter = 0;
     for (const auto &column_name: database->getHeaders(item_type))
         tableWidget->setItem(row_count, counter++, new QTableWidgetItem(data[column_name].c_str()));
     tableWidget->repaint();
@@ -96,6 +103,9 @@ void Shop::initializeUi() {
     ui->searchLineEdit->setPlaceholderText("Search...");
     menuProfile = new QAction("Profile");
     menuProfile->setVisible(true);
+    dbInfo = new QAction("Database info");
+    dbInfo->setVisible(true);
+    dbInfo->setStatusTip("Prints database items to console");
     ui->menubar->addAction(menuProfile);
     resetMenubar = new QAction("Reset");
     QFont font = resetMenubar->font();
@@ -105,6 +115,7 @@ void Shop::initializeUi() {
     resetMenubar->setVisible(false);
     ui->menubar->setStyleSheet("color: white;background-color: rgb(54, 69, 79); border-radius: 5px;");
     ui->menubar->addAction(resetMenubar);
+    ui->menubar->addAction(dbInfo);
 }
 
 void Shop::initializeTab() {
@@ -158,7 +169,8 @@ void Shop::initializeTable(const ItemType &item_type, QTableWidget* tableWidget)
 }
 
 void Shop::closeEvent(QCloseEvent *event) {
-    if (m_login->isVisible() || sellDialog->isVisible() || sellBookDialog->isVisible() || userDialog->isVisible()) {
+    if (m_login->isVisible() || sellDialog->isVisible() || sellBookDialog->isVisible() || userDialog->isVisible() ||
+        sortWindow->isVisible()) {
         Login::createMessageBox("Warning", "Please close all windows before exit!", QMessageBox::Warning,
                                 QMessageBox::Ok);
         event->ignore();
@@ -180,19 +192,18 @@ void Shop::closeEvent(QCloseEvent *event) {
 void Shop::sortData(const std::string& column, bool ascending) {
     if (resetMenubar->isVisible())
         resetClicked();
-    QTableWidget* tableWidget;
     ItemType item_type;
     if (ui->tabWidget->currentWidget() == phones) {
-        tableWidget = phones;
+        sorted = phones;
         item_type = PHONES;
     } else {
         item_type = BOOKS;
-        tableWidget = books;
+        sorted = books;
     }
     try {
-        tableWidget->clearContents();
+        sorted->clearContents();
         database->sortBy(item_type, column, ascending);
-        initializeTable(item_type, tableWidget);
+        initializeTable(item_type, sorted);
     } catch (const std::exception &e) {
         Login::createMessageBox("Error", e.what(), QMessageBox::Critical,
                                 QMessageBox::Ok | QMessageBox::NoButton);
@@ -200,6 +211,8 @@ void Shop::sortData(const std::string& column, bool ascending) {
 }
 
 void Shop::createSortWindow() {
+    if (sortWindow->isVisible())
+        return;
     if (ui->tabWidget->currentWidget() == phones)
         sortWindow->setComboBoxData({"ID", "Price", "Name", "Manufacturer"});
     else
@@ -248,50 +261,54 @@ void Shop::buyButtonClicked() {
     tableWidget->update();
     tableWidget->setCurrentCell(-1, -1);
     usersDatabase[currentUser].appendHistory(soldItem);
-    Login::createMessageBox("Information", soldItem.c_str(), QMessageBox::Information,
+    Login::createMessageBox("Information", "You have bought a new item :)", QMessageBox::Information,
                             QMessageBox::Ok | QMessageBox::NoButton);
 }
 
 void Shop::searchForData() {
-    QTableWidget *tableWidget;
     ItemType item_type;
     std::string search_data = ui->searchLineEdit->text().toStdString();
     ui->searchLineEdit->clear();
 
     if (ui->tabWidget->currentWidget() == phones) {
-        tableWidget = phones;
+        sorted = phones;
         item_type = PHONES;
     } else {
-        tableWidget = books;
+        sorted = books;
         item_type = BOOKS;
     }
-    tableWidget->clearContents();
-    tableWidget->setRowCount(0);
+    sorted->clearContents();
+    sorted->setRowCount(0);
     std::vector<std::string> headers = database->getHeaders(item_type);
     int counter = 0;
     for (auto &item: database->getItems()[item_type]) {
         if (item->contains(search_data)) {
             std::map<std::string, std::string> itemData = item->getAll();
             int i = 0;
-            tableWidget->insertRow(counter);
+            sorted->insertRow(counter);
             for (const auto &header: headers)
-                tableWidget->setItem(counter, i++, new QTableWidgetItem(itemData[header].c_str()));
+                sorted->setItem(counter, i++, new QTableWidgetItem(itemData[header].c_str()));
             ++counter;
         }
     }
-    tableWidget->resizeColumnsToContents();
+    sorted->resizeColumnsToContents();
     resetMenubar->setVisible(true);
 }
 
 void Shop::resetClicked() {
-    if (ui->tabWidget->currentWidget() == phones) {
-        initializeTable(PHONES,phones);
-    } else
-        initializeTable(BOOKS, books);
+//    if (ui->tabWidget->currentWidget() == phones) {
+//        initializeTable(PHONES,phones);
+//    } else
+//        initializeTable(BOOKS, books);
+    if (sorted)
+        initializeTable(PHONES, sorted);
+    sorted = nullptr;
     resetMenubar->setVisible(false);
 }
 
 void Shop::profileClicked() {
+    if (userDialog->isVisible())
+        return;
     userDialog->initializeListView(&usersDatabase[currentUser]);
     userDialog->show();
 }
@@ -306,6 +323,8 @@ void Shop::connectSlots() noexcept {
     connect(ui->searchLineEdit, SIGNAL(returnPressed()), this, SLOT(searchForData()));
     connect(resetMenubar, SIGNAL(triggered()), this, SLOT(resetClicked()));
     connect(menuProfile, SIGNAL(triggered()), this, SLOT(profileClicked()));
+    connect(sellBookDialog, &SellBookDialog::sendData, this, &Shop::addNewItem);
+    connect(dbInfo, SIGNAL(triggered()), this, SLOT(printDBInfo()));
 }
 
 void Shop::initializePointers() noexcept {
@@ -316,4 +335,8 @@ void Shop::initializePointers() noexcept {
     m_login = new Login();
     phones = new QTableWidget(this);
     books = new QTableWidget(this);
+}
+
+void Shop::printDBInfo() {
+    database->printDB();
 }

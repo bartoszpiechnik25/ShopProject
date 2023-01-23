@@ -12,6 +12,7 @@
 
 #include <QDialog>
 #include "login.h"
+#include "selldialog.h"
 #include <algorithm>
 
 

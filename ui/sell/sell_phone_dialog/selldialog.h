@@ -12,6 +12,7 @@
 
 #include <QDialog>
 #include <algorithm>
+#include <regex>
 #include "login.h"
 
 
@@ -45,6 +46,7 @@ public:
      * @param data Vector of IDs.
      */
     void setID(std::vector<long> &id_) noexcept;
+    static bool isValidNumber(const std::string& text) noexcept;
 
 signals:
 
