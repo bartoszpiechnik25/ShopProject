@@ -1,7 +1,6 @@
 ID,Name,Manufacturer,Description,Price,Specs
 2,Galaxy S21,Samsung,The latest Samsung flagship,799.990000,5G
 3,Pixel 5,Google,The latest Pixel smartphone,699.990000,5G
-4,OnePlus 9,OnePlus,A high-end Android smartphone,799.990000,5G
 5,Moto G9,Motorola,An affordable smartphone with good specs,199.990000,4G
 6,Nokia 5.4,Nokia,A budget smartphone with good performance,199.990000,4G
 7,Redmi Note 10,Xiaomi,An affordable smartphone with a long-lasting battery,169.990000,4G
@@ -55,3 +54,4 @@ ID,Name,Manufacturer,Description,Price,Specs
 345,iPhone 14 Pro,Apple,Brand new iphone,1099.000000,5G FaceID Dynamic island
 567,iPhone 11,Apple,Affordable Apple phone,699.000000,Ok camera and cpu
 45456,sadfsadfasd,sfsadfsadf,fsdfasdf,345.660000,fsadf
+234,fsdfds,cxvxcv,fsd,234.550000,vcv
